@@ -15,11 +15,19 @@
 % to the file main.tex
 \graphicspath{{img/}}
 
+% Custom commands
 \newcommand{\insertoutput}[1]{
     \begin{center}
         \includegraphics[width=12cm]{#1}
     \end{center}
 }
+\newcommand{\pic}[2]{
+    \begin{center}
+        \transparent{0.4}
+        \includegraphics[height=#1]{#2}
+    \end{center}
+}
+
 
 % In which order to look after images in
 % declared graphicspath{}'s
@@ -61,6 +69,8 @@
 
 \subsection{Router}
 
+% <!-- ROUTER: base.cfg -->
+
 \subsubsection{File: base.cfg}
 
 \begin{minted}[frame=lines,framesep=2mm,baselinestretch=1.2,bgcolor=lightgray,fontsize=\footnotesize,linenos,breaklines=true]{tcl}
@@ -81,6 +91,8 @@ end
 }
 tclquit
 \end{minted}
+
+% <!-- ROUTER: reset.tcl -->
 
 \subsubsection{File: reset.tcl}
 
@@ -106,6 +118,8 @@ tclquit
 
 \subsection{Switch}
 
+% <!-- SWITCH: base.cfg -->
+
 \subsubsection{File: base.cfg}
 
 \begin{minted}[frame=lines,framesep=2mm,baselinestretch=1.2,bgcolor=lightgray,fontsize=\footnotesize,linenos,breaklines=true]{tcl}
@@ -126,6 +140,8 @@ end
 }
 tclquit
 \end{minted}
+
+% <!-- SWITCH: reset.tcl -->
 
 \subsubsection{File: reset.tcl}
 
