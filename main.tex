@@ -1,5 +1,7 @@
 % Declare Document Class
-\documentclass[a4paper,12pt,twoside]{book}
+\documentclass[a4paper,12pt,twoside,twocolumn]{book}
+
+\setlength{\columnsep}{2em}
 
 % Latex Packages
 \usepackage[T1]{fontenc}
@@ -13,6 +15,7 @@
 \usepackage[english]{babel}
 \usepackage{fancyhdr}
 \usepackage{wrapfig}
+\usepackage{array}
 
 % Define color
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -46,21 +49,21 @@
 \graphicspath{{img/}{figures/}}
 
 % Custom commands
-% Usage: \pic[<pct-of-testwidt>]{<path-to-file>}
-\newcommand{\pic}[2][25]{
+% Usage: \pic[<pct-of-columnwidth>]{<path-to-file>}
+\newcommand{\pic}[2][50]{
 \begin{center}
     \transparent{0.4}
-    \includegraphics[width=0.#1\textwidth]{#2}
+    \includegraphics[width=0.#1\columnwidth]{#2}
 \end{center}
 }
-% Usage: \rfig{<path-to-file>}{<label>}
-\newcommand{\rfig}[2]{
-\begin{wrapfigure}{r}{0.60\textwidth}
-    \begin{center}
-        \includegraphics[width=0.58\textwidth]{#1}
-    \end{center}
-    \caption{#2}
-\end{wrapfigure}
+% Usage: \fig{<path-to-file>}{<label>}{<caption>}
+\newcommand{\fig}[3]{
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.95\columnwidth]{#1}
+    \caption{#3}
+    \label{fig:#2}
+\end{figure}
 }
 
 % In which order to look after images in
@@ -71,7 +74,11 @@
 \DeclareGraphicsExtensions{.jpg,.png,.pdf}
 
 % Package Params
-\geometry{a4paper,margin=1in}
+\geometry{a4paper,margin=4em}
+
+%\setlength{\parindent}{4em}
+%\setlength{\parskip}{1em}
+%\renewcommand{\baselinestretch}{2.0}
 
 % Define fancy header and footer
 \pagestyle{fancy}
@@ -81,8 +88,12 @@
 \fancyfoot[CE,CO]{\leftmark}
 \fancyfoot[LE,RO]{\thepage}
 
+% width of header and footer rule is by default 0px.
 \renewcommand{\headrulewidth}{2pt}
 \renewcommand{\footrulewidth}{1pt}
+
+% Use the roman numeric system for pagenumbers
+\pagenumbering{roman}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                    %
@@ -100,6 +111,11 @@
 \maketitle
 
 \tableofcontents
+
+% Define length between paragrahps
+\setlength{\parskip}{1em}
+% Define lineheight
+\renewcommand{\baselinestretch}{1.15}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                    %
@@ -160,11 +176,98 @@
 \subsection{Static}
 \subsection{BGP}
 
+\newpage
+
 \section{VLAN}
 
 \subsection{VTP}
-\rfig{vtp/implementing-vtp}{VTP}\cite{vtpchap4}
+\fig{vtp/implementing-vtp}{imp-vtp1}{VTP}
 
+\subsubsection{VTP Modes}
+The tree modes a VTP \textit{enabled} device can operate are
+\begin{itemize}
+    \item Transparent
+    \item Server
+    \item Client
+\end{itemize}
+Of course you can \textit{disable} VTP altogether.
+
+Key things to be aware of \textit{before} enabling VTP in your environment is to make double sure of only having 1 VTP domain. \textbf{If} 2 or more VTP domains exists. Be triple sure to separate them! As to avoid having an VTP server DB overridden with data from another VTP domain.
+
+The three VTP modes \textit{operates} as follow
+\begin{itemize}
+    \item Transparent
+    \begin{itemize}
+        \item Creates, modifies and deletes \textit{local} vlans only
+        \item Forwards advertisements
+        \item Does \textit{not} synchronizes vlan configurations.
+    \end{itemize}
+    \item Server
+    \begin{itemize}
+        \item Creates, modifies and deletes vlans
+        \item Sends and forwards advertisements
+        \item Synchronizes vlan configurations
+    \end{itemize}
+    \begin{itemize}
+        \item Cannot create, modify or delete vlans
+        \item Send and forwards advertisements
+        \item Synchronizes vlan configurations
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{VTP Announcement}
+VTP operates with announcements sent out in intervals. Summarized it amounts to
+\begin{itemize}
+    \item 1 \textit{summary} announcement per 5th minute from the server
+    \item The summary announcement informs clients of the current revision
+    \item An announcement is sent out \textit{on the spot} when a change has been made on the VTP server
+\end{itemize}
+
+Do remember it is \textbf{only} the VTP server which has the vlan configuration stored \textbf{on disk}. All device clients and transparent nodes do only store the vlans delegated by VTP in memory.
+
+\subsubsection{Common Issues}
+\begin{itemize}
+    \item Different/Incompatible VTP versions
+    \item Wrong password
+    \item Incorrect mode name
+    \item No server set (all devices configured in transparent/client/vtp disabled mode)
+\end{itemize}
+
+\subsubsection{VTP Versions}
+\begin{itemize}
+    \item Version 1
+    \item Version 2
+    \begin{itemize}
+        \item Version-dependent	transparent	mode
+        \item Consistencycheck
+        \item Token ring support
+        \item Unrecognized type-length-value support
+    \end{itemize}
+    \item Version 3 (not "yet" common)
+    \begin{itemize}
+        \item Extended VLAN support: Allow ranges are 1-1005,1018-2095. Not mentioned vlans ranges up to 4095 is still reserved.
+        \item Domain name is not automatically learned.
+        \item Better security.
+        \item Better database propagation.
+        \item MST now supported.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{VTP Pruning}
+The art of only allowing the vlan traffic to flow on \textit{necessary} links.
+
+This means if there are no clients in a vlan on a device. Then no traffic for the inactive vlans is send down-/upstream on the link in question.
+\fig{vtp/vtp-pruning}{vtpruning1}{VTP Pruning}
+
+\subsubsection{Security}
+It is \textbf{strongly} recommended to enable the security features supported in VTP.
+
+\textbf{Password:} MD5 hashing, Case-sensitive, Length between 8 and 64 chars.
+
+\subsubsection{Example configuration}
+\lstinputlisting{code/vtp/example.cfg}
+    
+\newpage
 
 \section{Spanning Tree}
 
@@ -183,6 +286,24 @@
 \chapter{Internet}
 
 \section{BGP}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                    %
+% BEGIN LIST OF FIGURES                              %
+%                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\listfigurename}{List of plots}
+\listoffigures
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                    %
+% BEGIN LIST OF TABLES                               %
+%                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\listtablename}{Tables}
+\listoftables
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                    %
