@@ -1,5 +1,5 @@
 % Declare Document Class
-\documentclass{article}
+\documentclass[a4paper,12pt,twoside]{book}
 
 % Latex Packages
 \usepackage[T1]{fontenc}
@@ -10,6 +10,8 @@
 \usepackage{color}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
 
 % Define color
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -43,18 +45,22 @@
 \graphicspath{{img/}}
 
 % Custom commands
-\newcommand{\insertoutput}[1]{
-    \begin{center}
-        \includegraphics[width=12cm]{#1}
-    \end{center}
-}
-\newcommand{\pic}[2]{
+% Usage: \pic{ [<pct-of-testwidt>] }{ <path-to-file> }
+\newcommand{\pic}[2][25]{
     \begin{center}
         \transparent{0.4}
-        \includegraphics[height=#1]{#2}
+        \includegraphics[width=0.#1\textwidth]{#2}
     \end{center}
 }
-
+% Usage: \fig{ [<caption>] }{ <label> }{ <path-to-file> }
+\newcommand{\fig}[3][]{
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.25\textwidth]{#3}
+        \caption{#1}
+        \label{fig:#2}
+    \end{figure}
+}
 
 % In which order to look after images in
 % declared graphicspath{}'s
@@ -64,7 +70,18 @@
 \DeclareGraphicsExtensions{.jpg,.png,.pdf}
 
 % Package Params
-\geometry{a4paper,margin=2cm}
+\geometry{a4paper,margin=1in}
+
+% Define fancy header and footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{ZBC}
+\fancyhead[RE,LO]{\rightmark}
+\fancyfoot[CE,CO]{\leftmark}
+\fancyfoot[LE,RO]{\thepage}
+
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{1pt}
 
 
 %
@@ -73,22 +90,23 @@
 \begin{document}
 
 % Which info to insert on the title page
-\title{r17dinh409 Cisco Lab}
+\title{r17dinh409}
 \author{Christoffer Hansen <zbcchhan11 at zbc.dk>}
 \date{May 22 - June 30, 2017}
 % Make title page contents
 \maketitle
 
-% Page break before starting Table Of Contents
-\newpage
-% Table Of Contents
 \tableofcontents
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                    %
+% BEGIN CHAPTER: Base Configuration                  %
+%                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%
-% BEGIN SWITCH CONFIG
-%
-\section{Lab cfg}
+\chapter{Base Configuration}
+
+\section{Cisco Lab}
 
 % <!-- ROUTER -->
 
@@ -98,28 +116,66 @@
 \subsubsection{File: reset.tcl}
 %\lstinputlisting[language=tcl]{code/router/reset.tcl}
 
+\newpage
+
 % <!-- LAYER 3 SWITCH -->
 
 \subsection{Layer 3 Switch}
-\subsubsection{File: base.cfg}
+\subsubsection{FILE: base.cfg}
 \lstinputlisting[language=tcl]{code/l3switch/base.cfg}
-\subsubsection{File: reset.tcl}
+\subsubsection{FILE: reset.tcl}
 \lstinputlisting[language=tcl]{code/l3switch/reset-tcl.txt}
+\subsubsection{FILE: resetvlans.tcl}
+\lstinputlisting[language=tcl]{code/l3switch/resetvlans-tcl.txt}
+
+\newpage
 
 % <!-- LAYER 2 SWITCH -->
 
 \subsection{Layer 2 Switch}
-\subsubsection{File: base.cfg}
+\subsubsection{FILE: base.cfg}
 \lstinputlisting[language=tcl]{code/l2switch/base.cfg}
-\subsubsection{File: reset.tcl}
+\subsubsection{FILE: reset.tcl}
 \lstinputlisting[language=tcl]{code/l2switch/reset-tcl.txt}
+\subsubsection{FILE: resetvlans.tcl}
+\lstinputlisting[language=tcl]{code/l2switch/resetvlans-tcl.txt}
 
-%
-% END SWITCH CONFIG
-%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                    %
+% BEGIN CHAPTER: Protocols                           %
+%                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\chapter{Protocols}
 
+\section{Routing}
 
+\subsection{OSPF}
+\subsection{IS-IS}
+\subsection{EIGRP}
+\subsection{RIP}
+\subsection{Static}
+\subsection{BGP}
+
+\section{Switching}
+
+\subsection{Spanning Tree}
+
+\subsubsection{STP}
+\subsubsection{PVST}
+\subsubsection{RPVST+}
+\subsubsection{MTP}
+\subsubsection{VTP}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                    %
+% BEGIN CHAPTER: Internet                            %
+%                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Internet}
+
+\section{BGP}
 
 %
 % END DOCUMENT
