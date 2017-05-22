@@ -179,7 +179,7 @@
 
 \chapter{Protocols}
 
-\section{Routing}
+\section{Routed Network}
 
 \subsection{OSPF}
 \subsection{IS-IS}
@@ -190,7 +190,7 @@
 
 \newpage
 
-\section{VLAN}
+\section{Switch Network}
 
 \subsection{VTP}
 \fig{vtp/implementing-vtp}{imp-vtp1}{VTP}
@@ -286,7 +286,21 @@ wiped vlan database from the VTP domain.
 
 \subsubsection{Example configuration}
 \lstinputlisting{code/vtp/example.cfg}
-    
+
+\subsection{Channel Bundling (aka. EtherChannel, PortChannel)}
+Channel bundling is the "art" of using multiple physical links as one single logical link in when viewed from the perspective of the forwarding plane.
+
+Technologies:
+\begin{itemize}
+    \item \textbf{PAgP:} The Cisco-only thingy
+    \item \textbf{LACP:} The IETF standard
+\end{itemize}
+
+
+
+\subsubsection{Example configuration}
+\lstinputlisting{code/channelbundling/example.cfg}
+
 \newpage
 
 \section{Spanning Tree}
