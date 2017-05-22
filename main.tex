@@ -71,7 +71,7 @@
 
 \newcommand{\notice}[2]{%
     \shadowbox{%
-        \begin{varwidth}{\linewidth}
+        \begin{varwidth}{0.85\linewidth}
             \texttt{\textbf{#1}}\\
             #2
         \end{varwidth}
@@ -293,10 +293,46 @@ Channel bundling is the "art" of using multiple physical links as one single log
 Technologies:
 \begin{itemize}
     \item \textbf{PAgP:} The Cisco-only thingy
-    \item \textbf{LACP:} The IETF standard
+    \item \textbf{LACP:} The IEEE standard
+    \item \textbf{Static:} Just forced on
 \end{itemize}
 
+\fig{channelbundling/network-without-channelbundling}{noethernetchannel}%
+{No Channelbundling present}
 
+Channel bundling of switch ports in the network may or may not be the best idea, in regards to the networks growth rate in terms of min. required bandwidth.
+
+Channel bundling spreads out the in and egress flows based upon one of several methods configured on the switch:
+\begin{itemize}
+    \item Source to Destination MAC
+    \item Source to Destination IP
+\end{itemize}
+Keep in mind this will by no means archive true load balancing. Where all links are equally used based upon number of flows \textit{or} in terms of used bandwidth.
+
+\fig{channelbundling/network-with-channelbundling}{withethernetchannel}%
+{Channelbundling present}
+
+\subsubsection{Protocol Properties}
+
+\begin{itemize}
+    \item LACP
+    \begin{itemize}
+        \item Active: Enabled
+        \item Passive: Waits for LACP packets on the wire before enabled
+    \end{itemize}
+    \item PAgP
+    \begin{itemize}
+        \item Desirable: Enabled
+        \item Auto: Waits for PAgP packets on the wire before enabled
+    \end{itemize}
+\end{itemize}
+
+Some other \underline{required} settings to be (equal across all ports) aware of when configuring Channel bundling are
+\begin{enumerate}
+    \item Port speeds
+    \item Duplex mode
+    \item Configured vlan ranges
+\end{enumerate}
 
 \subsubsection{Example configuration}
 \lstinputlisting{code/channelbundling/example.cfg}
@@ -327,7 +363,7 @@ Technologies:
 %                                                    %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\renewcommand{\listfigurename}{List of plots}
+\renewcommand{\listfigurename}{List of {\footnotesize hidden} Figures}
 \listoffigures
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
