@@ -1,5 +1,84 @@
+% Declare Document Class
 \documentclass{article}
+
+% Latex Packages
+\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+%\usepackage{minted}
+\usepackage{graphicx}
+\usepackage{float}
+
+
+% Path where images are located relative
+% to the file main.tex
+\graphicspath{{img/}}
+
+\newcommand{\insertoutput}[1]{
+    \begin{center}
+        \includegraphics[width=12cm]{#1}
+    \end{center}
+}
+
+% In which order to look after images in
+% declared graphicspath{}'s
+% 1. Low-quality JPG
+% 2. Med-quality PNG
+% 3. High-quality PDF
+\DeclareGraphicsExtensions{.jpg,.png,.pdf}
+
+% Package Params
+\geometry{a4paper,margin=2cm}
+% Used to NOT show red boxes around colons
+% etc. when using the minted{} package.
+%\AtBeginEnvironment{minted}{\renewcommand{\fcolorbox}[4][]{#4}}
+
+%
+% BEGIN DOCUMENT
+%
 \begin{document}
-(Type your content here.)
+
+% Which info to insert on the title page
+\title{r17dinh409 Cisco Lab}
+\author{Christoffer Hansen <zbcchhan11 at zbc.dk>}
+\date{May 22 - June 30, 2017}
+% Make title page contents
+\maketitle
+
+% Page break before starting Table Of Contents
+\newpage
+% Table Of Contents
+\tableofcontents
+
+
+%
+% BEGIN SWITCH CONFIG
+%
+\section{Lab cfg}
+
+
+\subsection{Router}
+
+\subsubsection*{File: base.cfg}
+
+\subsubsection*{File: reset.tcl}
+
+
+\subsection{Switch}
+
+\subsubsection*{File: base.cfg}
+
+\subsubsection*{File: reset.tcl}
+
+%
+% END SWITCH CONFIG
+%
+
+
+
+
+%
+% END DOCUMENT
+%
 \end{document}
