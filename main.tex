@@ -6,7 +6,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 \usepackage{geometry}
-%\usepackage{minted}
+\usepackage{minted}
 \usepackage{graphicx}
 \usepackage{float}
 
@@ -32,7 +32,7 @@
 \geometry{a4paper,margin=2cm}
 % Used to NOT show red boxes around colons
 % etc. when using the minted{} package.
-%\AtBeginEnvironment{minted}{\renewcommand{\fcolorbox}[4][]{#4}}
+\AtBeginEnvironment{minted}{\renewcommand{\fcolorbox}[4][]{#4}}
 
 %
 % BEGIN DOCUMENT
@@ -57,19 +57,95 @@
 %
 \section{Lab cfg}
 
+% <!-- ROUTER -->
 
 \subsection{Router}
 
-\subsubsection*{File: base.cfg}
+\subsubsection{File: base.cfg}
 
-\subsubsection*{File: reset.tcl}
+\begin{minted}[frame=lines,framesep=2mm,baselinestretch=1.2,bgcolor=lightgray,fontsize=\footnotesize,linenos,breaklines=true]{tcl}
+tclsh
+puts [ open "flash:base.cfg" w+ ] {
+hostname __HOSTNAME__
+ip domain-name cisco.tld
+no ip domain lookup
+interface range f0/1-24 , g0/1-2
+shutdown
+exit
+vtp mode transparent
+line con 0
+no exec-timeout
+logging synchronous
+exit
+end
+}
+tclquit
+\end{minted}
 
+\subsubsection{File: reset.tcl}
+
+\begin{minted}[frame=lines,framesep=2mm,baselinestretch=1.2,bgcolor=lightgray,fontsize=\footnotesize,linenos,breaklines=true]{tcl}
+tclsh
+puts [ open "flash:reset.tcl" w+ ] {
+typeahead "\n"
+copy running-config startup-config
+typeahead "\n"
+erase startup-config
+delete /force vlan.dat
+delete /force multiple-fs
+ios_config "sdm prefer dual-ipv4-and-ipv6 routing"
+typeahead "\n"
+puts "Reloading the switch in 1 minute, type reload cancel to halt"
+typeahead "\n"
+reload in 1 RESET.TCL SCRIPT RUN
+}
+tclquit
+\end{minted}
+
+% <!-- SWITCH -->
 
 \subsection{Switch}
 
-\subsubsection*{File: base.cfg}
+\subsubsection{File: base.cfg}
 
-\subsubsection*{File: reset.tcl}
+\begin{minted}[frame=lines,framesep=2mm,baselinestretch=1.2,bgcolor=lightgray,fontsize=\footnotesize,linenos,breaklines=true]{tcl}
+tclsh
+puts [ open "flash:base.cfg" w+ ] {
+hostname __HOSTNAME__
+ip domain-name cisco.tld
+no ip domain lookup
+interface range f0/1-24 , g0/1-2
+shutdown
+exit
+vtp mode transparent
+line con 0
+no exec-timeout
+logging synchronous
+exit
+end
+}
+tclquit
+\end{minted}
+
+\subsubsection{File: reset.tcl}
+
+\begin{minted}[frame=lines,framesep=2mm,baselinestretch=1.2,bgcolor=lightgray,fontsize=\footnotesize,linenos,breaklines=true]{tcl}
+tclsh
+puts [ open "flash:reset.tcl" w+ ] {
+typeahead "\n"
+copy running-config startup-config
+typeahead "\n"
+erase startup-config
+delete /force vlan.dat
+delete /force multiple-fs
+ios_config "sdm prefer lanbase-routing"
+typeahead "\n"
+puts "Reloading the switch in 1 minute, type reload cancel to halt"
+typeahead "\n"
+reload in 1 RESET.TCL SCRIPT RUN
+}
+tclquit
+\end{minted}
 
 %
 % END SWITCH CONFIG
