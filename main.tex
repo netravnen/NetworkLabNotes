@@ -15,11 +15,19 @@
 % to the file main.tex
 \graphicspath{{img/}}
 
+% Custom commands
 \newcommand{\insertoutput}[1]{
     \begin{center}
         \includegraphics[width=12cm]{#1}
     \end{center}
 }
+\newcommand{\pic}[2]{
+    \begin{center}
+        \transparent{0.4}
+        \includegraphics[height=#1]{#2}
+    \end{center}
+}
+
 
 % In which order to look after images in
 % declared graphicspath{}'s
@@ -60,6 +68,7 @@
 % <!-- ROUTER -->
 
 \subsection{Router}
+
 \subsubsection{File: base.cfg}
 \inputminted[frame=lines,framesep=2mm,baselinestretch=1.2,bgcolor=lightgray,fontsize=\footnotesize,linenos,breaklines=true]{powershell}{code/router/base.cfg}
 \subsubsection{File: reset.tcl}
@@ -68,6 +77,7 @@
 % <!-- SWITCH -->
 
 \subsection{Switch}
+
 \subsubsection{File: base.cfg}
 \inputminted[frame=lines,framesep=2mm,baselinestretch=1.2,bgcolor=lightgray,fontsize=\footnotesize,linenos,breaklines=true]{powershell}{code/switch/base.cfg}
 \subsubsection{File: reset.tcl}
