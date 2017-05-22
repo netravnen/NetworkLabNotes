@@ -12,6 +12,7 @@
 \usepackage{float}
 \usepackage[english]{babel}
 \usepackage{fancyhdr}
+\usepackage{wrapfig}
 
 % Define color
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -42,24 +43,24 @@
 
 % Path where images are located relative
 % to the file main.tex
-\graphicspath{{img/}}
+\graphicspath{{img/}{figures/}}
 
 % Custom commands
-% Usage: \pic{ [<pct-of-testwidt>] }{ <path-to-file> }
+% Usage: \pic[<pct-of-testwidt>]{<path-to-file>}
 \newcommand{\pic}[2][25]{
-    \begin{center}
-        \transparent{0.4}
-        \includegraphics[width=0.#1\textwidth]{#2}
-    \end{center}
+\begin{center}
+    \transparent{0.4}
+    \includegraphics[width=0.#1\textwidth]{#2}
+\end{center}
 }
-% Usage: \fig{ [<caption>] }{ <label> }{ <path-to-file> }
-\newcommand{\fig}[3][]{
-    \begin{figure}[h]
-        \centering
-        \includegraphics[width=0.25\textwidth]{#3}
-        \caption{#1}
-        \label{fig:#2}
-    \end{figure}
+% Usage: \rfig{<path-to-file>}{<label>}
+\newcommand{\rfig}[2]{
+\begin{wrapfigure}{r}{0.60\textwidth}
+    \begin{center}
+        \includegraphics[width=0.58\textwidth]{#1}
+    \end{center}
+    \caption{#2}
+\end{wrapfigure}
 }
 
 % In which order to look after images in
@@ -161,8 +162,9 @@
 
 \section{VLAN}
 
-%\subsection{BPDU}
-%\subsection{}
+\subsection{VTP}
+\rfig{vtp/implementing-vtp}{VTP}\cite{vtpchap4}
+
 
 \section{Spanning Tree}
 
@@ -170,7 +172,6 @@
 \subsection{PVST}
 \subsection{RPVST+}
 \subsection{MTP}
-\subsection{VTP}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -182,6 +183,15 @@
 \chapter{Internet}
 
 \section{BGP}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                    %
+% BEGIN REFERENCES                                   %
+%                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{unsrt}
+\bibliography{unsrt}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                    %
