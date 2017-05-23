@@ -21,6 +21,7 @@
 \usepackage{varwidth}
 \usepackage{enumitem}
 
+\geometry{a4paper,margin=4em}
 
 % Define color
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -53,7 +54,6 @@
 % to the file main.tex
 \graphicspath{{img/}{figures/}}
 
-% Custom commands
 % Usage: \pic[<pct-of-columnwidth>]{<path-to-file>}
 \newcommand{\pic}[2][50]{
 \begin{center}
@@ -61,14 +61,25 @@
     \includegraphics[width=0.#1\columnwidth]{#2}
 \end{center}
 }
+
 % Usage: \fig{<path-to-file>}{<label>}{<caption>}
-\newcommand{\fig}[3]{
+\newcommand{\fig}[4]{
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.95\columnwidth]{#1}
     \caption{#3}
     \label{fig:#2}
 \end{figure}
+}
+
+% Usage: \svg{<path-to-file>}{<label>}{<caption>}
+\newcommand{\svg}[3]{
+    \begin{figure}[h]
+        \centering
+        \includesvg{#1}
+        \caption{#3}
+        \label{fig:#2}
+    \end{figure}
 }
 
 \newcommand{\notice}[2]{%
@@ -85,14 +96,7 @@
 % 1. Low-quality JPG
 % 2. Med-quality PNG
 % 3. High-quality PDF
-\DeclareGraphicsExtensions{.jpg,.png,.pdf}
-
-% Package Params
-\geometry{a4paper,margin=4em}
-
-%\setlength{\parindent}{4em}
-%\setlength{\parskip}{1em}
-%\renewcommand{\baselinestretch}{2.0}
+\DeclareGraphicsExtensions{.jpg,.png,.pdf,.svg}
 
 % Define fancy header and footer
 \pagestyle{fancy}
@@ -112,6 +116,8 @@
 \setlist[itemize,1]{leftmargin=\dimexpr 26pt-.2cm}
 \setlist[itemize,2]{leftmargin=\dimexpr 26pt-.3cm}
 
+\setlength{\headheight}{15pt}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                    %
 % BEGIN DOCUMENT                                     %
@@ -128,6 +134,8 @@
 \maketitle
 
 \tableofcontents
+
+%\setlength{\parindent}{4em}
 
 % Define length between paragrahps
 \setlength{\parskip}{0.35em}
