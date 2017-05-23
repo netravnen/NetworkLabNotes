@@ -34,24 +34,90 @@ When a switch is enabled for Spanning Tree. One of the following roles will have
 
 \subsection{Standards}
 
-\subsubsection{STP}
-
-\subsubsection{PVST}
-
-\subsubsection{RPVST+}
-
-\subsubsection{MST}
+\begin{itemize}
+    \item STP {\scriptsize Spanning Tree Protocol}
+    \begin{itemize}
+        \item Ieee 802.1D
+        \item Was created in a time where bridged networks was the norm.
+        \item Supports a single vlan/lan.
+    \end{itemize}
+    \item CST {\scriptsize Common Spanning Tree}
+    \begin{itemize}
+        \item An evolution of stp
+        \item Cst still only supports one stp instance.
+        \item But cst do thou in contrast to stp support \textit{multiple} vlans.
+    \end{itemize}
+    \item PVST {\scriptsize Per Vlan Spanning Tree}
+    \begin{itemize}
+        \item Now obsolute and succeded by pvst+
+    \end{itemize}
+    \item PVST+ {\scriptsize Per Vlan Spanning Tree Plus}
+    \begin{itemize}
+        \item Runs an instance of stp per vlan.
+        \item Can guarante better utilization of available network bandwidth.
+        \item Root bridge and port priorities can be configured per vlan.
+    \end{itemize}
+    \item RSTP {\scriptsize Rapid Spanning Tree Protocol}
+    \begin{itemize}
+        \item Ieee 802.1w
+        \item A future development of the original 802.1D standard meant to provide faster convergance. As the original stp standard wasn't actually that fast.
+    \end{itemize}
+    \item RPVST+ {\scriptsize Rapid Per Vlan Spanning Tree Plus}
+    \begin{itemize}
+        \item A cisco implementation of rstp based upon pvst+.
+    \end{itemize}
+    \item MST {\scriptsize Multiple Spanning Tree}
+    \begin{itemize}
+        \item Originally a cisco developed protocol. Mst has since been developed as an ieee standard.
+        \item Mst can as cst map multiple vlans to a single stp instance.
+        \item Mst \textit{differently} than cst supports multiple stp instances.
+        \item Fx. Instance 1: Vlan 1-99, Instane 2: Vlan 100-199.
+    \end{itemize}
+\end{itemize}
 
 \subsection{Features}
 
+\subsubsection{BPDU}
+\textbf{B}ridge \textbf{P}rotocol \textbf{D}ata \textbf{U}nits is on cisco equipment sent out every 2 seconds and generally catogorizes into 2 categories:
+\begin{itemize}
+    \item \textit{Configuration} bpdu used for stp calculations and
+    \item \textit{Topology change notifications} bpdus used to notify other network nodes of a change in the network.
+\end{itemize}
+
+Any network node with switchports and stp + bpdu enabled sends out bpdu packets with the ports mac as the src address. The destination mac is is designated stp multicast addr 01:80:C2:00:00:00.
+
+\subsubsection{Root bridge}
+Using a \textbf{R}oot \textbf{B}rigde as the reference point for the stp instance and calculation of root/designated/non-designated ports.\\This election process uses a pre-configured bridge priority (ranges from $0$ to $2^{16}$) (defaults to $2^{15}$). If a tie in priority is found the switch in possession of the lowest mac address wins the root bridge election.
+
+\subsubsection{Port}
+
 \begin{itemize}
 	\item PortFart
+    \begin{itemize}
+        \item
+    \end{itemize}
 	\item UplinkFast
+    \begin{itemize}
+        \item
+    \end{itemize}
 	\item BackboneFast
+    \begin{itemize}
+        \item
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Loop prevention}
+
+\begin{itemize}
 	\item BPDU Guard
 	\item BPDU Filter
 	\item Root Guard
 	\item Loop Guard
+\end{itemize}
+
+\subsubsection{Link}
+
+\begin{itemize}
 	\item Unidirectional Link Detection (UDLD)
 	\item FlexLinks
 \end{itemize}
