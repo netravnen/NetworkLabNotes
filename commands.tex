@@ -1,0 +1,36 @@
+% Usage: \pic[<pct-of-columnwidth>]{<path-to-file>}
+\newcommand{\pic}[2][50]{
+\begin{center}
+    \transparent{0.4}
+    \includegraphics[width=0.#1\columnwidth]{#2}
+\end{center}
+}
+
+% Usage: \fig{<path-to-file>}{<label>}{<caption>}
+\newcommand{\fig}[4]{
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.95\columnwidth]{#1}
+    \caption{#3}
+    \label{fig:#2}
+\end{figure}
+}
+
+% Usage: \svg{<path-to-file>}{<label>}{<caption>}
+\newcommand{\svg}[3]{
+    \begin{figure}[h]
+        \centering
+        \includesvg{#1}
+        \caption{#3}
+        \label{fig:#2}
+    \end{figure}
+}
+
+\newcommand{\notice}[2]{%
+    \shadowbox{%
+        \begin{varwidth}{0.85\linewidth}
+            \texttt{\textbf{#1}}\\
+            #2
+        \end{varwidth}
+    }
+}
