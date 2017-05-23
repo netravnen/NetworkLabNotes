@@ -1,0 +1,57 @@
+\section{Spanning Tree}
+
+Spanning Tree exists for the \textbf{sole} reason to save "your" network and all the broadcast storms an network engineer having a bad day can by mistake create!
+
+STP comes from the above desire where redundancy was wanted but no protocol existed before STP to help in this regard.
+
+\begin{table}[h]
+	\centering
+	\caption{Spanning Tree standrds}
+	\label{stpstandards}
+	\resizebox{\columnwidth}{!}{%
+		\begin{tabular}{|l|l|l|l|l|}
+			\hline
+			\textbf{} & \textbf{Standard} & \textbf{Ressource Usage} & \multicolumn{2}{l|}{\textbf{Convergence}} \\ \hline
+			CST       & 802.1D            & Low                      & Slow              & All vlans             \\ \hline
+			PVST+     & Cisco             & High                     & Slow              & Per vlan              \\ \hline
+			RSTP      & 802.1w            & So-so (Med.)             & Fast              & All vlans             \\ \hline
+			RPVST+    & Cisco             & On-the-double (V.High)   & Fast              & Per vlan              \\ \hline
+			MST       & 802.1s            & Med. - High              & Fast              & Vlan list             \\ \hline
+		\end{tabular}%
+	}
+\end{table}
+
+\subsection{Port Roles}
+
+When a switch is enabled for Spanning Tree. One of the following roles will have been assumed by any port on the switch in question.
+
+\begin{itemize}
+	\item \textbf{Root port:} Only 1 port on any switch (non-counting the root bridge!). Is always the port with the lowest metric (aka. best path) to the root bridge.
+	\item \textbf{Designated port:} A designated port is the port on any segment closest to the root bridge and forwarding traffic.
+	\item \textbf{\textit{Non}-designated port:} Put in blocking mode and not currently forwarding traffic.
+	\item \textbf{Disabled port:} The port has been one-way-or-another shut down.
+\end{itemize}
+
+\subsection{Standards}
+
+\subsubsection{STP}
+
+\subsubsection{PVST}
+
+\subsubsection{RPVST+}
+
+\subsubsection{MST}
+
+\subsection{Features}
+
+\begin{itemize}
+	\item PortFart
+	\item UplinkFast
+	\item BackboneFast
+	\item BPDU Guard
+	\item BPDU Filter
+	\item Root Guard
+	\item Loop Guard
+	\item Unidirectional Link Detection (UDLD)
+	\item FlexLinks
+\end{itemize}

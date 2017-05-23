@@ -1,5 +1,5 @@
 % Declare Document Class
-\documentclass[a4paper,12pt,twoside,twocolumn]{book}
+\documentclass[a4paper,12pt,twoside,twocolumn,landscape]{book}
 
 \input{structure} % Load structure cfg for document
 
@@ -11,330 +11,34 @@
 
 \begin{document}
 
-% Which info to insert on the title page
 \title{r17dinh409}
 \author{Christoffer Hansen <zbcchhan11 at zbc.dk>}
 \date{May 22 - June 30, 2017}
 \titlepic{\includegraphics[width=0.3\textwidth]{profilepic/pic1}}
+
 \maketitle
 
 \tableofcontents
 
-%\setlength{\parindent}{4em}
-
-% Define length between paragrahps
-\setlength{\parskip}{0.35em}
-
-% Define lineheight
-\renewcommand{\baselinestretch}{1.15}
+% Only applied after generation of TOC
+\setlength{\parskip}{0.35em} % Define length between paragrahps
+\renewcommand{\baselinestretch}{1.15} % Define lineheight
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                    %
-% BEGIN CHAPTER: Base Configuration                  %
+% BEGIN chapters                                     %
 %                                                    %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Base Configuration}
+\import{chapter/}{baseconf}
 
-\section{Cisco Lab}
+\import{chapter/}{protocols}
 
-% <!-- ROUTER -->
-
-\subsection{Router}
-\subsubsection{File: base.cfg}
-%\lstinputlisting[language=tcl]{code/router/base.cfg}
-\subsubsection{File: reset.tcl}
-%\lstinputlisting[language=tcl]{code/router/reset.tcl}
-
-\newpage
-
-% <!-- LAYER 3 SWITCH -->
-
-\subsection{Layer 3 Switch}
-\subsubsection{FILE: base.cfg}
-\lstinputlisting[language=tcl]{code/l3switch/base.cfg}
-\subsubsection{FILE: reset.tcl}
-\lstinputlisting[language=tcl]{code/l3switch/reset-tcl.txt}
-\subsubsection{FILE: resetvlans.tcl}
-\lstinputlisting[language=tcl]{code/l3switch/resetvlans-tcl.txt}
-
-\newpage
-
-% <!-- LAYER 2 SWITCH -->
-
-\subsection{Layer 2 Switch}
-\subsubsection{FILE: base.cfg}
-\lstinputlisting[language=tcl]{code/l2switch/base.cfg}
-\subsubsection{FILE: reset.tcl}
-\lstinputlisting[language=tcl]{code/l2switch/reset-tcl.txt}
-\subsubsection{FILE: resetvlans.tcl}
-\lstinputlisting[language=tcl]{code/l2switch/resetvlans-tcl.txt}
+\import{chapter/}{internet}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                    %
-% BEGIN CHAPTER: Protocols                           %
-%                                                    %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\chapter{Protocols}
-
-\section{Routed Network}
-
-\subsection{OSPF}
-\subsection{IS-IS}
-\subsection{EIGRP}
-\subsection{RIP}
-\subsection{Static}
-\subsection{BGP}
-
-\newpage
-
-\section{Switch Network}
-
-\subsection{VTP}
-\fig{vtp/implementing-vtp}{imp-vtp1}{VTP}
-
-\subsubsection{VTP Modes}
-The tree modes a VTP \textit{enabled} device can operate are
-\begin{itemize}
-    \item Transparent
-    \item Server
-    \item Client
-\end{itemize}
-Of course you can \textit{disable} VTP altogether.
-
-Key things to be aware of \textit{before} enabling VTP in your environment is to make double sure of only having 1 VTP domain. \textbf{If} 2 or more VTP domains exists. Be triple sure to separate them! As to avoid having an VTP server DB overridden with data from another VTP domain.
-
-The three VTP modes \textit{operates} as follow
-\begin{itemize}
-    \item Transparent
-    \begin{itemize}
-        \item Creates, modifies and deletes \textit{local} vlans only
-        \item Forwards advertisements
-        \item Does \textit{not} synchronizes vlan configurations.
-    \end{itemize}
-    \item Server
-    \begin{itemize}
-        \item Creates, modifies and deletes vlans
-        \item Sends and forwards advertisements
-        \item Synchronizes vlan configurations
-    \end{itemize}
-    \begin{itemize}
-        \item Cannot create, modify or delete vlans
-        \item Send and forwards advertisements
-        \item Synchronizes vlan configurations
-    \end{itemize}
-\end{itemize}
-
-\subsubsection{VTP Announcement}
-VTP operates with announcements sent out in intervals. Summarized it amounts to
-\begin{itemize}
-    \item 1 \textit{summary} announcement per 5th minute from the server
-    \item The summary announcement informs clients of the current revision
-    \item An announcement is sent out \textit{on the spot} when a change has been made on the VTP server
-\end{itemize}
-
-Do remember it is \textbf{only} the VTP server which has the vlan configuration stored \textbf{on disk}. All device clients and transparent nodes do only store the vlans delegated by VTP in memory.
-
-\subsubsection{Common Issues}
-\begin{itemize}
-    \item Different/Incompatible VTP versions
-    \item Wrong password
-    \item Incorrect mode name
-    \item No server set (all devices configured in transparent/client/vtp disabled mode)
-\end{itemize}
-
-\subsubsection{VTP Versions}
-\begin{itemize}
-    \item Version 1
-    \item Version 2
-    \begin{itemize}
-        \item Version-dependent	transparent	mode
-        \item Consistencycheck
-        \item Token ring support
-        \item Unrecognized type-length-value support
-    \end{itemize}
-    \item Version 3 (not "yet" common)
-    \begin{itemize}
-        \item Extended VLAN support: Allow ranges are 1-1005,1018-2095. Not mentioned vlans ranges up to 4095 is still reserved.
-        \item Domain name is not automatically learned.
-        \item Better security.
-        \item Better database propagation.
-        \item MST now supported.
-    \end{itemize}
-\end{itemize}
-
-\subsubsection{VTP Pruning}
-The art of only allowing the vlan traffic to flow on \textit{necessary} links.
-
-This means if there are no clients in a vlan on a device. Then no traffic for the inactive vlans is send down-/upstream on the link in question.
-\fig{vtp/vtp-pruning}{vtpruning1}{VTP Pruning}
-
-\subsubsection{Security}
-It is \textbf{strongly} recommended to enable the security features supported in VTP.
-
-\textbf{Password:} MD5 hashing, Case-sensitive, Length between 8 and 64 chars.
-
-\notice{VTP Scaling}{
-As the network grows and grows and grows and grows some more over long/short timespans.
-You will \textbf{for certain} come to cross-rode, where you \textbf{must} consider to
-go away from using VTP in the network. The problems of managing an elderly network and
-wiping and re-introducing nodes in the network. You \textbf{will} face the issue of a
-wiped vlan database from the VTP domain.
-}
-
-\subsubsection{Example configuration}
-\lstinputlisting{code/vtp/example.cfg}
-
-\subsection{Channel Bundling (aka. EtherChannel, PortChannel)}
-Channel bundling is the "art" of using multiple physical links as one single logical link in when viewed from the perspective of the forwarding plane.
-
-Technologies:
-\begin{itemize}
-    \item \textbf{PAgP:} The Cisco-only thingy
-    \item \textbf{LACP:} The IEEE standard
-    \item \textbf{Static:} Just forced on
-\end{itemize}
-
-\fig{channelbundling/network-without-channelbundling}{noethernetchannel}%
-{No Channelbundling present}
-
-Channel bundling of switch ports in the network may or may not be the best idea, in regards to the networks growth rate in terms of min. required bandwidth.
-
-Channel bundling spreads out the in and egress flows based upon one of several methods configured on the switch:
-\begin{itemize}
-    \item Source to Destination MAC
-    \item Source to Destination IP
-\end{itemize}
-Keep in mind this will by no means archive true load balancing. Where all links are equally used based upon number of flows \textit{or} in terms of used bandwidth.
-
-\begin{table}[h]
-    \centering
-    \caption{Channel bundling mechanisms}
-    \label{chbundmech1}
-    \resizebox{\columnwidth}{!}{%
-        \begin{tabular}{|l|l|l|}
-            \hline
-            Hash Input Code & Hash Input Detecision & Switch Model \\ \hline
-            dst-ip          & Dest IP addr          & All models   \\ \hline
-            dst-mac         & Dest MAC addr         & All models   \\ \hline
-            src-dst-ip      & Src and dest IP addr  & All models   \\ \hline
-            src-dst-mac     & Src and dest MAC addr & All models   \\ \hline
-            src-ip          & Src IP addr           & All models   \\ \hline
-            src-mac         & Src MAC addr          & All models   \\ \hline
-            src-port        & Src port no           & 4500,6500    \\ \hline
-            dst-port        & Dest port no          & 4500,6500    \\ \hline
-            src-dst-port    & Src and dest port no  & 4500,6500    \\ \hline
-        \end{tabular}%
-    }
-\end{table}
-
-\fig{channelbundling/network-with-channelbundling}{withethernetchannel}%
-{Channelbundling present}
-
-\subsubsection{Protocol Properties}
-
-\begin{itemize}
-    \item LACP
-    \begin{itemize}
-        \item Active: Enabled
-        \item Passive: Waits for LACP packets on the wire before enabled
-    \end{itemize}
-    \item PAgP
-    \begin{itemize}
-        \item Desirable: Enabled
-        \item Auto: Waits for PAgP packets on the wire before enabled
-    \end{itemize}
-\end{itemize}
-
-Some other \underline{required} settings to be (equal across all ports) aware of when configuring Channel bundling are
-\begin{enumerate}
-    \item Port speeds
-    \item Duplex mode
-    \item Configured vlan ranges
-\end{enumerate}
-
-\subsubsection{Example configuration}
-\lstinputlisting{code/channelbundling/example.cfg}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                    %
-% BEGIN section: Spanning Tree                       %
-%                                                    %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newpage
-\section{Spanning Tree}
-
-Spanning Tree exists for the \textbf{sole} reason to save "your" network and all the broadcast storms an network engineer having a bad day can by mistake create!
-
-STP comes from the above desire where redundancy was wanted but no protocol existed before STP to help in this regard.
-
-\begin{table}[h]
-	\centering
-	\caption{Spanning Tree standrds}
-	\label{stpstandards}
-	\resizebox{\columnwidth}{!}{%
-		\begin{tabular}{|l|l|l|l|l|}
-			\hline
-			\textbf{} & \textbf{Standard} & \textbf{Ressource Usage} & \multicolumn{2}{l|}{\textbf{Convergence}} \\ \hline
-			CST       & 802.1D            & Low                      & Slow              & All vlans             \\ \hline
-			PVST+     & Cisco             & High                     & Slow              & Per vlan              \\ \hline
-			RSTP      & 802.1w            & So-so (Med.)             & Fast              & All vlans             \\ \hline
-			RPVST+    & Cisco             & On-the-double (V.High)   & Fast              & Per vlan              \\ \hline
-			MST       & 802.1s            & Med. - High              & Fast              & Vlan list             \\ \hline
-		\end{tabular}%
-	}
-\end{table}
-
-\subsection{Port Roles}
-
-When a switch is enabled for Spanning Tree. One of the following roles will have been assumed by any port on the switch in question.
-
-\begin{itemize}
-	\item \textbf{Root port:} Only 1 port on any switch (non-counting the root bridge!). Is always the port with the lowest metric (aka. best path) to the root bridge.
-	\item \textbf{Designated port:} A designated port is the port on any segment closest to the root bridge and forwarding traffic.
-	\item \textbf{\textit{Non}-designated port:} Put in blocking mode and not currently forwarding traffic.
-	\item \textbf{Disabled port:} The port has been one-way-or-another shut down.
-\end{itemize}
-
-\subsection{Standards}
-
-\subsubsection{STP}
-
-\subsubsection{PVST}
-
-\subsubsection{RPVST+}
-
-\subsubsection{MST}
-
-\subsection{Features}
-
-\begin{itemize}
-	\item PortFart
-	\item UplinkFast
-	\item BackboneFast
-	\item BPDU Guard
-	\item BPDU Filter
-	\item Root Guard
-	\item Loop Guard
-	\item Unidirectional Link Detection (UDLD)
-	\item FlexLinks
-\end{itemize}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                    %
-% BEGIN CHAPTER: Internet                            %
-%                                                    %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\chapter{Internet}
-
-\section{BGP}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                    %
-% BEGIN LIST OF FIGURES                              %
+% BEGIN list of figures                              %
 %                                                    %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -343,7 +47,7 @@ When a switch is enabled for Spanning Tree. One of the following roles will have
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                    %
-% BEGIN LIST OF TABLES                               %
+% BEGIN list of tables                               %
 %                                                    %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -352,7 +56,7 @@ When a switch is enabled for Spanning Tree. One of the following roles will have
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                    %
-% BEGIN REFERENCES                                   %
+% BEGIN references                                   %
 %                                                    %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
