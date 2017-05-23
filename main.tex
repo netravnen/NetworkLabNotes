@@ -315,6 +315,27 @@ Channel bundling spreads out the in and egress flows based upon one of several m
 \end{itemize}
 Keep in mind this will by no means archive true load balancing. Where all links are equally used based upon number of flows \textit{or} in terms of used bandwidth.
 
+\begin{table}[h]
+    \centering
+    \caption{Channel bundling mechanisms}
+    \label{chbundmech1}
+    \resizebox{\columnwidth}{!}{%
+        \begin{tabular}{|l|l|l|}
+            \hline
+            Hash Input Code & Hash Input Detecision & Switch Model \\ \hline
+            dst-ip          & Dest IP addr          & All models   \\ \hline
+            dst-mac         & Dest MAC addr         & All models   \\ \hline
+            src-dst-ip      & Src and dest IP addr  & All models   \\ \hline
+            src-dst-mac     & Src and dest MAC addr & All models   \\ \hline
+            src-ip          & Src IP addr           & All models   \\ \hline
+            src-mac         & Src MAC addr          & All models   \\ \hline
+            src-port        & Src port no           & 4500,6500    \\ \hline
+            dst-port        & Dest port no          & 4500,6500    \\ \hline
+            src-dst-port    & Src and dest port no  & 4500,6500    \\ \hline
+        \end{tabular}%
+    }
+\end{table}
+
 \fig{channelbundling/network-with-channelbundling}{withethernetchannel}%
 {Channelbundling present}
 
@@ -356,8 +377,6 @@ Spanning Tree exists for the \textbf{sole} reason to save "your" network and all
 
 STP comes from the above desire where redundancy was wanted but no protocol existed before STP to help in this regard.
 
-% Please add the following required packages to your document preamble:
-% \usepackage{graphicx}
 \begin{table}[h]
 	\centering
 	\caption{Spanning Tree standrds}
