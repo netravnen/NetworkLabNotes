@@ -168,36 +168,64 @@ Things to be aware of regarding RSTP port roles
 Cisco did on their part early on enhance the original spanning tree standard with some proprietary portroles that can (on cisco switch equipment) skip steps in the port role election process. And configure a STP switchport to a specific behavior as described below:
 
 \begin{itemize}
- \item PortFast
+    \item PortFast
     \begin{itemize}
-        \item Configures access port to transition directly to forwarding state
+        \item Configures access port to transition directly to forwarding state.
+        \item Improve convergence times of non-RSTP.
+        \item Port does no forwan TCN\footnote{\textbf{Needs finding out what TCN is.}} BPDUs either.
+        \item PortFast can be enabled either A) per port \textit{or} B) globally for all ports in access mode.
+        \begin{enumerate}
+            \item Per port:\\%
+                \cliline{switch(config-if)# spanning-tree portfast}
+            \item Globally:\\%
+                \cliline{switch(config)# spanning-tree portfast default}
+        \end{enumerate}
     \end{itemize}
- \item UplinkFast
+    \item UplinkFast
     \begin{itemize}
-        \item Enables fast uplink failover on access switch
+        \item Enables fast uplink failover on access switch.
+        \item Improve convergence times of non-RSTP.
+        \item Enabled only with non-RSTP
+        \item Integrated into Cisco's RSTP implementaion and enabled by defaut.
+        \item Cisco proprietary
+        \item Only works if switch has blocked ports
+        \item Designed with switches in access layer as deployment target.
+        \item Enabled for the entire switch. Cannot be enabled pr. vlan.
+        \item \cliline{switch(config)# spanning-tree uplinkfast} enables the feature.
     \end{itemize}
- \item BackboneFast
+    \item BackboneFast
     \begin{itemize}
-        \item Enables fast convergence in distribution or core layer when STP change occurs
+        \item Enables fast convergence in distribution or core layer when STP change occurs.
+        \item Improve convergence times of non-RSTP.
+        \item Enabled only with non-RSTP
+        \item Integrated into Cisco's RSTP implementaion and enabled by defaut.
+        \item Disabled by default
+        \item \cliline{switch(config)# spanning-tree backbonefast} enables the feature.
+        \item \textit{Scenario:} If switch needs searching new path root bridge. BackboneFast shortens process.
+        \begin{enumerate}
+            \item Switch will search for alternative path to root.
+            \item If BPDU recieved on blocked port. Port considered alternative path path to root.
+            \item If alternate path identified. RQL\footnote{\textbf{R}equest \textbf{L}ink \textbf{B}locking} packets are out for identify either A) an alternative path to the root bridge \textit{or} B) an up-/downstream switch with a path to the root bridge.
+        \end{enumerate}
     \end{itemize}
 \end{itemize}
 
 \subsection{Loop Prevention}
 
 \begin{itemize}
- \item BPDU Guard
+    \item BPDU Guard
     \begin{itemize}
         \item Disables the PortFast-enabled port if a BPDU is received
     \end{itemize}
- \item BPDU Filter
+    \item BPDU Filter
     \begin{itemize}
         \item Suppresses BPDUs on ports
     \end{itemize}
- \item Root Guard
+    \item Root Guard
     \begin{itemize}
         \item Prevents external switches from becoming roots
     \end{itemize}
- \item Loop Guard
+    \item Loop Guard
     \begin{itemize}
         \item Prevents an alternate port from becoming the designated port if no BPDUs are received
     \end{itemize}
