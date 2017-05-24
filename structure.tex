@@ -20,12 +20,10 @@
 \usepackage{titlepic}
 \usepackage[nottoc]{tocbibind}
 \usepackage{url}
+\usepackage{babel}
+\usepackage[showisoZ]{datetime2}
 
-\bibliographystyle{unsrtnat} % styles list https://www.sharelatex.com/learn/Natbib_bibliography_styles
-
-\geometry{a4paper,margin=2cm}
-\setlength{\columnsep}{1.5cm}
-\setlength{\headheight}{15pt}
+\bibliographystyle{unsrtnat} %styles list https://www.sharelatex.com/learn/Natbib_bibliography_styles
 
 
 % Path where images are located relative
@@ -38,7 +36,7 @@
 % 1. Low-quality JPG
 % 2. Med-quality PNG
 % 3. High-quality PDF
-\DeclareGraphicsExtensions{.jpg,.png,.pdf,.svg}
+\DeclareGraphicsExtensions{.jpg,.png,.pdf}
 
 % Define fancy header and footer
 \pagestyle{fancy}
@@ -48,16 +46,9 @@
 \fancyfoot[CE,CO]{\leftmark}
 \fancyfoot[LE,RO]{\thepage}
 
-% width of header and footer rule is by default 0px.
-\renewcommand{\headrulewidth}{2pt}
-\renewcommand{\footrulewidth}{1pt}
 
 % Use the roman numeric system for pagenumbers
 \pagenumbering{roman}
-
-\setlist[itemize,1]{leftmargin=\dimexpr 26pt-.2cm}
-\setlist[itemize,2]{leftmargin=\dimexpr 26pt-.3cm}
-
 
 \subimport{.}{commands} % Import user-defined commands
 
@@ -81,4 +72,14 @@
     showtabs=false,                  
     tabsize=4
 }
-\lstset{style=mystyle}
+
+\renewcommand{\headrulewidth}{2pt} %width of header line is by default 0px.
+\renewcommand{\footrulewidth}{1pt} %width of footer line is by default 0px.
+\geometry{a4paper,margin=2cm}
+\setlength{\columnsep}{1.5cm} %space between columns
+\setlength{\headheight}{15pt}
+\setlength{\footnotesep}{0.5cm} %space between footnotes:
+\setlength{\skip\footins}{2cm} %space between the text body and the footnotes
+\setlist[itemize,1]{leftmargin=\dimexpr 26pt-.2cm}
+\setlist[itemize,2]{leftmargin=\dimexpr 26pt-.3cm}
+\lstset{style=mystyle} %apply lst styling
