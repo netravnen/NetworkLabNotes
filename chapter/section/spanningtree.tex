@@ -175,10 +175,9 @@ Cisco did on their part early on enhance the original spanning tree standard wit
         \item Port does no forwan TCN\footnote{\textbf{Needs finding out what TCN is.}} BPDUs either.
         \item PortFast can be enabled either A) per port \textit{or} B) globally for all ports in access mode.
         \begin{enumerate}
-            \item Per port:\\%
-                \cliline{switch(config-if)# spanning-tree portfast}
-            \item Globally:\\%
-                \cliline{switch(config)# spanning-tree portfast default}
+            \item Per port: \footnote{Accesss port}\\\cliline{switch(config-if)# spanning-tree portfast}
+            \item Per port: \footnote{Trunk port}\\\cliline{switch(config-if)# spanning-tree portfast trunk}
+            \item Globally:\\\cliline{switch(config)# spanning-tree portfast default}
         \end{enumerate}
     \end{itemize}
     \item UplinkFast
@@ -198,7 +197,7 @@ Cisco did on their part early on enhance the original spanning tree standard wit
         \item Enables fast convergence in distribution or core layer when STP change occurs.
         \item Improve convergence times of non-RSTP.
         \item Enabled only with non-RSTP
-        \item Integrated into Cisco's RSTP implementaion and enabled by defaut.
+        \item Integrated into Cisco's RSTP implementaion and enabled by default.
         \item Disabled by default
         \item \cliline{switch(config)# spanning-tree backbonefast} enables the feature.
         \item \textit{Scenario:} If switch needs searching new path root bridge. BackboneFast shortens process.
@@ -215,11 +214,24 @@ Cisco did on their part early on enhance the original spanning tree standard wit
 \begin{itemize}
     \item BPDU Guard
     \begin{itemize}
-        \item Disables the PortFast-enabled port if a BPDU is received
+        \item Disables the PortFast-enabled port if a BPDU is received. The port goes into mode \texttt{err-disable}.
+        \item Enable per port:\\\cliline{switch(config-if)# spanning-tree bpduguard enable}
+        \item Enable globally for portfast enabled ports:\\\cliline{switch(config)# spanning-tree portfast bpduguard default}
     \end{itemize}
     \item BPDU Filter
     \begin{itemize}
         \item Suppresses BPDUs on ports
+        \item Behaves differently depending if enabled
+        \item A) globally \textit{or}
+        \begin{enumerate}
+            \item Affects all active portfast enabled ports, which \underline{don't} have a BPDU port configuration.
+            \item If BPDU recieved on port, portfast and BPDU filter is disabled.
+            \item Sends \textbf{10} BPDUs on startup. If BPDU recieved in this timeframe \textit{same consequence as above} happens to the port.
+        \end{enumerate}
+        \item B) per-port:
+        \begin{enumerate}
+            \item 
+        \end{enumerate}
     \end{itemize}
     \item Root Guard
     \begin{itemize}
