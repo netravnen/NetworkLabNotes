@@ -1,0 +1,101 @@
+% Latex Packages
+\usepackage{import}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage[numbers,square,sectionbib,comma,nonamebreak,elide]{natbib}
+\usepackage{float}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{wrapfig}
+\usepackage{array}
+\usepackage{lipsum}
+\usepackage{fancybox}
+\usepackage{varwidth}
+\usepackage{enumitem}
+\usepackage{titlepic}
+\usepackage[nottoc]{tocbibind}
+\usepackage{url}
+\usepackage{babel}
+\usepackage[showisoZ]{datetime2}
+\usepackage{lastpage}
+
+
+\bibliographystyle{unsrtnat} %styles list https://www.sharelatex.com/learn/Natbib_bibliography_styles
+
+
+% Path where images are located relative
+% to the file main.tex
+\graphicspath{{img/}{figures/}}
+
+
+% In which order to look after images in
+% declared graphicspath{}'s
+% 1. Low-quality JPG
+% 2. Med-quality PNG
+% 3. High-quality PDF
+\DeclareGraphicsExtensions{.jpg,.png,.pdf}
+
+
+\fancypagestyle{fancybook}{%
+	\fancyhf{}%
+	% Note the ## here. It's required because \fancypagestyle is making a macro (\ps@fancybook).
+	% If we just wrote #1, TeX would think that it's the argument to \ps@fancybook, but
+	% \ps@fancybook doesn't take any arguments, so TeX would complain with an error message.
+	% You are not expected to understand this.
+	\renewcommand*{\sectionmark}[1]{ \markright{\thesection\ ##1} }%
+	\renewcommand*{\chaptermark}[1]{ \markboth{\chaptername\ \thechapter: ##1}{} }%
+	% Increase the length of the header such that the folios 
+	% (typography jargon for page numbers) move into the margin
+	\fancyhfoffset[LE]{6mm}% slightly less than 0.25in
+	\fancyhfoffset[RO]{6mm}%
+	% Put some space and a vertical bar between the folio and the rest of the header
+	\fancyhead[LE]{\color{GreenYellow}\thepage\hskip3mm\vrule\hskip3mm\leftmark}%
+	\fancyhead[RO]{\color{GreenYellow}\rightmark\hskip3mm\vrule\hskip3mm\thepage}%
+}
+\pagestyle{fancybook}
+
+
+% Use the roman numeric system for pagenumbers
+\pagenumbering{roman}
+
+
+\subimport{.}{commands} % Import user-defined commands
+
+
+\input{layout/color} %user-defined colors
+
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4
+}
+
+
+\geometry{a4paper,margin=2cm}
+\setlength{\columnsep}{1.5cm} %space between columns
+\setlength{\headheight}{15pt}
+\setlength{\footnotesep}{0.5cm} %space between footnotes:
+\setlength{\skip\footins}{2cm} %space between the text body and the footnotes
+\setlist[itemize,1]{leftmargin=\dimexpr 26pt-.2cm}
+\setlist[itemize,2]{leftmargin=\dimexpr 26pt-.3cm}
+\lstset{style=mystyle} %apply lst styling

@@ -1,0 +1,257 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                    %
+% SECTION BEGIN spanning tree protocol               %
+%                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Spanning Tree}
+
+Spanning Tree exists for the \textbf{sole} reason to save "your" network and all the broadcast storms an network engineer having a bad day can by mistake create!
+
+STP comes from the above desire where redundancy was wanted but no protocol existed before STP to help in this regard.
+
+\begin{table}[h]
+	\centering
+	\caption{Spanning Tree standrds}
+	\label{stpstandards}
+	\resizebox{\columnwidth}{!}{%
+		\begin{tabular}{|l|l|l|l|l|}
+			\hline
+			\textbf{} & \textbf{Standard} & \textbf{Ressource Usage} & \multicolumn{2}{l|}{\textbf{Convergence}} \\ \hline
+			CST       & 802.1D            & Low                      & Slow              & All vlans             \\ \hline
+			PVST+     & Cisco             & High                     & Slow              & Per vlan              \\ \hline
+			RSTP      & 802.1w            & So-so (Med.)             & Fast              & All vlans             \\ \hline
+			RPVST+    & Cisco             & On-the-double (V.High)   & Fast              & Per vlan              \\ \hline
+			MST       & 802.1s            & Med. - High              & Fast              & Vlan list             \\ \hline
+		\end{tabular}%
+	}
+\end{table}
+
+\subsection{Port Roles}
+
+When a switch is enabled for Spanning Tree. One of the following roles will have been assumed by any port on the switch in question.
+
+\begin{itemize}
+	\item \textbf{Root port:} Only 1 port on any switch (non-counting the root bridge!). Is always the port with the lowest metric (aka. best path) to the root bridge.
+    \begin{itemize}
+        \item The upstream/-link port closest to the root bridge on all switches apart from the root bridge.
+    \end{itemize}
+	\item \textbf{Designated port:} A designated port is the port on any segment closest to the root bridge and forwarding traffic.
+    \begin{itemize}
+        \item The port on any switch in downstream direction closet to the root bridge.
+    \end{itemize}
+	\item \textbf{\textit{Non}-designated port:} Put in blocking mode and not currently forwarding traffic.
+    \begin{itemize}
+        \item All switch ports which did not get elected as the root or designated port.
+    \end{itemize}
+	\item \textbf{Disabled port:} The port has been one-way-or-another shut down.
+\end{itemize}
+
+\subsubsection{specific port roles}
+\begin{itemize}
+	\item \textbf{Alternative port} is an active port in network with an alternative path to the root bridge. A port in alternative mode will remain active but \textit{discards} all traffic until the the current designated path fails.
+	\item \textbf{Backup port} is running in active mode and \textit{discards} all traffic it recieves until the current designated port on the segment the backup port is connected to, fails.
+\end{itemize}
+
+Election of ports goes in order of the following values (low is best): 1) root bridge id, 2) lowest path cost to root bridge, 3) sender bridge id, 4) sender port bridge id
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                    %
+% SECTION BEGIN standards                            %
+%                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Standards}
+
+\begin{itemize}
+    \item STP {\scriptsize Spanning Tree Protocol}
+    \begin{itemize}
+        \item IEEE 802.1D
+        \item Was created in a time where bridged networks was the norm.
+        \item Supports a single vlan/lan.
+    \end{itemize}
+    \item CST {\scriptsize Common Spanning Tree}
+    \begin{itemize}
+        \item An evolution of stp
+        \item Cst still only supports one STP instance.
+        \item But CST do thou in contrast to STP support \textit{multiple} vlans.
+    \end{itemize}
+    \item PVST {\scriptsize Per Vlan Spanning Tree}
+    \begin{itemize}
+        \item Now obsolute and succeded by PVST+
+    \end{itemize}
+    \item PVST+ {\scriptsize Per Vlan Spanning Tree Plus}
+    \begin{itemize}
+        \item Runs an instance of STP per vlan.
+        \item Can guarante better utilization of available network bandwidth.
+        \item Root bridge and port priorities can be configured per vlan.
+        \item Uses the term alternate for nondesignated port.
+    \end{itemize}
+    \item RSTP {\scriptsize Rapid Spanning Tree Protocol}
+    \begin{itemize}
+        \item IEEE 802.1w
+        \item A future development of the original 802.1D standard meant to provide faster convergance. As the original STP standard wasn't actually that fast.
+    \end{itemize}
+    \item RPVST+ {\scriptsize Rapid Per Vlan Spanning Tree Plus}
+    \begin{itemize}
+        \item A cisco implementation of RSTP based upon pvst+.
+    \end{itemize}
+    \item MST {\scriptsize Multiple Spanning Tree}
+    \begin{itemize}
+        \item Originally a cisco developed protocol. MST has since been developed as an IEEE standard.
+        \item MST can as CST map multiple vlans to a single STP instance.
+        \item MST \textit{differently} than CST supports multiple STP instances.
+        \item Fx. Instance 1: Vlan 1-99, Instane 2: Vlan 100-199.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Features}
+
+\subsubsection{BPDU}
+\textbf{B}ridge \textbf{P}rotocol \textbf{D}ata \textbf{U}nits is on cisco equipment sent out every 2 seconds and generally catogorizes into 2 categories:
+\begin{itemize}
+    \item \textit{Configuration} BPDU used for STP calculations and
+    \item \textit{Topology change notifications} BPDUs used to notify other network nodes of a change in the network.
+\end{itemize}
+
+Any network node with switchports and STP + BPDU enabled sends out BPDU packets with the ports mac as the src address. The destination mac is is designated STP multicast addr 01:80:C2:00:00:00.
+
+\subsubsection{Root Bridge}
+Using a \textbf{R}oot \textbf{B}rigde as the reference point for the STP instance and calculation of root/designated/non-designated ports.\\This election process uses a pre-configured bridge priority (ranges from $0$ to $2^{16}$) (defaults to $2^{15}$). If a tie in priority is found the switch in possession of the lowest mac address wins the root bridge election.
+
+
+\subsubsection{Port Cost}
+
+\begin{table}[h]
+	\centering
+	\caption{Default port cost in spanning tree}
+	\label{stpportcost}{!}{%
+		\begin{tabular}{|l|l|}
+			\hline
+			\textbf{Link} & \textbf{Default Cost} \\ \hline
+			10 Gbps       & 1                     \\ \hline
+			1 Gbps        & 4                     \\ \hline
+			100 Mbps      & 19                    \\ \hline
+			10 Mbps       & 100                   \\ \hline
+		\end{tabular}%
+	}
+\end{table}
+
+\fig{spanningtree/portroles}{stpportroles}{Port Election}
+
+\textit{\textbf{NB:} beware that when working with bundled links (aka. ether-/port-channel). Then the link cost will be calculated based upon the summarized bandwidth accross all links.}
+
+\fig{spanningtree/portstates}{stpportstates}{Port States}
+
+\section{Rapid Spanning Tree Protocol}
+
+\fig{rstp/portroles}{rstpportroles}{Port Roles}
+
+\fig{rstp/portlinktypes}{rstpportlinktypes}{Port link types}
+
+Things to be aware of regarding RSTP port roles
+\begin{itemize}
+    \item \textbf{Shared} port state will only ever be present on segments where a hub is present.
+    \item \textbf{Point-2-Point} port is connected to a single switch on the other end.
+    \item \textbf{Edge} port roles is only ever connected to end devices. Status as Edge port is lost if a BPDU is ever recieved.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                    %
+% SECTION BEGIN port roles                           %
+%                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Port roles}
+
+\subsection{Fast port roles}
+Cisco did on their part early on enhance the original spanning tree standard with some proprietary portroles that can (on cisco switch equipment) skip steps in the port role election process. And configure a STP switchport to a specific behavior as described below:
+
+\begin{itemize}
+    \item PortFast
+    \begin{itemize}
+        \item Configures access port to transition directly to forwarding state.
+        \item Improve convergence times of non-RSTP.
+        \item Port does no forwan TCN\footnote{\textbf{Needs finding out what TCN is.}} BPDUs either.
+        \item PortFast can be enabled either A) per port \textit{or} B) globally for all ports in access mode.
+        \begin{enumerate}
+            \item Per port: \footnote{Accesss port}\\\cliline{switch(config-if)# spanning-tree portfast}
+            \item Per port: \footnote{Trunk port}\\\cliline{switch(config-if)# spanning-tree portfast trunk}
+            \item Globally:\\\cliline{switch(config)# spanning-tree portfast default}
+        \end{enumerate}
+    \end{itemize}
+    \item UplinkFast
+    \begin{itemize}
+        \item Enables fast uplink failover on access switch.
+        \item Improve convergence times of non-RSTP.
+        \item Enabled only with non-RSTP
+        \item Integrated into Cisco's RSTP implementaion and enabled by defaut.
+        \item Cisco proprietary
+        \item Only works if switch has blocked ports
+        \item Designed with switches in access layer as deployment target.
+        \item Enabled for the entire switch. Cannot be enabled pr. vlan.
+        \item \cliline{switch(config)# spanning-tree uplinkfast} enables the feature.
+    \end{itemize}
+    \item BackboneFast
+    \begin{itemize}
+        \item Enables fast convergence in distribution or core layer when STP change occurs.
+        \item Improve convergence times of non-RSTP.
+        \item Enabled only with non-RSTP
+        \item Integrated into Cisco's RSTP implementaion and enabled by default.
+        \item Disabled by default
+        \item \cliline{switch(config)# spanning-tree backbonefast} enables the feature.
+        \item \textit{Scenario:} If switch needs searching new path root bridge. BackboneFast shortens process.
+        \begin{enumerate}
+            \item Switch will search for alternative path to root.
+            \item If BPDU recieved on blocked port. Port considered alternative path path to root.
+            \item If alternate path identified. RQL\footnote{\textbf{R}equest \textbf{L}ink \textbf{B}locking} packets are out for identify either A) an alternative path to the root bridge \textit{or} B) an up-/downstream switch with a path to the root bridge.
+        \end{enumerate}
+    \end{itemize}
+\end{itemize}
+
+\subsection{Loop Prevention}
+
+\begin{itemize}
+    \item BPDU Guard
+    \begin{itemize}
+        \item Disables the PortFast-enabled port if a BPDU is received. The port goes into mode \texttt{err-disable}.
+        \item Enable per port:\\\cliline{switch(config-if)# spanning-tree bpduguard enable}
+        \item Enable globally for portfast enabled ports:\\\cliline{switch(config)# spanning-tree portfast bpduguard default}
+    \end{itemize}
+    \item BPDU Filter
+    \begin{itemize}
+        \item Suppresses BPDUs on ports
+        \item Behaves differently depending if enabled
+        \item A) globally \textit{or}
+        \begin{enumerate}
+            \item Affects all active portfast enabled ports, which \underline{don't} have a BPDU port configuration.
+            \item If BPDU recieved on port, portfast and BPDU filter is disabled.
+            \item Sends \textbf{10} BPDUs on startup. If BPDU recieved in this timeframe \textit{same consequence as above} happens to the port.
+        \end{enumerate}
+        \item B) per-port:
+        \begin{enumerate}
+            \item 
+        \end{enumerate}
+    \end{itemize}
+    \item Root Guard
+    \begin{itemize}
+        \item Prevents external switches from becoming roots
+    \end{itemize}
+    \item Loop Guard
+    \begin{itemize}
+        \item Prevents an alternate port from becoming the designated port if no BPDUs are received
+    \end{itemize}
+\end{itemize}
+
+\subsection{Link}
+
+\begin{itemize}
+	\item Unidirectional Link Detection (UDLD)
+	\item FlexLinks
+\end{itemize}
+
+\section*{Online Ressources on STP}
+
+\begin{itemize}
+    \item Spanning Tree \@WikiPedia \cite{wp_spanningtree}
+\end{itemize}
