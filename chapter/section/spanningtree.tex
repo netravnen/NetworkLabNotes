@@ -175,8 +175,8 @@ Cisco did on their part early on enhance the original spanning tree standard wit
         \item Port does no forwan TCN\footnote{\textbf{Needs finding out what TCN is.}} BPDUs either.
         \item PortFast can be enabled either A) per port \textit{or} B) globally for all ports in access mode.
         \begin{enumerate}
-            \item Per port: \footnote{Accesss port}\\\cliline{switch(config-if)# spanning-tree portfast}
-            \item Per port: \footnote{Trunk port}\\\cliline{switch(config-if)# spanning-tree portfast trunk}
+            \item Per port: {\footnotesize Accesss port}\\\cliline{switch(config-if)# spanning-tree portfast}
+            \item Per port: {\footnotesize Trunk port}\\\cliline{switch(config-if)# spanning-tree portfast trunk}
             \item Globally:\\\cliline{switch(config)# spanning-tree portfast default}
         \end{enumerate}
     \end{itemize}
@@ -204,7 +204,7 @@ Cisco did on their part early on enhance the original spanning tree standard wit
         \begin{enumerate}
             \item Switch will search for alternative path to root.
             \item If BPDU recieved on blocked port. Port considered alternative path path to root.
-            \item If alternate path identified. RQL\footnote{\textbf{R}equest \textbf{L}ink \textbf{B}locking} packets are out for identify either A) an alternative path to the root bridge \textit{or} B) an up-/downstream switch with a path to the root bridge.
+            \item If alternate path identified. RQL{\footnotesize \textbf{R}equest \textbf{L}ink \textbf{B}locking} packets are out for identify either A) an alternative path to the root bridge \textit{or} B) an up-/downstream switch with a path to the root bridge.
         \end{enumerate}
     \end{itemize}
 \end{itemize}
@@ -240,18 +240,38 @@ Cisco did on their part early on enhance the original spanning tree standard wit
     \end{itemize}
     \item Root Guard
     \begin{itemize}
-        \item Prevents external switches from becoming roots
+        \item \st{Prevents external switches from becoming roots}
+        \item If enabled, prevents any ports from becoming a root-port. Ports will remain as designated ports \textit{effectivily} preventing the switch becoming the root bridge.
+        \item This, too, behaves in s similiar manner as BPDU guard, putting the port in \texttt{err-disable} mode when a BPDU packet is recieved on the port.
+        \item Enabled per-port with\\\cliline{switch(config-if)# spanning-tree guard root}
     \end{itemize}
     \item Loop Guard
     \begin{itemize}
         \item Prevents an alternate port from becoming the designated port if no BPDUs are received
+        \begin{enumerate}
+            \item Normally when cisco swicthes stop recieving BPDUs ingress in a port. The port will go to listeting, learning, forwarding state equaling a loop.
+            \item With Loop guard enabled the will go to \texttt{loop-inconsistent} blocking state instead.
+        \end{enumerate}
+        \item Enabled per-port\\\cliline{switch(config-if)# spanning-tree guard loop}
+        \item Enabled globally\\\cliline{switch(config)# spanning-tree loopguard default} {\small only on p2p links}
+        \item Works on per-vlan basis when PVSTP is used.
     \end{itemize}
+    \item \textbf{Beware} root and loop guard is mutually exclusive
+    \begin{itemize}
+        \item Root guard works on designated ports and does not allow the ports to become \textit{non}-designated ports, where
+        \item Loop guard works on \textit{non}-designated ports and does not allow the ports to become designated ports {\footnotesize though expiration of times}.
 \end{itemize}
 
 \subsection{Link}
 
 \begin{itemize}
 	\item Unidirectional Link Detection (UDLD)
+    \begin{itemize}
+        \item Cisco proprietary feature.
+        \item By default only enables on fiber optic links.
+        \item Works by sending packes every 15 seconds (default timer). If not packet is recieved back, the port can either log (default) a messaage or actively try to re-establish the link (aggresive). 1 packet/second for 8 sec. is send. If non is returned the port will go to \texttt{err-disable} state.
+        \item \cliline{switch(config)# udld \{enable | aggresive\}}
+        \item 
 	\item FlexLinks
 \end{itemize}
 
