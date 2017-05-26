@@ -227,11 +227,16 @@ Cisco did on their part early on enhance the original spanning tree standard wit
             \item Affects all active portfast enabled ports, which \underline{don't} have a BPDU port configuration.
             \item If BPDU recieved on port, portfast and BPDU filter is disabled.
             \item Sends \textbf{10} BPDUs on startup. If BPDU recieved in this timeframe \textit{same consequence as above} happens to the port.
+            \item \cliline{switch(config-if)# spanning-tree bpdufilter enable}
         \end{enumerate}
         \item B) per-port:
         \begin{enumerate}
-            \item 
+            \item Port ignores all recieved BPDUs.
+            \item Port sends no BPDUs.
+            \item \cliline{switch(config-if)# spanning-tree bpdufilter enable}
         \end{enumerate}
+        \item Beware to \underline{only} enable BPDU filter on ports connected to end hosts. Consequence if not followed \underline{can} result in creating bridging loops.
+        \item Beware to \underline{only enable either} BPDU guard \textbf{\textit{or}} filter. \footnote{Cisco recommendation}
     \end{itemize}
     \item Root Guard
     \begin{itemize}
