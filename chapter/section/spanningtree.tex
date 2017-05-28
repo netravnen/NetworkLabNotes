@@ -255,6 +255,7 @@ Cisco did on their part early on enhance the original spanning tree standard wit
         \item Enabled per-port\\\cliline{switch(config-if)# spanning-tree guard loop}
         \item Enabled globally\\\cliline{switch(config)# spanning-tree loopguard default} {\small only on p2p links}
         \item Works on per-vlan basis when PVSTP is used.
+        \item On ether-channel links with uni-directional link failures, loop guard will put put the whole ether-channel into loop-inconsistent state.
     \end{itemize}
     \item \textbf{Beware} root and loop guard is mutually exclusive
     \begin{itemize}
@@ -271,9 +272,27 @@ Cisco did on their part early on enhance the original spanning tree standard wit
         \item By default only enables on fiber optic links.
         \item Works by sending packes every 15 seconds (default timer). If not packet is recieved back, the port can either log (default) a messaage or actively try to re-establish the link (aggresive). 1 packet/second for 8 sec. is send. If non is returned the port will go to \texttt{err-disable} state.
         \item \cliline{switch(config)# udld \{enable | aggresive\}}
-        \item 
+        \item On ether-channel links with uni-directional link failures, udld will disable individual failed links.
+        \item For the best protection. Aggresive mode is recommended.
+        \item It is recommended to turn on udld in global conf mode.
 	\item FlexLinks
 \end{itemize}
+
+\begin{table}[h]
+    \centering
+    \caption{UDLD|Loopguard compared}
+    \label{udldloopguard}
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|l|l|}
+            \hline
+            \textbf{Functionality} & \textbf{Loop guard} & \textbf{UDLD} \\ \hline
+            Action granularity & Per vlan & Per port \\ \hline
+            Protection against stp failures caused by uni-directional links & Yes, when enabled on all potential non-designated ports in redundant topology & Yes, when enabled on all links in redundant topology \\ \hline
+            Protection against stp failures caused by problem in software resulting in designated switch not sending bpdus & Yes & No \\ \hline
+            Protection against mis-wiring & No & Yes \\ \hline
+        \end{tabular}%
+    }
+\end{table}
 
 \section*{Online Ressources on STP}
 
