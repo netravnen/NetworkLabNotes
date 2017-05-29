@@ -175,9 +175,9 @@ Cisco did on their part early on enhance the original spanning tree standard wit
         \item Port does no forwan TCN\footnote{\textbf{Needs finding out what TCN is.}} BPDUs either.
         \item PortFast can be enabled either A) per port \textit{or} B) globally for all ports in access mode.
         \begin{enumerate}
-            \item Per port: {\footnotesize Accesss port}\\\cliline{switch(config-if)# spanning-tree portfast}
-            \item Per port: {\footnotesize Trunk port}\\\cliline{switch(config-if)# spanning-tree portfast trunk}
-            \item Globally:\\\cliline{switch(config)# spanning-tree portfast default}
+            \item Per port: {\footnotesize Accesss port}\\\cliline{cisco-switch(config-if)# spanning-tree portfast}
+            \item Per port: {\footnotesize Trunk port}\\\cliline{cisco-switch(config-if)# spanning-tree portfast trunk}
+            \item Globally:\\\cliline{cisco-switch(config)# spanning-tree portfast default}
         \end{enumerate}
     \end{itemize}
     \item UplinkFast
@@ -190,7 +190,7 @@ Cisco did on their part early on enhance the original spanning tree standard wit
         \item Only works if switch has blocked ports
         \item Designed with switches in access layer as deployment target.
         \item Enabled for the entire switch. Cannot be enabled pr. vlan.
-        \item \cliline{switch(config)# spanning-tree uplinkfast} enables the feature.
+        \item \cliline{cisco-switch(config)# spanning-tree uplinkfast} enables the feature.
     \end{itemize}
     \item BackboneFast
     \begin{itemize}
@@ -199,7 +199,7 @@ Cisco did on their part early on enhance the original spanning tree standard wit
         \item Enabled only with non-RSTP
         \item Integrated into Cisco's RSTP implementaion and enabled by default.
         \item Disabled by default
-        \item \cliline{switch(config)# spanning-tree backbonefast} enables the feature.
+        \item \cliline{cisco-switch(config)# spanning-tree backbonefast} enables the feature.
         \item \textit{Scenario:} If switch needs searching new path root bridge. BackboneFast shortens process.
         \begin{enumerate}
             \item Switch will search for alternative path to root.
@@ -215,8 +215,8 @@ Cisco did on their part early on enhance the original spanning tree standard wit
     \item BPDU Guard
     \begin{itemize}
         \item Disables the PortFast-enabled port if a BPDU is received. The port goes into mode \texttt{err-disable}.
-        \item Enable per port:\\\cliline{switch(config-if)# spanning-tree bpduguard enable}
-        \item Enable globally for portfast enabled ports:\\\cliline{switch(config)# spanning-tree portfast bpduguard default}
+        \item Enable per port:\\\cliline{cisco-switch(config-if)# spanning-tree bpduguard enable}
+        \item Enable globally for portfast enabled ports:\\\cliline{cisco-switch(config)# spanning-tree portfast bpduguard default}
     \end{itemize}
     \item BPDU Filter
     \begin{itemize}
@@ -227,13 +227,13 @@ Cisco did on their part early on enhance the original spanning tree standard wit
             \item Affects all active portfast enabled ports, which \underline{don't} have a BPDU port configuration.
             \item If BPDU recieved on port, portfast and BPDU filter is disabled.
             \item Sends \textbf{10} BPDUs on startup. If BPDU recieved in this timeframe \textit{same consequence as above} happens to the port.
-            \item \cliline{switch(config-if)# spanning-tree bpdufilter enable}
+            \item \cliline{cisco-switch(config-if)# spanning-tree bpdufilter enable}
         \end{enumerate}
         \item B) per-port:
         \begin{enumerate}
             \item Port ignores all recieved BPDUs.
             \item Port sends no BPDUs.
-            \item \cliline{switch(config-if)# spanning-tree bpdufilter enable}
+            \item \cliline{cisco-switch(config-if)# spanning-tree bpdufilter enable}
         \end{enumerate}
         \item Beware to \underline{only} enable BPDU filter on ports connected to end hosts. Consequence if not followed \underline{can} result in creating bridging loops.
         \item Beware to \underline{only enable either} BPDU guard \textbf{\textit{or}} filter. \footnote{Cisco recommendation}
@@ -243,7 +243,7 @@ Cisco did on their part early on enhance the original spanning tree standard wit
         \item \st{Prevents external switches from becoming roots}
         \item If enabled, prevents any ports from becoming a root-port. Ports will remain as designated ports \textit{effectivily} preventing the switch becoming the root bridge.
         \item This, too, behaves in s similiar manner as BPDU guard, putting the port in \texttt{err-disable} mode when a BPDU packet is recieved on the port.
-        \item Enabled per-port with\\\cliline{switch(config-if)# spanning-tree guard root}
+        \item Enabled per-port with\\\cliline{cisco-switch(config-if)# spanning-tree guard root}
     \end{itemize}
     \item Loop Guard
     \begin{itemize}
@@ -252,8 +252,8 @@ Cisco did on their part early on enhance the original spanning tree standard wit
             \item Normally when cisco swicthes stop recieving BPDUs ingress in a port. The port will go to listeting, learning, forwarding state equaling a loop.
             \item With Loop guard enabled the will go to \texttt{loop-inconsistent} blocking state instead.
         \end{enumerate}
-        \item Enabled per-port\\\cliline{switch(config-if)# spanning-tree guard loop}
-        \item Enabled globally\\\cliline{switch(config)# spanning-tree loopguard default} {\small only on p2p links}
+        \item Enabled per-port\\\cliline{cisco-switch(config-if)# spanning-tree guard loop}
+        \item Enabled globally\\\cliline{cisco-switch(config)# spanning-tree loopguard default} {\small only on p2p links}
         \item Works on per-vlan basis when PVSTP is used.
         \item On ether-channel links with uni-directional link failures, loop guard will put put the whole ether-channel into loop-inconsistent state.
     \end{itemize}
@@ -271,7 +271,7 @@ Cisco did on their part early on enhance the original spanning tree standard wit
         \item Cisco proprietary feature.
         \item By default only enables on fiber optic links.
         \item Works by sending packes every 15 seconds (default timer). If not packet is recieved back, the port can either log (default) a messaage or actively try to re-establish the link (aggresive). 1 packet/second for 8 sec. is send. If non is returned the port will go to \texttt{err-disable} state.
-        \item \cliline{switch(config)# udld \{enable | aggresive\}}
+        \item \cliline{cisco-switch(config)# udld \{enable | aggresive\}}
         \item On ether-channel links with uni-directional link failures, udld will disable individual failed links.
         \item For the best protection. Aggresive mode is recommended.
         \item It is recommended to turn on udld in global conf mode.
@@ -293,6 +293,16 @@ Cisco did on their part early on enhance the original spanning tree standard wit
             \item Transmits dummy multicast packets over new active interface. {\small Dummy multicast packet format is as follows: \textbf{destination:} 01:00:0c:cd:cd:cd, \textbf{source:} MAC address of the hosts or ports on the newly active FlexLinks port}
         \end{enumerate}
         \item {\small \textbf{Note:}} Configuring FlexLinks outside of access layer switches can be very complex!
+        \item Enabled FlexLinks on an interface: \\
+            \cliline{cisco-switch(config)# interface fa0/1} \\
+            \cliline{cisco-switch(config-if)# switchport backup interface fa0/2}
+        \item \textbf{What} FlexLinks can be:
+        \begin{enumerate}
+            \item A physical port
+            \item A Bundled link {\footnotesize (aka. ether-channel)}
+            \item 1 FlexLink per physical/logical port
+            \item Link speeds need not be the same
+        \end{enumerate}
     \end{itemize}
 \end{itemize}
 
@@ -311,6 +321,8 @@ Cisco did on their part early on enhance the original spanning tree standard wit
         \end{tabular}%
     }
 \end{table}
+
+\fig{spanningtree/stpbestpractice}{stpbestpractice}{STP best practice}
 
 \section*{Online Ressources on STP}
 
