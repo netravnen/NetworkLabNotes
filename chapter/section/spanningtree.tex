@@ -284,7 +284,15 @@ Cisco did on their part early on enhance the original spanning tree standard wit
             \item Configured with 2 physical links with and active/backup configuration.
             \item Enables convergence time of less than 50 milliseconds.
         \end{itemize}
-        \item FlexLinks is good alternative to running STP in an environment with customers who you do \texit{not} want to run STP with. Fx. Service Provider/Enterprise/Datacenter environment.
+        \item FlexLinks is good alternative to running STP in an environment with customers who you do \textit{not} want to run STP with. Fx. Service Provider/Enterprise/Datacenter environment.
+        \item Preemtion for FlexLinks is \textit{not} enabled-by-default.
+        \begin{enumerate}
+            \item Detects link failure.
+            \item Moves any dynamic unicast MAC addresses learned on primary link to standby link.
+            \item Moves standby link to forwarding state.
+            \item Transmits dummy multicast packets over new active interface. {\small Dummy multicast packet format is as follows: \textbf{destination:} 01:00:0c:cd:cd:cd, \textbf{source:} MAC address of the hosts or ports on the newly active FlexLinks port}
+        \end{enumerate}
+        \item {\small \textbf{Note:}} Configuring FlexLinks outside of access layer switches can be very complex!
     \end{itemize}
 \end{itemize}
 
