@@ -11,20 +11,20 @@ Spanning Tree exists for the \textbf{sole} reason to save "your" network and all
 STP comes from the above desire where redundancy was wanted but no protocol existed before STP to help in this regard.
 
 \begin{table}[h]
-	\centering
-	\caption{Spanning Tree standrds}
-	\label{stpstandards}
-	\resizebox{\columnwidth}{!}{%
-		\begin{tabular}{|l|l|l|l|l|}
-			\hline
-			\textbf{} & \textbf{Standard} & \textbf{Ressource Usage} & \multicolumn{2}{l|}{\textbf{Convergence}} \\ \hline
-			CST       & 802.1D            & Low                      & Slow              & All vlans             \\ \hline
-			PVST+     & Cisco             & High                     & Slow              & Per vlan              \\ \hline
-			RSTP      & 802.1w            & So-so (Med.)             & Fast              & All vlans             \\ \hline
-			RPVST+    & Cisco             & On-the-double (V.High)   & Fast              & Per vlan              \\ \hline
-			MST       & 802.1s            & Med. - High              & Fast              & Vlan list             \\ \hline
-		\end{tabular}%
-	}
+    \centering
+    \caption{Spanning Tree standrds}
+    \label{stpstandards}
+    \resizebox{\columnwidth}{!}{%
+        \begin{tabular}{|l|l|l|l|l|}
+            \hline
+            \textbf{} & \textbf{Standard} & \textbf{Ressource Usage} & \multicolumn{2}{l|}{\textbf{Convergence}} \\ \hline
+            CST       & 802.1D            & Low                      & Slow              & All vlans             \\ \hline
+            PVST+     & Cisco             & High                     & Slow              & Per vlan              \\ \hline
+            RSTP      & 802.1w            & So-so (Med.)             & Fast              & All vlans             \\ \hline
+            RPVST+    & Cisco             & On-the-double (V.High)   & Fast              & Per vlan              \\ \hline
+            MST       & 802.1s            & Med. - High              & Fast              & Vlan list             \\ \hline
+        \end{tabular}%
+    }
 \end{table}
 
 \subsection{Port Roles}
@@ -32,25 +32,25 @@ STP comes from the above desire where redundancy was wanted but no protocol exis
 When a switch is enabled for Spanning Tree. One of the following roles will have been assumed by any port on the switch in question.
 
 \begin{itemize}
-	\item \textbf{Root port:} Only 1 port on any switch (non-counting the root bridge!). Is always the port with the lowest metric (aka. best path) to the root bridge.
+    \item \textbf{Root port:} Only 1 port on any switch (non-counting the root bridge!). Is always the port with the lowest metric (aka. best path) to the root bridge.
     \begin{itemize}
         \item The upstream/-link port closest to the root bridge on all switches apart from the root bridge.
     \end{itemize}
-	\item \textbf{Designated port:} A designated port is the port on any segment closest to the root bridge and forwarding traffic.
+    \item \textbf{Designated port:} A designated port is the port on any segment closest to the root bridge and forwarding traffic.
     \begin{itemize}
         \item The port on any switch in downstream direction closet to the root bridge.
     \end{itemize}
-	\item \textbf{\textit{Non}-designated port:} Put in blocking mode and not currently forwarding traffic.
+    \item \textbf{\textit{Non}-designated port:} Put in blocking mode and not currently forwarding traffic.
     \begin{itemize}
         \item All switch ports which did not get elected as the root or designated port.
     \end{itemize}
-	\item \textbf{Disabled port:} The port has been one-way-or-another shut down.
+    \item \textbf{Disabled port:} The port has been one-way-or-another shut down.
 \end{itemize}
 
 \subsubsection{specific port roles}
 \begin{itemize}
-	\item \textbf{Alternative port} is an active port in network with an alternative path to the root bridge. A port in alternative mode will remain active but \textit{discards} all traffic until the the current designated path fails.
-	\item \textbf{Backup port} is running in active mode and \textit{discards} all traffic it recieves until the current designated port on the segment the backup port is connected to, fails.
+    \item \textbf{Alternative port} is an active port in network with an alternative path to the root bridge. A port in alternative mode will remain active but \textit{discards} all traffic until the the current designated path fails.
+    \item \textbf{Backup port} is running in active mode and \textit{discards} all traffic it recieves until the current designated port on the segment the backup port is connected to, fails.
 \end{itemize}
 
 Election of ports goes in order of the following values (low is best): 1) root bridge id, 2) lowest path cost to root bridge, 3) sender bridge id, 4) sender port bridge id
@@ -123,18 +123,18 @@ Using a \textbf{R}oot \textbf{B}rigde as the reference point for the STP instanc
 \subsubsection{Port Cost}
 
 \begin{table}[h]
-	\centering
-	\caption{Default port cost in spanning tree}
-	\label{stpportcost}{!}{%
-		\begin{tabular}{|l|l|}
-			\hline
-			\textbf{Link} & \textbf{Default Cost} \\ \hline
-			10 Gbps       & 1                     \\ \hline
-			1 Gbps        & 4                     \\ \hline
-			100 Mbps      & 19                    \\ \hline
-			10 Mbps       & 100                   \\ \hline
-		\end{tabular}%
-	}
+    \centering
+    \caption{Default port cost in spanning tree}
+    \label{stpportcost}{!}{%
+        \begin{tabular}{|l|l|}
+            \hline
+            \textbf{Link} & \textbf{Default Cost} \\ \hline
+            10 Gbps       & 1                     \\ \hline
+            1 Gbps        & 4                     \\ \hline
+            100 Mbps      & 19                    \\ \hline
+            10 Mbps       & 100                   \\ \hline
+        \end{tabular}%
+    }
 \end{table}
 
 \fig{spanningtree/portroles}{stpportroles}{Port Election}
@@ -266,7 +266,7 @@ Cisco did on their part early on enhance the original spanning tree standard wit
 \subsection{Link}
 
 \begin{itemize}
-	\item Unidirectional Link Detection (UDLD)
+    \item Unidirectional Link Detection (UDLD)
     \begin{itemize}
         \item Cisco proprietary feature.
         \item By default only enables on fiber optic links.
@@ -275,7 +275,17 @@ Cisco did on their part early on enhance the original spanning tree standard wit
         \item On ether-channel links with uni-directional link failures, udld will disable individual failed links.
         \item For the best protection. Aggresive mode is recommended.
         \item It is recommended to turn on udld in global conf mode.
-	\item FlexLinks
+    \item FlexLinks
+    \begin{itemize}
+        \item Cisco proprietary feature.
+        \item An alternate solution to running STP in the environment.
+        \begin{itemize}
+            \item STP is auto-disabled on interfaces running FlexLinks.
+            \item Configured with 2 physical links with and active/backup configuration.
+            \item Enables convergence time of less than 50 milliseconds.
+        \end{itemize}
+        \item FlexLinks is good alternative to running STP in an environment with customers who you do \texit{not} want to run STP with. Fx. Service Provider/Enterprise/Datacenter environment.
+    \end{itemize}
 \end{itemize}
 
 \begin{table}[h]
