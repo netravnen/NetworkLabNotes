@@ -1,7 +1,7 @@
 % Declare Document Class
 \documentclass[a4paper,12pt,twoside,twocolumn,landscape]{book}
 
-\input{structure} % Load structure cfg for document
+\include{structure} % Load structure cfg for document
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                    %
@@ -11,7 +11,7 @@
 
 \begin{document}
 
-\import{.}{frontpage}
+\include{frontpage}
 
 \tableofcontents
 
@@ -25,13 +25,13 @@
 %                                                    %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-\import{chapter/}{baseconf}
+\include{chapter/baseconf}
 
-\import{chapter/}{layer2protocols}
+\include{chapter/layer2protocols}
 
-\import{chapter/}{layer3protocols}
+\include{chapter/layer3protocols}
 
-\import{chapter/}{internet}
+\include{chapter/internet}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                    %

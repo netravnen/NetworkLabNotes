@@ -11,20 +11,20 @@ Spanning Tree exists for the \textbf{sole} reason to save "your" network and all
 STP comes from the above desire where redundancy was wanted but no protocol existed before STP to help in this regard.
 
 \begin{table}[h]
-	\centering
-	\caption{Spanning Tree standrds}
-	\label{stpstandards}
-	\resizebox{\columnwidth}{!}{%
-		\begin{tabular}{|l|l|l|l|l|}
-			\hline
-			\textbf{} & \textbf{Standard} & \textbf{Ressource Usage} & \multicolumn{2}{l|}{\textbf{Convergence}} \\ \hline
-			CST       & 802.1D            & Low                      & Slow              & All vlans             \\ \hline
-			PVST+     & Cisco             & High                     & Slow              & Per vlan              \\ \hline
-			RSTP      & 802.1w            & So-so (Med.)             & Fast              & All vlans             \\ \hline
-			RPVST+    & Cisco             & On-the-double (V.High)   & Fast              & Per vlan              \\ \hline
-			MST       & 802.1s            & Med. - High              & Fast              & Vlan list             \\ \hline
-		\end{tabular}%
-	}
+    \centering
+    \caption{Spanning Tree standrds}
+    \label{stpstandards}
+    \resizebox{\columnwidth}{!}{%
+        \begin{tabular}{|l|l|l|l|l|}
+            \hline
+            \textbf{} & \textbf{Standard} & \textbf{Ressource Usage} & \multicolumn{2}{l|}{\textbf{Convergence}} \\ \hline
+            CST       & 802.1D            & Low                      & Slow              & All vlans             \\ \hline
+            PVST+     & Cisco             & High                     & Slow              & Per vlan              \\ \hline
+            RSTP      & 802.1w            & So-so (Med.)             & Fast              & All vlans             \\ \hline
+            RPVST+    & Cisco             & On-the-double (V.High)   & Fast              & Per vlan              \\ \hline
+            MST       & 802.1s            & Med. - High              & Fast              & Vlan list             \\ \hline
+        \end{tabular}%
+    }
 \end{table}
 
 \subsection{Port Roles}
@@ -32,25 +32,25 @@ STP comes from the above desire where redundancy was wanted but no protocol exis
 When a switch is enabled for Spanning Tree. One of the following roles will have been assumed by any port on the switch in question.
 
 \begin{itemize}
-	\item \textbf{Root port:} Only 1 port on any switch (non-counting the root bridge!). Is always the port with the lowest metric (aka. best path) to the root bridge.
+    \item \textbf{Root port:} Only 1 port on any switch (non-counting the root bridge!). Is always the port with the lowest metric (aka. best path) to the root bridge.
     \begin{itemize}
         \item The upstream/-link port closest to the root bridge on all switches apart from the root bridge.
     \end{itemize}
-	\item \textbf{Designated port:} A designated port is the port on any segment closest to the root bridge and forwarding traffic.
+    \item \textbf{Designated port:} A designated port is the port on any segment closest to the root bridge and forwarding traffic.
     \begin{itemize}
         \item The port on any switch in downstream direction closet to the root bridge.
     \end{itemize}
-	\item \textbf{\textit{Non}-designated port:} Put in blocking mode and not currently forwarding traffic.
+    \item \textbf{\textit{Non}-designated port:} Put in blocking mode and not currently forwarding traffic.
     \begin{itemize}
         \item All switch ports which did not get elected as the root or designated port.
     \end{itemize}
-	\item \textbf{Disabled port:} The port has been one-way-or-another shut down.
+    \item \textbf{Disabled port:} The port has been one-way-or-another shut down.
 \end{itemize}
 
 \subsubsection{specific port roles}
 \begin{itemize}
-	\item \textbf{Alternative port} is an active port in network with an alternative path to the root bridge. A port in alternative mode will remain active but \textit{discards} all traffic until the the current designated path fails.
-	\item \textbf{Backup port} is running in active mode and \textit{discards} all traffic it recieves until the current designated port on the segment the backup port is connected to, fails.
+    \item \textbf{Alternative port} is an active port in network with an alternative path to the root bridge. A port in alternative mode will remain active but \textit{discards} all traffic until the the current designated path fails.
+    \item \textbf{Backup port} is running in active mode and \textit{discards} all traffic it recieves until the current designated port on the segment the backup port is connected to, fails.
 \end{itemize}
 
 Election of ports goes in order of the following values (low is best): 1) root bridge id, 2) lowest path cost to root bridge, 3) sender bridge id, 4) sender port bridge id
@@ -123,18 +123,18 @@ Using a \textbf{R}oot \textbf{B}rigde as the reference point for the STP instanc
 \subsubsection{Port Cost}
 
 \begin{table}[h]
-	\centering
-	\caption{Default port cost in spanning tree}
-	\label{stpportcost}{!}{%
-		\begin{tabular}{|l|l|}
-			\hline
-			\textbf{Link} & \textbf{Default Cost} \\ \hline
-			10 Gbps       & 1                     \\ \hline
-			1 Gbps        & 4                     \\ \hline
-			100 Mbps      & 19                    \\ \hline
-			10 Mbps       & 100                   \\ \hline
-		\end{tabular}%
-	}
+    \centering
+    \caption{Default port cost in spanning tree}
+    \label{stpportcost}{!}{%
+        \begin{tabular}{|l|l|}
+            \hline
+            \textbf{Link} & \textbf{Default Cost} \\ \hline
+            10 Gbps       & 1                     \\ \hline
+            1 Gbps        & 4                     \\ \hline
+            100 Mbps      & 19                    \\ \hline
+            10 Mbps       & 100                   \\ \hline
+        \end{tabular}%
+    }
 \end{table}
 
 \fig{spanningtree/portroles}{stpportroles}{Port Election}
@@ -175,9 +175,9 @@ Cisco did on their part early on enhance the original spanning tree standard wit
         \item Port does no forwan TCN\footnote{\textbf{Needs finding out what TCN is.}} BPDUs either.
         \item PortFast can be enabled either A) per port \textit{or} B) globally for all ports in access mode.
         \begin{enumerate}
-            \item Per port: \footnote{Accesss port}\\\cliline{switch(config-if)# spanning-tree portfast}
-            \item Per port: \footnote{Trunk port}\\\cliline{switch(config-if)# spanning-tree portfast trunk}
-            \item Globally:\\\cliline{switch(config)# spanning-tree portfast default}
+            \item Per port: {\footnotesize Accesss port}\\\cliline{cisco-switch(config-if)# spanning-tree portfast}
+            \item Per port: {\footnotesize Trunk port}\\\cliline{cisco-switch(config-if)# spanning-tree portfast trunk}
+            \item Globally:\\\cliline{cisco-switch(config)# spanning-tree portfast default}
         \end{enumerate}
     \end{itemize}
     \item UplinkFast
@@ -190,7 +190,7 @@ Cisco did on their part early on enhance the original spanning tree standard wit
         \item Only works if switch has blocked ports
         \item Designed with switches in access layer as deployment target.
         \item Enabled for the entire switch. Cannot be enabled pr. vlan.
-        \item \cliline{switch(config)# spanning-tree uplinkfast} enables the feature.
+        \item \cliline{cisco-switch(config)# spanning-tree uplinkfast} enables the feature.
     \end{itemize}
     \item BackboneFast
     \begin{itemize}
@@ -199,12 +199,12 @@ Cisco did on their part early on enhance the original spanning tree standard wit
         \item Enabled only with non-RSTP
         \item Integrated into Cisco's RSTP implementaion and enabled by default.
         \item Disabled by default
-        \item \cliline{switch(config)# spanning-tree backbonefast} enables the feature.
+        \item \cliline{cisco-switch(config)# spanning-tree backbonefast} enables the feature.
         \item \textit{Scenario:} If switch needs searching new path root bridge. BackboneFast shortens process.
         \begin{enumerate}
             \item Switch will search for alternative path to root.
             \item If BPDU recieved on blocked port. Port considered alternative path path to root.
-            \item If alternate path identified. RQL\footnote{\textbf{R}equest \textbf{L}ink \textbf{B}locking} packets are out for identify either A) an alternative path to the root bridge \textit{or} B) an up-/downstream switch with a path to the root bridge.
+            \item If alternate path identified. RQL{\footnotesize \textbf{R}equest \textbf{L}ink \textbf{B}locking} packets are out for identify either A) an alternative path to the root bridge \textit{or} B) an up-/downstream switch with a path to the root bridge.
         \end{enumerate}
     \end{itemize}
 \end{itemize}
@@ -215,8 +215,8 @@ Cisco did on their part early on enhance the original spanning tree standard wit
     \item BPDU Guard
     \begin{itemize}
         \item Disables the PortFast-enabled port if a BPDU is received. The port goes into mode \texttt{err-disable}.
-        \item Enable per port:\\\cliline{switch(config-if)# spanning-tree bpduguard enable}
-        \item Enable globally for portfast enabled ports:\\\cliline{switch(config)# spanning-tree portfast bpduguard default}
+        \item Enable per port:\\\cliline{cisco-switch(config-if)# spanning-tree bpduguard enable}
+        \item Enable globally for portfast enabled ports:\\\cliline{cisco-switch(config)# spanning-tree portfast bpduguard default}
     \end{itemize}
     \item BPDU Filter
     \begin{itemize}
@@ -227,36 +227,153 @@ Cisco did on their part early on enhance the original spanning tree standard wit
             \item Affects all active portfast enabled ports, which \underline{don't} have a BPDU port configuration.
             \item If BPDU recieved on port, portfast and BPDU filter is disabled.
             \item Sends \textbf{10} BPDUs on startup. If BPDU recieved in this timeframe \textit{same consequence as above} happens to the port.
-            \item \cliline{switch(config-if)# spanning-tree bpdufilter enable}
+            \item \cliline{cisco-switch(config-if)# spanning-tree bpdufilter enable}
         \end{enumerate}
         \item B) per-port:
         \begin{enumerate}
             \item Port ignores all recieved BPDUs.
             \item Port sends no BPDUs.
-            \item \cliline{switch(config-if)# spanning-tree bpdufilter enable}
+            \item \cliline{cisco-switch(config-if)# spanning-tree bpdufilter enable}
         \end{enumerate}
         \item Beware to \underline{only} enable BPDU filter on ports connected to end hosts. Consequence if not followed \underline{can} result in creating bridging loops.
         \item Beware to \underline{only enable either} BPDU guard \textbf{\textit{or}} filter. \footnote{Cisco recommendation}
     \end{itemize}
     \item Root Guard
     \begin{itemize}
-        \item Prevents external switches from becoming roots
+        \item \st{Prevents external switches from becoming roots}
+        \item If enabled, prevents any ports from becoming a root-port. Ports will remain as designated ports \textit{effectivily} preventing the switch becoming the root bridge.
+        \item This, too, behaves in s similiar manner as BPDU guard, putting the port in \texttt{err-disable} mode when a BPDU packet is recieved on the port.
+        \item Enabled per-port with\\\cliline{cisco-switch(config-if)# spanning-tree guard root}
     \end{itemize}
     \item Loop Guard
     \begin{itemize}
         \item Prevents an alternate port from becoming the designated port if no BPDUs are received
+        \begin{enumerate}
+            \item Normally when cisco swicthes stop recieving BPDUs ingress in a port. The port will go to listeting, learning, forwarding state equaling a loop.
+            \item With Loop guard enabled the will go to \texttt{loop-inconsistent} blocking state instead.
+        \end{enumerate}
+        \item Enabled per-port\\\cliline{cisco-switch(config-if)# spanning-tree guard loop}
+        \item Enabled globally\\\cliline{cisco-switch(config)# spanning-tree loopguard default} {\small only on p2p links}
+        \item Works on per-vlan basis when PVSTP is used.
+        \item On ether-channel links with uni-directional link failures, loop guard will put put the whole ether-channel into loop-inconsistent state.
+    \end{itemize}
+    \item \textbf{Beware} root and loop guard is mutually exclusive
+    \begin{itemize}
+        \item Root guard works on designated ports and does not allow the ports to become \textit{non}-designated ports, where
+        \item Loop guard works on \textit{non}-designated ports and does not allow the ports to become designated ports {\footnotesize though expiration of times}.
     \end{itemize}
 \end{itemize}
 
 \subsection{Link}
 
 \begin{itemize}
-	\item Unidirectional Link Detection (UDLD)
-	\item FlexLinks
+    \item Unidirectional Link Detection (UDLD)
+    \begin{itemize}
+        \item Cisco proprietary feature.
+        \item By default only enables on fiber optic links.
+        \item Works by sending packes every 15 seconds (default timer). If not packet is recieved back, the port can either log (default) a messaage or actively try to re-establish the link (aggresive). 1 packet/second for 8 sec. is send. If non is returned the port will go to \texttt{err-disable} state.
+        \item \cliline{cisco-switch(config)\# udld \{enable | aggresive\}}
+        \item On ether-channel links with uni-directional link failures, udld will disable individual failed links.
+        \item For the best protection. Aggresive mode is recommended.
+        \item It is recommended to turn on udld in global conf mode.
+    \end{itemize}
+    \item FlexLinks
+    \begin{itemize}
+        \item Cisco proprietary feature.
+        \item An alternate solution to running STP in the environment.
+        \begin{itemize}
+            \item STP is auto-disabled on interfaces running FlexLinks.
+            \item Configured with 2 physical links with and active/backup configuration.
+            \item Enables convergence time of less than 50 milliseconds.
+        \end{itemize}
+        \item FlexLinks is good alternative to running STP in an environment with customers who you do \textit{not} want to run STP with. Fx. Service Provider/Enterprise/Datacenter environment.
+        \item Preemtion for FlexLinks is \textit{not} enabled-by-default.
+        \begin{enumerate}
+            \item Detects link failure.
+            \item Moves any dynamic unicast MAC addresses learned on primary link to standby link.
+            \item Moves standby link to forwarding state.
+            \item Transmits dummy multicast packets over new active interface. {\small Dummy multicast packet format is as follows: \textbf{destination:} 01:00:0c:cd:cd:cd, \textbf{source:} MAC address of the hosts or ports on the newly active FlexLinks port}
+        \end{enumerate}
+        \item {\small \textbf{Note:}} Configuring FlexLinks outside of access layer switches can be very complex!
+        \item Enabled FlexLinks on an interface: \\
+            \cliline{cisco-switch(config)# interface fa0/1} \\
+            \cliline{cisco-switch(config-if)# switchport backup interface fa0/2}
+        \item \textbf{What} FlexLinks can be:
+        \begin{enumerate}
+            \item A physical port
+            \item A Bundled link {\footnotesize (aka. ether-channel)}
+            \item 1 FlexLink per physical/logical port
+            \item Link speeds need not be the same
+        \end{enumerate}
+    \end{itemize}
 \end{itemize}
 
-\section*{Online Ressources on STP}
+\begin{table}[h]
+    \centering
+    \caption{UDLD|Loopguard compared}
+    \label{udldloopguard}
+    \resizebox{\columnwidth}{!}{%
+        \begin{tabular}{|l|l|l|}
+            \hline
+            \thead{Functionality} & \thead{Loop guard} & \thead{UDLD} \\ \hline
+            Action granularity & Per vlan & Per port \\ \hline
+            \makecell{Protection against STP\\failures caused by uni-directional\\ links} & \makecell{Yes, when enabled on all\\potential non-designated ports\\in redundant topology} & \makecell{Yes, when enabled on all\\links in redundant topology} \\ \hline
+            \makecell{Protection against STP\\failures caused by problem in\\software resulting in designated\\switch not sending BPDUs} & Yes & No \\ \hline
+            Protection against mis-wiring & No & Yes \\ \hline
+        \end{tabular}%
+    }
+\end{table}
+
+\fig{spanningtree/stpbestpractice}{stpbestpractice}{STP best practice}
+
+\section{Multiple Spanning Tree}
 
 \begin{itemize}
-    \item Spanning Tree \@WikiPedia \cite{wp_spanningtree}
+    \item \itemtitle{Known limitations}{Regarding the cisco world of things}
+    \begin{enumerate}
+        \item A maximum of 16 instances is supported. {\footnotesize From 0 to 15.}
+    \end{enumerate}
+    \item \textbf{Beware} that instance 0 is the \textit{I}nternal \textit{S}panning \textit{T}ree. And therefore cannot be configured for user-mapped Vlans.
+    \item Aggregates the configured vlans into groups/instances/processes. This in turn provides lower resource utilization on switches. \dWinkey
+    \item Backwards compatible with 802.1D STP/802.1w/RSTP and Cisco PVST+.
+    \item Converges faster than PVRST+.
+    \item \itemtitle{Challenges}{Arises because of older hardware and the architecture of the protocol}
+    \begin{enumerate}
+        \item Operability with older/legacy hardware/equipment is not always possible.
+        \item \textit{Of course} it is more complex compared to standard STP (older) protocols. {\footnotesize Staff may require teachings of the way of the protocol.}
+    \end{enumerate}
 \end{itemize}
+
+\begin{table}[h]
+    \centering
+    \caption{MST Attributes}
+    \label{mstattr}
+    \resizebox{\columnwidth}{!}{%
+        \begin{tabular}{|l|l|}
+            \hline
+            \thead{Data} & \thead{What ?} \\ \hline
+            32 bytes & alphanumeric configuration name \\ \hline
+            2 bytes & configuration revision number \\ \hline
+            Table of 4096 elements & \makecell{associates each of the potential\\4096 VLANs with an instance} \\ \hline
+        \end{tabular}%
+    }
+\end{table}
+
+\subsection{MST Regions}
+
+It is the network admins job to propagate an even configuration to all switches in a single region by using CLI or SNMP. Currently IOS does not support any other options to do the job.
+
+\begin{itemize}
+    \item \itemtitle{Boundaries}{MST differs between regions by}
+    \begin{enumerate}
+        \item sending a digest computer from the Vlan-to-instance mapping table of the switch sending the digest.
+        \item the characteristics of the MST protocol for that single switch.
+    \end{enumerate}
+    \item if computed digest and MST characteristics between switches is \textit{found matching}, the switches considers themselves part of the same MST region.
+    \item \textbf{Beware} that unlike VTP, MST does not automatically increase the configuration revision number. This \textit{has to be done} manually.
+\end{itemize}
+
+\fig{spanningtree/mstregions}{mstregions}{MST Regions all Vlans running mappen to the default instance 0.}
+
+\fig{spanningtree/mstregions2}{mstregions2}{MST Regions vlans mapped to different instances.}
+
