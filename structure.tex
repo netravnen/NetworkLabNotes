@@ -1,5 +1,4 @@
 % Latex Packages
-\usepackage{import}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
@@ -26,6 +25,9 @@
 %\usepackage{titling}
 \usepackage{transparent}
 \usepackage{soul}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{amssymb}
 
 
 \bibliographystyle{unsrtnat} %styles list https://www.sharelatex.com/learn/Natbib_bibliography_styles
@@ -67,7 +69,7 @@
 \pagenumbering{roman}
 
 
-\subimport{.}{commands} % Import user-defined commands
+\input{commands} % Import user-defined commands
 
 
 \input{layout/color} %user-defined colors
@@ -101,3 +103,28 @@
 \setlist[itemize,1]{leftmargin=\dimexpr 26pt-.2cm}
 \setlist[itemize,2]{leftmargin=\dimexpr 26pt-.3cm}
 \lstset{style=mystyle} %apply lst styling
+
+
+\renewcommand{\familydefault}{\sfdefault}
+
+
+\DeclareCaptionFormat{myformat}{%
+    % #1: label (e.g. "Table 1")
+    % #2: separator (e.g. ": ")
+    % #3: caption text
+    \begin{varwidth}{\linewidth}%
+        \centering
+        #1#2#3%
+    \end{varwidth}%
+}
+\captionsetup{format=myformat}% global activation
+
+
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
+    \hspace{-2.5pt}}
+\newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
