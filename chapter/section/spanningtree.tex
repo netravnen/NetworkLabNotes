@@ -377,9 +377,16 @@ It is the network admins job to propagate an even configuration to all switches 
 
 \fig{spanningtree/mstregions2}{mstregions2}{MST Regions vlans mapped to different instances.}
 
-\begin{lstlisting}[language=TeX,numbers=none,frame=trBL,frameround=fttt,backgroundcolor=\color{white}]
+\begin{txt}
+|<-------- bridge id ----------->|
+
 +----------+-----------+---------+
 | Bridge   | Extended  | MAC     |
 | priority | system ID | Address |
 +----------+-----------+---------+
-\end{lstlisting}
+
+                /\
+                ||
+    MST inst. no. carried in
+      Ext. Syst. ID Area
+\end{txt}
