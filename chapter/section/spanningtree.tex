@@ -312,13 +312,13 @@ Cisco did on their part early on enhance the original spanning tree standard wit
     \centering
     \caption{UDLD|Loopguard compared}
     \label{udldloopguard}
-    \resizebox{\textwidth}{!}{%
+    \resizebox{\columnwidth}{!}{%
         \begin{tabular}{|l|l|l|}
             \hline
-            \textbf{Functionality} & \textbf{Loop guard} & \textbf{UDLD} \\ \hline
+            \thead{Functionality} & \thead{Loop guard} & \thead{UDLD} \\ \hline
             Action granularity & Per vlan & Per port \\ \hline
-            Protection against stp failures caused by uni-directional links & Yes, when enabled on all potential non-designated ports in redundant topology & Yes, when enabled on all links in redundant topology \\ \hline
-            Protection against stp failures caused by problem in software resulting in designated switch not sending bpdus & Yes & No \\ \hline
+            \makecell{Protection against STP\\failures caused by uni-directional\\ links} & \makecell{Yes, when enabled on all\\potential non-designated ports\\in redundant topology} & \makecell{Yes, when enabled on all\\links in redundant topology} \\ \hline
+            \makecell{Protection against STP\\failures caused by problem in\\software resulting in designated\\switch not sending BPDUs} & Yes & No \\ \hline
             Protection against mis-wiring & No & Yes \\ \hline
         \end{tabular}%
     }
@@ -326,12 +326,51 @@ Cisco did on their part early on enhance the original spanning tree standard wit
 
 \fig{spanningtree/stpbestpractice}{stpbestpractice}{STP best practice}
 
-\subsection{Multiple Spanning Tree}
+\section{Multiple Spanning Tree}
 
 \begin{itemize}
     \item \itemtitle{Known limitations}{Regarding the cisco world of things}
     \begin{enumerate}
         \item A maximum of 16 instances is supported. {\footnotesize From 0 to 15.}
     \end{enumerate}
+    \item \textbf{Beware} that instance 0 is the \textit{I}nternal \textit{S}panning \textit{T}ree. And therefore cannot be configured for user-mapped Vlans.
+    \item Aggregates the configured vlans into groups/instances/processes. This in turn provides lower resource utilization on switches. \dWinkey
+    \item Backwards compatible with 802.1D STP/802.1w/RSTP and Cisco PVST+.
+    \item Converges faster than PVRST+.
+    \item \itemtitle{Challenges}{Arises because of older hardware and the architecture of the protocol}
+    \begin{enumerate}
+        \item Operability with older/legacy hardware/equipment is not always possible.
+        \item \textit{Of course} it is more complex compared to standard STP (older) protocols. {\footnotesize Staff may require teachings of the way of the protocol.}
+    \end{enumerate}
 \end{itemize}
-        
+
+\begin{table}[h]
+    \centering
+    \caption{MST Attributes}
+    \label{mstattr}
+    \resizebox{\columnwidth}{!}{%
+        \begin{tabular}{|l|l|}
+            \hline
+            \thead{Data} & \thead{What ?} \\ \hline
+            32 bytes & alphanumeric configuration name \\ \hline
+            2 bytes & configuration revision number \\ \hline
+            Table of 4096 elements & \makecell{associates each of the potential\\4096 VLANs with an instance} \\ \hline
+        \end{tabular}%
+    }
+\end{table}
+
+\subsection{MST Regions}
+
+It is the network admins job to propagate an even configuration to all switches in a single region by using CLI or SNMP. Currently IOS does not support any other options to do the job.
+
+\begin{itemize}
+    \item \itemtitle{Boundaries}{MST differs between regions by}
+    \begin{enumerate}
+        \item sending a digest computer from the Vlan-to-instance mapping table of the switch sending the digest.
+        \item the characteristics of the MST protocol for that single switch.
+    \end{enumerate}
+    \item if computed digest and MST characteristics between switches is \textit{found matching}, the switches considers themselves part of the same MST region.
+    \item \textbf{Beware} that unlike VTP, MST does not automatically increase the configuration revision number. This \textit{has to be done} manually.
+\end{itemize}
+
+\fig{spanningtree/mstregions}{mstregions}{MST Regions}
