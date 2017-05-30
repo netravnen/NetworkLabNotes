@@ -261,6 +261,7 @@ Cisco did on their part early on enhance the original spanning tree standard wit
     \begin{itemize}
         \item Root guard works on designated ports and does not allow the ports to become \textit{non}-designated ports, where
         \item Loop guard works on \textit{non}-designated ports and does not allow the ports to become designated ports {\footnotesize though expiration of times}.
+    \end{itemize}
 \end{itemize}
 
 \subsection{Link}
@@ -271,10 +272,11 @@ Cisco did on their part early on enhance the original spanning tree standard wit
         \item Cisco proprietary feature.
         \item By default only enables on fiber optic links.
         \item Works by sending packes every 15 seconds (default timer). If not packet is recieved back, the port can either log (default) a messaage or actively try to re-establish the link (aggresive). 1 packet/second for 8 sec. is send. If non is returned the port will go to \texttt{err-disable} state.
-        \item \cliline{cisco-switch(config)# udld \{enable | aggresive\}}
+        \item \cliline{cisco-switch(config)\# udld \{enable | aggresive\}}
         \item On ether-channel links with uni-directional link failures, udld will disable individual failed links.
         \item For the best protection. Aggresive mode is recommended.
         \item It is recommended to turn on udld in global conf mode.
+    \end{itemize}
     \item FlexLinks
     \begin{itemize}
         \item Cisco proprietary feature.
