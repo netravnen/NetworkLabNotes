@@ -31,6 +31,9 @@
 \usepackage{tikzsymbols} % http://ctan.math.utah.edu/ctan/tex-archive/graphics/pgf/contrib/tikzsymbols/tikzsymbols.pdf
 \usepackage{textcomp}
 \usepackage{parskip}
+\usepackage{fourier}
+\usepackage{array}
+\usepackage{makecell}
 
 
 \bibliographystyle{unsrtnat} %styles list https://www.sharelatex.com/learn/Natbib_bibliography_styles
@@ -131,3 +134,9 @@
 \newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
     \hspace{-2.5pt}}
 \newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
+
+
+\renewcommand\theadalign{cb}
+\renewcommand\theadfont{\bfseries}
+\renewcommand\theadgape{\Gape[4pt]}
+\renewcommand\cellgape{\Gape[4pt]}
