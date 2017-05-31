@@ -396,9 +396,9 @@ It is the network admins job to propagate an even configuration to all switches 
 \subsection{Common Troubleshooting}
 
 \begin{itemize}
-    \item Wrong duplex settings: Mismatch half/full duplex.
-    \item Failure on uni-directional links
-    \item Frame corruption
-    \item Resource errors
-    \item Wrong/Error with PortFast configuration
+    \item Duplex mismatch: Mismatch half/full duplex.
+    \item Unidirectional link failure
+    \item Frame corruption: Physical interfaces can be defective/with errors.
+    \item Resource errors: High compute usage in the Control Plane. {\scriptsize Remember the Spanning Tree Process in fx. Cisco Catalyst switches is handled in software.}
+    \item PortFast configuration error: Can lead to bridging loops when mis-wiring happens together with logical port configuration errors.
 \end{itemize}
