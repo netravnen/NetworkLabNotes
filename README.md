@@ -13,3 +13,9 @@
 - [ ] RIP
 - [ ] PREFIX FILTERS
 - [ ] ASN's
+
+## _Mostly_ done
+- [X] Spanning tree
+
+## Considered done
+- [ ] ...
