@@ -9,7 +9,8 @@ There are different ways to go \tsq{bout} Inter-vlan routing and doing it.
     \begin{enumerate}
         \item external router,
         \item switch virtual interfaces\footnote{\texttt{Switches interface -> Vlan interfaces}},
-        \item routed ports\footnote{\texttt{Routed interface -> Subinterfaces}}.
+        \item routed ports\footnote{\texttt{Routed interface -> Subinterfaces}},
+        \item bridge virtual interface\footnote{\texttt{L3 bridging interface}}
     \end{enumerate}
     \item \textbf{Ways to do it:}
     \begin{enumerate}
@@ -17,3 +18,34 @@ There are different ways to go \tsq{bout} Inter-vlan routing and doing it.
         \item (...)
     \end{enumerate}
 \end{itemize}
+
+\pagebreak
+
+\subsection{Interface configs}
+
+\subsubsection{Routed interfaces}
+
+\begin{txt}
+interface GigabitEthernet 0/1.10
+ encapsulation dot1q 10
+ ip address 192.168.0.1 255.255.255.128
+!
+interface GigabitEthernet 0/1.20
+ encapsulation dot1q 20
+ ip address 192.168.0.129 255.255.255.128
+\end{txt}
+
+\subsubsection{Switches interfaces}
+
+\begin{txt}
+interface Vlan10
+ ip address 192.168.1.1 255.255.255.128
+!
+interface Vlan20
+ ip address 192.168.1.129 255.255.255.128
+!
+interface GigabitEthernet 0/2
+ switchport mode trunk
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20
+\end{txt}
