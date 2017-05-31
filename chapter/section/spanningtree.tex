@@ -119,6 +119,16 @@ Any network node with switchports and STP + BPDU enabled sends out BPDU packets 
 \subsubsection{Root Bridge}
 Using a \textbf{R}oot \textbf{B}rigde as the reference point for the STP instance and calculation of root/designated/non-designated ports.\\This election process uses a pre-configured bridge priority (ranges from $0$ to $2^{16}$) (defaults to $2^{15}$). If a tie in priority is found the switch in possession of the lowest mac address wins the root bridge election.
 
+\begin{txt}
+|<-------- bridge id 8 bytes --->|
+
++----------+---------------------+
+| Bridge   |        MAC          |
+| priority |       Address       |
++----------+---------------------+
+
+|< 2 byte >|<----- 6 bytes ----->| 
+\end{txt}
 
 \subsubsection{Port Cost}
 
