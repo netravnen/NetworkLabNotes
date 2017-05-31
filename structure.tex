@@ -34,6 +34,9 @@
 \usepackage{fourier}
 \usepackage{array}
 \usepackage{makecell}
+\usepackage{inconsolata} 
+\usepackage{blindtext}
+\usepackage{expdlist} 
 
 
 \bibliographystyle{unsrtnat} %styles list https://www.sharelatex.com/learn/Natbib_bibliography_styles
@@ -105,6 +108,63 @@
     upquote=true,
     numbersep=8pt,
     rulecolor=\color{black},
+}
+
+
+\lstdefinestyle{plaintxt}{
+    language=TeX,
+    numbers=none,
+    frame=trBL,
+    frameround=fttt,
+    backgroundcolor=\color{white},
+    boxpos=c,
+}
+
+
+\lstdefinelanguage{cisco}{
+    keywords={
+        end,
+        hostname,
+        Interface int,
+        ip,
+        line,
+        login,
+        network,
+        no,
+        router,
+        sh,
+        show,
+        shut,
+        shutdown,
+        version,
+        vlan,
+        vrf,
+    },
+    keywordstyle=\color{blue}\bfseries,
+    ndkeywords={
+        addr,
+        address,
+        aux,
+        bgp,
+        con,
+        console,
+        dhcp,
+        eigrp,
+        g,
+        GigabitEthernet,
+        isis,
+        ospf,
+        ospfv3,
+        pool,
+        rip,
+        vty,
+    },
+    ndkeywordstyle=\color{darkgray}\bfseries,
+    identifierstyle=\color{black},
+    sensitive=false,
+    comment=[l]{!},
+    commentstyle=\color{purple}\ttfamily,
+    stringstyle=\color{red}\ttfamily,
 }
 
 

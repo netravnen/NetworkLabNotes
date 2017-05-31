@@ -119,6 +119,16 @@ Any network node with switchports and STP + BPDU enabled sends out BPDU packets 
 \subsubsection{Root Bridge}
 Using a \textbf{R}oot \textbf{B}rigde as the reference point for the STP instance and calculation of root/designated/non-designated ports.\\This election process uses a pre-configured bridge priority (ranges from $0$ to $2^{16}$) (defaults to $2^{15}$). If a tie in priority is found the switch in possession of the lowest mac address wins the root bridge election.
 
+\begin{txt}
+|<-------- bridge id 8 bytes --->|
+
++----------+---------------------+
+| Bridge   |        MAC          |
+| priority |       Address       |
++----------+---------------------+
+
+|< 2 byte >|<----- 6 bytes ----->| 
+\end{txt}
 
 \subsubsection{Port Cost}
 
@@ -377,9 +387,28 @@ It is the network admins job to propagate an even configuration to all switches 
 
 \fig{spanningtree/mstregions2}{mstregions2}{MST Regions vlans mapped to different instances.}
 
-\begin{lstlisting}[language=TeX,numbers=none,frame=trBL,frameround=fttt,backgroundcolor=\color{white}]
+\pagebreak % avoids column break for the following text
+
+\begin{txt}
+|<-------- bridge id ----------->|
+
 +----------+-----------+---------+
 | Bridge   | Extended  | MAC     |
 | priority | system ID | Address |
 +----------+-----------+---------+
-\end{lstlisting}
+
+                /\
+                ||
+    MST inst. no. carried in
+      Ext. Syst. ID Area
+\end{txt}
+
+\subsection{Common Troubleshooting}
+
+\begin{itemize}
+    \item Duplex mismatch: Mismatch half/full duplex.
+    \item Unidirectional link failure
+    \item Frame corruption: Physical interfaces can be defective/with errors.
+    \item Resource errors: High compute usage in the Control Plane. {\scriptsize Remember the Spanning Tree Process in fx. Cisco Catalyst switches is handled in software.}
+    \item PortFast configuration error: Can lead to bridging loops when mis-wiring happens together with logical port configuration errors.
+\end{itemize}
