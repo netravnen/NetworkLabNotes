@@ -1,4 +1,4 @@
-\section{Process}
+\section{DHCP Process}
 
 \fig{dhcp/dhcpdiscoverprocess}{dhcpdiscoverprocess}{DHCP Discover Process}
 
@@ -11,7 +11,16 @@
     \item \textbf{DHCPINFORM:} A client already has an IP address but is requesting other configuration parameters that the DHCP server is configured to deliver such as DNS address.
 \end{itemize}
 
-\section{Example configuration}
+\section{DHCP Options}
+
+\begin{itemize}
+    \item \textbf{43} Vendor-encapsulated option that enables vendors to have their own list of options on the server.
+    \item \textbf{69} SMTP server, if you want to specify available SMTP servers to the client.
+    \item \textbf{70} POP3 server, if you want to specify available POP3 servers to the client.
+    \item \textbf{150} TFTP server that enables your phones to access a list of TFTP servers.
+\end{itemize}
+
+\section{DHCP Example Configuration}
 
 \subsection{Cisco}
 
