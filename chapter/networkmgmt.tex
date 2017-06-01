@@ -130,3 +130,37 @@ tacacs-server unkn0wn!unicAst
 \end{itemize}
 
 \fig{8021x/8021x}{8021x}{ID Management}
+
+Based upon the user connecting to the network. They can be given access to
+\begin{itemize}
+    \item the resources their group/identity have been assigned or
+    \item put into a guest \gls{vlan} if nothing is assigned to them or
+    \item simply block the client/user altogether.
+\end{itemize}
+
+Cisco switches allow by default only the following 3 protos until the client is authenticated: \gls{eapol}, \gls{cdp}, \gls{stp} traffic to pass.
+
+\begin{itemize}
+	\item The \textbf{authenticator\footnote{Network node}} is the edge node/\gls{ap} closest to the client/user. This node controls the clients physical access to the network. The node sends encapsulated \gls{eap} frames to the authentication server by radius for validation.
+	\item The \textbf{authentication server}
+\end{itemize}
+
+\fig{8021X/portauth}{portauth}{802.1X Port Auth}
+
+802.1X can be enabled on a Cisco switch globally by \cliline{dot1x system-auth-control} and \textit{then} enabled on the switch port{\footnotesize (s)} by \cliline{aaa authentication dot1x}.
+
+\clearpage
+
+\subsection*{Enable with Cisco config}
+
+\begin{txt}
+aaa new-model
+radius server host radiusserver.example.com key .unkown!unicAst.
+aaa group server radius RADIUS-SERVER-DK
+ server radiusserver.example.com
+aaa authetication dot1x default group RADIUS-SERVER-DK
+dot1x system-auth-control
+interface GigabitEthernet 0/4
+ switchport mode access         ! Port must be an access port prior
+ dot1x port-control auto        ! to enable dot1x on the port
+\end{txt}
