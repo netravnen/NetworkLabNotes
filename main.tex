@@ -51,6 +51,16 @@
 
 \input{chapter/section/dhcp}
 
+% <!-- VRRP, GLBP, HSRP -->
+
+\chapter{1st hop failure/failover/redundancy}
+
+\section{VRRP}
+
+\section{GLBP}
+
+\section{HSRP}
+
 % <!-- ACCOUNTING AND LOGINS, RADIUS, TACACS+ -->
 
 \chapter{Triple A\tsq{s}}
@@ -58,6 +68,35 @@
 \myquote{}{Remember to log the details, too.}
 
 \xkcd{latitude}{Remember logging when necessary}
+
+\newpage
+
+\begin{itemize}
+    \item \textbf{Authentication:}
+    \begin{enumerate}
+        \item Identify the user,
+        \item Validate the user,
+        \item Allow/Disallow user based upon credentials.
+    \end{enumerate}
+    \item \textbf{Authorization:}
+    \begin{enumerate}
+        \item Have defined levels of allowed operations/tasks divided into groups,
+        \item Validate user-to-groups relations,
+        \item Allow/Disallow user actions.
+        \item On network gear the Allow/Disallowed actions can be stored on either the central AAA server or locally\footnote{May not apply to all network gear} in the network node.
+    \end{enumerate}
+    \item \textbf{Accounting:}
+    \begin{enumerate}
+        \item Network nodes collect user and session information from start to end when connecting to a node,
+        \item All information is transferred back to AAA server,
+        \item Transferred info can be leveraged for several purposes. Typically logged info is:
+        \begin{itemize}
+            \item session duration,
+            \item user commands,
+            \item disallowed commands
+        \end{itemize}
+    \end{enumerate}
+\end{itemize}
 
 \input{chapter/aaa/radius}
 
