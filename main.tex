@@ -3,6 +3,8 @@
 
 \include{structure} % Load structure cfg for document
 
+\include{acronyms} % Load acronym list
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                    %
 % BEGIN DOCUMENT                                     %
@@ -24,14 +26,26 @@
 % BEGIN chapters                                     %
 %                                                    %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
+
 \include{chapter/baseconf}
 
-\chapter{Layer 2}
+\include{chapter/layer2}
 
-\input{chapter/section/switchednetwork}
+\include{chapter/l2tol3}
 
-\newpage
+\include{chapter/layer3}
+
+\include{chapter/dhcp}
+
+\include{chapter/fhrp}
+
+\include{chapter/networkmgmt}
+
+\include{chapter/ntp}
+
+\include{chapter/mgmt}
+
+\include{chapter/internet}
 
 \input{chapter/section/spanningtree}
 
@@ -88,6 +102,16 @@
 \section{BGP}
 
 \section{eVPN}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                    %
+% BEGIN list of acronyms                             %
+%                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage
+
+\printglossary[type=\acronymtype,title=Special Terms,toctitle=List of terms]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                    %
