@@ -50,6 +50,16 @@
     {\footnotesize #2}}
 
 
+\newcommand{\myquote}[2]{%
+    \sbox0{#1}%
+    \ifdim\wd0=0pt
+        {\epigraph{#2}{\textit{{\tiny \theauthor}}}} %if #1 is empty
+    \else
+        {\epigraph{#2}{\textit{#1}}} %if quote is cited
+    \fi    
+}
+
+
 % Enviroment @var txt
 % changes code styling to: in frame, white bg.
 \lstnewenvironment{txt}{\lstset{style=plaintxt}}{}
