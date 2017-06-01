@@ -16,6 +16,9 @@
 \end{figure}
 }
 
+\newcommand{\xkcd}[2]{\fig{xkcd/#1}{#1}{#2\\%
+        {\tiny\MakeUppercase{https://imgs.xkcd.com/comics/#1.png}}}}
+
 % Usage: \svg{<path-to-file>}{<label>}{<caption>}
 \newcommand{\svg}[3]{
     \begin{figure}[h]
@@ -48,6 +51,16 @@
 
 \newcommand{\itemtitle}[2]{\textbf{#1:}\\%
     {\footnotesize #2}}
+
+
+\newcommand{\myquote}[2]{%
+    \sbox0{#1}%
+    \ifdim\wd0=0pt
+        {\epigraph{#2}{\textit{{\tiny \theauthor}}}} %if #1 is empty
+    \else
+        {\epigraph{#2}{\textit{#1}}} %if quote is cited
+    \fi    
+}
 
 
 % Enviroment @var txt
