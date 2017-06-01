@@ -6,10 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
-- Section: RADIUS
-- Section: TACACS+
+- Senction: Initial 802.1x content (very little so far)
 
 ### Changed
+
+## [0.2.1-lw] - 2017-06-01
+### Added
+- Section: RADIUS
+- Section: TACACS+
 
 ## [0.2.0-lw] - 2017-06-01
 ### Added
@@ -21,6 +25,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Initial version
 - Section: Spanning Tree
 
-[Unreleased]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.2.0-lw...HEAD
+[Unreleased]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.2.1-lw...HEAD
+[0.2.1-lw]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.2.1-lw...v0.2.0-lw
 [0.2.0-lw]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.1.0-lw...v0.2.0-lw
 [0.1.0-lw]: https://gitlab.com/netravnen/CiscoLabNotes/compare/2ca23bdd5a942ca1af0bb4e568bb97b1be12ab88...v0.1.0-lw
