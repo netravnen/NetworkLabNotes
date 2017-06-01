@@ -1,3 +1,5 @@
+\chapter{DHCP}
+
 \section{DHCP Process}
 
 \fig{dhcp/dhcpdiscoverprocess}{dhcpdiscoverprocess}{DHCP Discover Process}
@@ -25,18 +27,18 @@
 \subsection{Cisco}
 
 \begin{txt}
-ip dhcp excluded-address 192.168.0.254
-!
-ip dhcp pool LAN-1-POOL-DHCP
- network 192.168.0.0 255.255.255.0
- default-router 192.168.0.254
- lease 2 ! set in days
+    ip dhcp excluded-address 192.168.0.254
+    !
+    ip dhcp pool LAN-1-POOL-DHCP
+    network 192.168.0.0 255.255.255.0
+    default-router 192.168.0.254
+    lease 2 ! set in days
 \end{txt}
 
 When configuring a Layer 3 interface as a relay port for DHCP request for a subnet. Set the ip helper command on the interface with one \textit{or} more ip addresses.
 
 \begin{txt}
-interface GigabitEthernet 0/3
- ip helper-address 192.168.220.220
- ip helper-address 192.168.222.222
+    interface GigabitEthernet 0/3
+    ip helper-address 192.168.220.220
+    ip helper-address 192.168.222.222
 \end{txt}

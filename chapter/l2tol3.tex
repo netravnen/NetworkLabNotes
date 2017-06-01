@@ -1,3 +1,5 @@
+\chapter{L2 to L3}
+
 \section{Vlan-to-vlan routing}
 
 \myquote{}{Guidance and Understanding of the art of Layer 3 networks. Routing between different slash 24\tsq{s}.\\ \textit{Aka. Inter-vlan routing.}}
@@ -26,32 +28,32 @@ There are different ways to go \tsq{bout} Inter-vlan routing and doing it.
 \subsubsection{Routed interfaces}
 
 \begin{txt}
-interface GigabitEthernet 0/1.10
- encapsulation dot1q 10
- ip address 192.168.0.1 255.255.255.128
-!
-interface GigabitEthernet 0/1.20
- encapsulation dot1q 20
- ip address 192.168.0.129 255.255.255.128
+    interface GigabitEthernet 0/1.10
+    encapsulation dot1q 10
+    ip address 192.168.0.1 255.255.255.128
+    !
+    interface GigabitEthernet 0/1.20
+    encapsulation dot1q 20
+    ip address 192.168.0.129 255.255.255.128
 \end{txt}
 
 \subsubsection{Switches interfaces}
 
 \begin{txt}
-Vlan10
- name VLAN10
-Vlan20
- name VLAN20
-!
-interface Vlan10
- ip address 192.168.1.1 255.255.255.128
-interface Vlan20
- ip address 192.168.1.129 255.255.255.128
-!
-interface GigabitEthernet 0/2
- switchport mode trunk
- switchport trunk encapsulation dot1q
- switchport trunk allowed vlan 10,20
+    Vlan10
+    name VLAN10
+    Vlan20
+    name VLAN20
+    !
+    interface Vlan10
+    ip address 192.168.1.1 255.255.255.128
+    interface Vlan20
+    ip address 192.168.1.129 255.255.255.128
+    !
+    interface GigabitEthernet 0/2
+    switchport mode trunk
+    switchport trunk encapsulation dot1q
+    switchport trunk allowed vlan 10,20
 \end{txt}
 
 \pagebreak
