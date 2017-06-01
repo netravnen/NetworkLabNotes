@@ -33,26 +33,3 @@ Address Block       Present Use                  Reference
 2002::/16 [2]       6to4                         RFC 3056
 fc00::/7            Unique-Local                 RFC 4193
 fe80::/10           Linked-Scoped Unicast        RFC 4291
-
-
-ip prefix-list permit-lans permit 10.0.0.0/8 ge 24     ! Allow prefixes >=/24
-ip prefix-list permit-lans permit 172.16.0.0/12 ge 24  ! Allow prefixes >=/24
-ip prefix-list permit-lans permit 192.168.0.0/16 ge 24 ! Allow prefixes >=/24
-ip prefix-list permit-lans deny 0.0.0.0/0 le 32        ! Deny everthing else
-
-ip prefix-list deny-bogons deny   0.0.0.0/8 le 32      ! Block default route
-ip prefix-list deny-bogons deny   10.0.0.0/8 le 32
-ip prefix-list deny-bogons deny   100.64.0.0/10 le 32
-ip prefix-list deny-bogons deny   127.0.0.0/8 le 32
-ip prefix-list deny-bogons deny   169.254.0.0/16 le 32
-ip prefix-list deny-bogons deny   172.16.0.0/12 le 32
-ip prefix-list deny-bogons deny   192.0.0.0/24 le 32
-ip prefix-list deny-bogons deny   192.0.2.0/24 le 32
-ip prefix-list deny-bogons deny   192.168.0.0/16 le 32
-ip prefix-list deny-bogons deny   198.18.0.0/15 le 32
-ip prefix-list deny-bogons deny   198.51.100.0/24 le 32
-ip prefix-list deny-bogons deny   203.0.113.0/24 le 32
-ip prefix-list deny-bogons deny   224.0.0.0/4 le 32
-ip prefix-list deny-bogons deny   240.0.0.0/4 le 32
-ip prefix-list deny-bogons deny   0.0.0.0/0 ge 25      ! Block prefixes >/24
-ip prefix-list deny-bogons permit 0.0.0.0/0 le 24      ! Permit prefixes <=/24
