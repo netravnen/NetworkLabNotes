@@ -98,10 +98,118 @@
     \end{enumerate}
 \end{itemize}
 
+\bigskip
+
+\textbf{Obvious} benefits by using the \texttt{triple a\tsq{s}} is scalability, increased flexibility and granularity of assigned rights, standardization, having failover by using multiple triple a\tsq{s} server\footnote{Cisco devices uses the descending order in which AAA servers are configured on the node}.
+
+\newpage
+
+\begin{table}[!ht]
+    \centering
+    \caption{Tacacs+ vs. Radius}
+    \label{radiusversustacacsplus}
+    \resizebox{\columnwidth}{!}{%
+        \begin{tabular}{|l|l|l|l|l|}
+            \hline
+            \multicolumn{1}{|c|}{\textbf{Feature}} & \multicolumn{1}{c|}{\textbf{RADIUS}} & \multicolumn{1}{c|}{\textbf{TACACS+}} \\ \hline
+            Developer & \begin{tabular}[c]{@{}l@{}}Livington Enterprise\\ (now industry standard)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Cisco\\ (proprietary)\end{tabular} \\ \hline
+            Transport protocol & UDP ports 1812-1813 & TCP port 49 \\ \hline
+            AAA support & \begin{tabular}[c]{@{}l@{}}Combines authentication\\ and authorization and \\ separate accounting\end{tabular} & \begin{tabular}[c]{@{}l@{}}Uses the AAA\\ model and sep-\\ arates all three\\ services\end{tabular} \\ \hline
+            Challange response & \begin{tabular}[c]{@{}l@{}}One-way, unidirectional\\ (single challenge response)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Two-way, bidirec-\\ tional (multiple\\ challenge responses)\end{tabular} \\ \hline
+            Security & \begin{tabular}[c]{@{}l@{}}Encrypts only the password\\ in the packet\end{tabular} & \begin{tabular}[c]{@{}l@{}}Encrypt the entire\\ packet body\end{tabular} \\ \hline
+        \end{tabular}%
+    }
+\end{table}
+
+\newpage
+
 \section{RADIUS}
+
+\fig{radius/radiuscommunication}{radiuscommunication}{Radius handshake and communication}
+
+\begin{txt}
+radius server DK-RADIUS-SERVER
+ address ipv4 radiusserver.example.com auth-port 1812 acct-port 1813
+ key unkn0wn!unic@st.|.
+!
+aaa new-model
+aaa group server RADIUS
+ server name DK-RADIUS-SERVER
+!
+aaa authentication login radius_list group RADIUS local
+!
+line vty 0-4
+ login authentication radius_list
+line vty 5-15
+ login authentication radius_list
+\end{txt}
+
+\newpage
 
 \section{TACACS+}
 
+\fig{tacacsplus/tacacspluscommunication}{tacacspluscommunication}{Tacacs plus handshake and communication}
+
+\begin{txt}
+aaa group server tacacs+ TACACS
+server-private 1.1.1.1 unkn0wn!unicAst
+ip tacacs source-interface Loopback0
+!
+aaa authentication attempts login 1
+aaa authentication login default group TACACS local-case
+aaa authentication login console local-case
+aaa authentication enable default group TACACS enable
+aaa authorization exec default group TACACS local 
+aaa authorization commands 0 default group TACACS local 
+aaa authorization commands 15 default group TACACS local 
+aaa accounting exec default
+ action-type start-stop
+ group tacacs+
+!
+aaa accounting commands 1 default
+ action-type start-stop
+ group tacacs+
+!
+aaa accounting commands 2 default
+ action-type start-stop
+ group tacacs+
+!
+aaa accounting commands 15 default
+ action-type start-stop
+ group tacacs+
+!
+aaa session-id common
+!
+tacacs-server host 10.21.0.45
+tacacs-server unkn0wn!unicAst
+
+\end{txt}
+
+\begin{txt}
+tacacs server DK-TACACS-SERVER
+ address ipv4 tacacsplus.example.com
+ port 49
+ key unkn0wn!unicAst
+!
+aaa new-model
+aaa group server tacacs+ TACACS
+ server name DK-TACACS-SERVER
+!
+aaa authentication login default group TACACS local enable
+aaa authentication enable default group TACACS local enable
+aaa authorization exec default group TACACS local enable
+aaa accounting exec default start-stop group TACACS
+aaa accounting commands 1 default start-stop group TACACS
+aaa accounting commands 5 default start-stop group TACACS
+aaa accounting commands 15 default start-stop group TACACS
+!
+aaa session-id common
+!
+line vty 0-4
+ login authentication TACACS
+line vty 5-15
+ login authentication TACACS
+\end{txt}
 
 % <!-- NTP -->
 
