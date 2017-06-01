@@ -39,7 +39,7 @@
 \usepackage{expdlist} 
 \usepackage{epigraph} % used to style quotes
 \usepackage{titling} % makes available \thetitle \theauthor \thedate
-\usepackage[toc,acronym,footnote]{glossaries} % Load the package with the acronym option
+\usepackage[toc,acronym,footnote,nomain]{glossaries} % Load the package with the acronym option
 
 
 \bibliographystyle{unsrtnat} %styles list https://www.sharelatex.com/learn/Natbib_bibliography_styles
@@ -219,4 +219,4 @@
 \makeglossaries % Generate the glossary
 
 
-\renewcommand{\gls}[1]{ \acrshort{##1} }
+\renewcommand*{\acronymname}{Abbreviations}

@@ -3,7 +3,7 @@
 
 \include{structure} % Load structure cfg for document
 
-\include{acronyms}
+\include{acronyms} % Load acronym list
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                    %
@@ -26,7 +26,7 @@
 % BEGIN chapters                                     %
 %                                                    %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
+
 % <!-- CONFIGURATION EXAMPLES -->
 
 \include{chapter/baseconf}
@@ -85,12 +85,12 @@
         \item Have defined levels of allowed operations/tasks divided into groups,
         \item Validate user-to-groups relations,
         \item Allow/Disallow user actions.
-        \item On network gear the Allow/Disallowed actions can be stored on either the central \acrshort{aaa} server or locally\footnote{May not apply to all network gear} in the network node.
+        \item On network gear the Allow/Disallowed actions can be stored on either the central \gls{aaa} server or locally\footnote{May not apply to all network gear} in the network node.
     \end{enumerate}
     \item \textbf{Accounting:}
     \begin{enumerate}
         \item Network nodes collect user and session information from start to end when connecting to a node,
-        \item All information is transferred back to \acrshort{aaa} server,
+        \item All information is transferred back to \gls{aaa} server,
         \item Transferred info can be leveraged for several purposes. Typically logged info is:
         \begin{itemize}
             \item session duration,
@@ -102,7 +102,7 @@
 
 \bigskip
 
-\textbf{Obvious} benefits by using the \acrshort{aaa} is scalability, increased flexibility and granularity of assigned rights, standardization, having failover by using multiple triple a\tsq{s} server\footnote{Cisco devices uses the descending order in which \acrshort{aaa} servers are configured on the node}.
+\textbf{Obvious} benefits by using the \gls{aaa} is scalability, increased flexibility and granularity of assigned rights, standardization, having failover by using multiple triple a\tsq{s} server\footnote{Cisco devices uses the descending order in which \gls{aaa} servers are configured on the node}.
 
 \newpage
 
@@ -116,7 +116,7 @@
             \multicolumn{1}{|c|}{\textbf{Feature}} & \multicolumn{1}{c|}{\textbf{RADIUS}} & \multicolumn{1}{c|}{\textbf{TACACS+}} \\ \hline
             Developer & \begin{tabular}[c]{@{}l@{}}Livington Enterprise\\ (now industry standard)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Cisco\\ (proprietary)\end{tabular} \\ \hline
             Transport protocol & UDP ports 1812-1813 & TCP port 49 \\ \hline
-            \acrshort{aaa} support & \begin{tabular}[c]{@{}l@{}}Combines authentication\\ and authorization and \\ separate accounting\end{tabular} & \begin{tabular}[c]{@{}l@{}}Uses the \acrshort{aaa}\\ model and sep-\\ arates all three\\ services\end{tabular} \\ \hline
+            \gls{aaa} support & \begin{tabular}[c]{@{}l@{}}Combines authentication\\ and authorization and \\ separate accounting\end{tabular} & \begin{tabular}[c]{@{}l@{}}Uses the \gls{aaa}\\ model and sep-\\ arates all three\\ services\end{tabular} \\ \hline
             Challange response & \begin{tabular}[c]{@{}l@{}}One-way, unidirectional\\ (single challenge response)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Two-way, bidirec-\\ tional (multiple\\ challenge responses)\end{tabular} \\ \hline
             Security & \begin{tabular}[c]{@{}l@{}}Encrypts only the password\\ in the packet\end{tabular} & \begin{tabular}[c]{@{}l@{}}Encrypt the entire\\ packet body\end{tabular} \\ \hline
         \end{tabular}%

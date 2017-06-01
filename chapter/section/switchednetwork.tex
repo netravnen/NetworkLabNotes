@@ -4,21 +4,21 @@
 \fig{vtp/implementing-vtp}{imp-vtp1}{VTP}
 
 \subsubsection{VTP Modes}
-The tree modes a VTP \textit{enabled} device can operate are
+The tree modes a \gls{vtp} \textit{enabled} device can operate are
 \begin{itemize}
     \item Transparent
     \item Server
     \item Client
 \end{itemize}
-Of course you can \textit{disable} \acrshort{vtp} altogether.
+Of course you can \textit{disable} \gls{vtp} altogether.
 
-Key things to be aware of \textit{before} enabling \acrshort{vtp} in your environment is to make double sure of only having 1 \acrshort{vtp} domain. \textbf{If} 2 or more \acrshort{vtp} domains exists. Be triple sure to separate them! As to avoid having an \acrshort{vtp} server \acrshort{db} overridden with data from another \acrshort{vtp} domain.
+Key things to be aware of \textit{before} enabling \gls{vtp} in your environment is to make double sure of only having 1 \gls{vtp} domain. \textbf{If} 2 or more \gls{vtp} domains exists. Be triple sure to separate them! As to avoid having an \gls{vtp} server \gls{db} overridden with data from another \gls{vtp} domain.
 
-The three VTP modes \textit{operates} as follow
+The three \gls{vtp} modes \textit{operates} as follow
 \begin{itemize}
     \item Transparent
     \begin{itemize}
-        \item Creates, modifies and deletes \textit{local} vlans only
+        \item Creates, modifies and deletes \textit{local} \gls{vlan} only
         \item Forwards advertisements
         \item Does \textit{not} synchronizes vlan configurations.
     \end{itemize}
@@ -28,6 +28,7 @@ The three VTP modes \textit{operates} as follow
         \item Sends and forwards advertisements
         \item Synchronizes vlan configurations
     \end{itemize}
+    \item Client
     \begin{itemize}
         \item Cannot create, modify or delete vlans
         \item Send and forwards advertisements
@@ -36,21 +37,21 @@ The three VTP modes \textit{operates} as follow
 \end{itemize}
 
 \subsubsection{VTP Announcement}
-VTP operates with announcements sent out in intervals. Summarized it amounts to
+\gls{vtp} operates with announcements sent out in intervals. Summarized it amounts to
 \begin{itemize}
     \item 1 \textit{summary} announcement per 5th minute from the server
     \item The summary announcement informs clients of the current revision
-    \item An announcement is sent out \textit{on the spot} when a change has been made on the VTP server
+    \item An announcement is sent out \textit{on the spot} when a change has been made on the\gls{vtp}server
 \end{itemize}
 
-Do remember it is \textbf{only} the VTP server which has the vlan configuration stored \textbf{on disk}. All device clients and transparent nodes do only store the vlans delegated by VTP in memory.
+Do remember it is \textbf{only} the \gls{vtp} server which has the \gls{vlan} configuration stored \textbf{on disk}. All device clients and transparent nodes do only store the \gls{vlan} delegated by \gls{vtp} in memory.
 
 \subsubsection{Common Issues}
 \begin{itemize}
-    \item Different/Incompatible VTP versions
+    \item Different/Incompatible \gls{vtp} versions
     \item Wrong password
     \item Incorrect mode name
-    \item No server set (all devices configured in transparent/client/vtp disabled mode)
+    \item No server set (all devices configured in transparent/client/\gls{vtp} disabled mode)
 \end{itemize}
 
 \subsubsection{VTP Versions}
@@ -65,31 +66,32 @@ Do remember it is \textbf{only} the VTP server which has the vlan configuration 
     \end{itemize}
     \item Version 3 (not "yet" common)
     \begin{itemize}
-        \item Extended VLAN support: Allow ranges are 1-1005,1018-2095. Not mentioned vlans ranges up to 4095 is still reserved.
+        \item Extended \gls{vlan} support: Allow ranges are 1-1005,1018-2095. Not mentioned \gls{vlan} ranges up to 4095 is still reserved.
         \item Domain name is not automatically learned.
         \item Better security.
         \item Better database propagation.
-        \item MST now supported.
+        \item \gls{mst} now supported.
     \end{itemize}
 \end{itemize}
 
 \subsubsection{VTP Pruning}
-The art of only allowing the vlan traffic to flow on \textit{necessary} links.
+The art of only allowing the \gls{vlan} traffic to flow on \textit{necessary} links.
 
-This means if there are no clients in a vlan on a device. Then no traffic for the inactive vlans is send down-/upstream on the link in question.
+This means if there are no clients in a \gls{vlan} on a device. Then no traffic for the inactive \gls{vlan}s are send down-/upstream on the link in question.
+
 \fig{vtp/vtp-pruning}{vtpruning1}{VTP Pruning}
 
 \subsubsection{Security}
-It is \textbf{strongly} recommended to enable the security features supported in VTP.
+It is \textbf{strongly} recommended to enable the security features supported in \gls{vtp}.
 
 \textbf{Password:} MD5 hashing, Case-sensitive, Length between 8 and 64 chars.
 
 \notice{VTP Scaling}{
 As the network grows and grows and grows and grows some more over long/short timespans.
 You will \textbf{for certain} come to cross-rode, where you \textbf{must} consider to
-go away from using VTP in the network. The problems of managing an elderly network and
+go away from using \gls{vtp} in the network. The problems of managing an elderly network and
 wiping and re-introducing nodes in the network. You \textbf{will} face the issue of a
-wiped vlan database from the VTP domain.
+wiped vlan database from the \gls{vtp} domain.
 }
 
 \subsubsection{Example configuration}
@@ -100,8 +102,8 @@ Channel bundling is the "art" of using multiple physical links as one single log
 
 Technologies:
 \begin{itemize}
-    \item \textbf{PAgP:} The Cisco-only thingy
-    \item \textbf{LACP:} The IEEE standard
+    \item \textbf{\gls{pagp}:} The Cisco-only thingy
+    \item \textbf{\gls{lacp}:} The \gls{ieee} standard
     \item \textbf{Static:} Just forced on
 \end{itemize}
 
@@ -112,8 +114,8 @@ Channel bundling of switch ports in the network may or may not be the best idea,
 
 Channel bundling spreads out the in and egress flows based upon one of several methods configured on the switch:
 \begin{itemize}
-    \item Source to Destination MAC
-    \item Source to Destination IP
+    \item Source to Destination \gls{mac}
+    \item Source to Destination \gls{ip}
 \end{itemize}
 Keep in mind this will by no means archive true load balancing. Where all links are equally used based upon number of flows \textit{or} in terms of used bandwidth.
 
@@ -125,15 +127,15 @@ Keep in mind this will by no means archive true load balancing. Where all links 
         \begin{tabular}{|l|l|l|}
             \hline
             Hash Input Code & Hash Input Detecision & Switch Model \\ \hline
-            dst-ip          & Dest IP addr          & All models   \\ \hline
-            dst-mac         & Dest MAC addr         & All models   \\ \hline
-            src-dst-ip      & Src and dest IP addr  & All models   \\ \hline
-            src-dst-mac     & Src and dest MAC addr & All models   \\ \hline
-            src-ip          & Src IP addr           & All models   \\ \hline
-            src-mac         & Src MAC addr          & All models   \\ \hline
-            src-port        & Src port no           & 4500,6500    \\ \hline
-            dst-port        & Dest port no          & 4500,6500    \\ \hline
-            src-dst-port    & Src and dest port no  & 4500,6500    \\ \hline
+            dst-ip & Dest \gls{ip} addr & All models \\ \hline
+            dst-mac  & Dest \gls{mac} addr & All models \\ \hline
+            src-dst-ip & Src and dest \gls{ip} addr & All models \\ \hline
+            src-dst-mac & Src and dest \gls{mac} addr & All models \\ \hline
+            src-ip & Src \gls{ip} addr & All models \\ \hline
+            src-mac & Src \gls{mac} addr & All models \\ \hline
+            src-port & Src port no & 4500,6500 \\ \hline
+            dst-port & Dest port no & 4500,6500 \\ \hline
+            src-dst-port & Src and dest port no & 4500,6500 \\ \hline
         \end{tabular}%
     }
 \end{table}
@@ -144,15 +146,15 @@ Keep in mind this will by no means archive true load balancing. Where all links 
 \subsubsection{Protocol Properties}
 
 \begin{itemize}
-    \item LACP
+    \item \gls{lacp}
     \begin{itemize}
         \item Active: Enabled
-        \item Passive: Waits for LACP packets on the wire before enabled
+        \item Passive: Waits for \gls{lacp} packets on the wire before enabled
     \end{itemize}
-    \item PAgP
+    \item \gls{pagp}
     \begin{itemize}
         \item Desirable: Enabled
-        \item Auto: Waits for PAgP packets on the wire before enabled
+        \item Auto: Waits for \gls{pagp} packets on the wire before enabled
     \end{itemize}
 \end{itemize}
 
@@ -160,7 +162,7 @@ Some other \underline{required} settings to be (equal across all ports) aware of
 \begin{enumerate}
     \item Port speeds
     \item Duplex mode
-    \item Configured vlan ranges
+    \item Configured \gls{vlan} ranges
 \end{enumerate}
 
 \subsubsection{Example configuration}
