@@ -37,6 +37,8 @@
 \usepackage{inconsolata} 
 \usepackage{blindtext}
 \usepackage{expdlist} 
+\usepackage{epigraph} % used to style quotes
+\usepackage{titling} % makes available \thetitle \theauthor \thedate
 
 
 \bibliographystyle{unsrtnat} %styles list https://www.sharelatex.com/learn/Natbib_bibliography_styles
@@ -101,8 +103,8 @@
     showstringspaces=false,
     showtabs=false,
     tabsize=4,
-    abovecaptionskip=5em,
-    aboveskip=3em,
+    abovecaptionskip=3em,
+    aboveskip=1em,
     belowcaptionskip=5em,
     belowskip=3em,
     upquote=true,
@@ -207,3 +209,7 @@
 \renewcommand\theadfont{\bfseries}
 \renewcommand\theadgape{\Gape[4pt]}
 \renewcommand\cellgape{\Gape[4pt]}
+
+\def\tsq#1{\textquotesingle{#1}}
+\def\bsq#1{%both single quotes
+    \lq{#1}\rq}
