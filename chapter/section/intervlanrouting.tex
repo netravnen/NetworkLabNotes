@@ -38,9 +38,13 @@ interface GigabitEthernet 0/1.20
 \subsubsection{Switches interfaces}
 
 \begin{txt}
+Vlan10
+ name VLAN10
+Vlan20
+ name VLAN20
+!
 interface Vlan10
  ip address 192.168.1.1 255.255.255.128
-!
 interface Vlan20
  ip address 192.168.1.129 255.255.255.128
 !
@@ -49,3 +53,41 @@ interface GigabitEthernet 0/2
  switchport trunk encapsulation dot1q
  switchport trunk allowed vlan 10,20
 \end{txt}
+
+\pagebreak
+
+\fig{network/routeronastick}{routeronastick}{\bsq{Router on a Stick} concept.}
+
+\pagebreak
+
+\subsection{? Troubleshooting ?}
+
+\begin{enumerate}
+    \item \textbf{Missing VLAN:}
+    \begin{itemize}
+        \item VLAN might not be defined across all the switches.
+        \item VLAN might not be enabled on the trunk ports.
+        \item Ports might not be in the right VLANs.
+    \end{itemize}
+    \item \textbf{Layer 3 interface misconfiguration:}
+    \begin{itemize}
+        \item Virtual interface might have the wrong IP address or subnet mask.
+        \item Virtual interface might not be up.
+        \item Virtual interface number might not match with the VLAN number.
+        \item Routing has to be enabled to route frames between VLAN.
+        \item Routing might not be enabled.
+    \end{itemize}
+    \item \textbf{Routing protocol misconfiguration:}
+    \begin{itemize}
+        \item Eyery interface or network needs to be added in the routing protocol.
+        \item The new interface might not be added to the routing protocol.
+        \item Routing protocol configuration is needed only if VLAN subnets need to communicate to the other routers, as previously
+        mentioned in this chapter.
+    \end{itemize}
+    \item \textbf{Host misconfiguration:}
+    \begin{itemize}
+        \item Host might not have the right IP address or subnet mask.
+        \item Each host has to have the default gateway that is the SVI or Layer 3 interface to communicate with other networks and VLAN.
+        \item Host might not be configured with the default gateway.
+    \end{itemize}
+\end{enumerate}
