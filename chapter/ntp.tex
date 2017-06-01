@@ -2,6 +2,20 @@
 
 \gls{ntp} is the source of all evil and \gls{sla}. A network wide source of time configuration for all network nodes, servers, clients etc. is necessary.
 
+\textbf{Configure timezone}\\In this case it\tsq{s} for \gls{metdst}\textbf{:}
+
+\begin{txt}
+clock timezone MET 1 0
+clock summer-time MET-DST recurring last Sun Mar 2:00 last Sun Oct 3:00
+\end{txt}
+
+\textbf{Configure used timezone}\\when doing logging and debugging operations\textbf{:}
+
+\begin{txt}
+service timestamps debug datetime msec localtime show-timezone
+service timestamps log datetime msec localtime show-timezone
+\end{txt}
+
 \section{The old NTP from \tsq{85}}
 
 \section{Secure NTP}
