@@ -16,6 +16,8 @@ service timestamps debug datetime msec localtime show-timezone
 service timestamps log datetime msec localtime show-timezone
 \end{txt}
 
+A select number of Cisco switches support synchronization with the hardware clock, too. The standard is to only sync the software clock.\\\cliline{ntp update-calendar}
+
 \fig{ntp/ntp}{ntp}{\gls{ntp}}
 
 \gls{ntp} servers are a hierarchical tree with stratum 0 servers as the authoritative in the tree. These servers get their time from either \gls{gprs} satellites or atomic clocks {\footnotesize (i.e. an authoritative time \gls{src})}.
