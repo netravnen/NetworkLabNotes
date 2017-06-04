@@ -1,6 +1,97 @@
-\chapter{Network Time Protocol}
+\chapter{NTP}
+
+\gls{ntp} is the source of all evil and \gls{sla}. A network wide source of time configuration for all network nodes, servers, clients etc. is necessary.
+
+\textbf{Configure timezone}\\In this case it\tsq{s} for \gls{metdst}\textbf{:}
+
+\begin{txt}
+clock timezone MET 1 0
+clock summer-time MET-DST recurring last Sun Mar 2:00 last Sun Oct 3:00
+\end{txt}
+
+\textbf{Configure used timezone}\\when doing logging and debugging operations\textbf{:}
+
+\begin{txt}
+service timestamps debug datetime msec localtime show-timezone
+service timestamps log datetime msec localtime show-timezone
+\end{txt}
+
+A select number of Cisco switches support synchronization with the hardware clock, too. The standard is to only sync the software clock.\\\cliline{ntp update-calendar}
+
+\fig{ntp/ntp}{ntp}{\gls{ntp}}
+
+\gls{ntp} servers are a hierarchical tree with stratum 0 servers as the authoritative in the tree. These servers get their time from either \gls{gprs} satellites or atomic clocks {\footnotesize (i.e. an authoritative time \gls{src})}.
+
+\subsection{Characteristics}
+
+\begin{itemize}
+	\item Uses \gls{udp} port 123 on both \gls{src} and \gls{dst},
+	\item polling interval ranging from 64-1024 sec. Length of interval is dependant upon network cond.,
+	\item large differences between \gls{ntp} reference time and local client time will result in increased pooling interval.
+\end{itemize}
+
+\fig{ntp/ntpstratum}{ntpstratum}{Stratum levels}
 
 \section{The old NTP from \tsq{85}}
 
+\textbf{Team Cymru} has a nice template for how to enable \gls{ntp} \textbf{with} \textit{access control} on \gls{ios} and \gls{junos}\footnote{\url{https://www.team-cymru.org/secure-ntp-template.html}}. Shown below is a copy of the \gls{ios} example from Cymrus website.
+
+\begin{cisco}
+	! Core NTP configuration
+	ntp update-calendar             ! update hardware clock (certain hardware only, i.e. 6509s)
+	ntp server 192.0.2.1            ! a time server you sync with
+	ntp peer   192.0.2.2            ! a time server you sync with and allow to sync to you
+	ntp source Loopback0            ! we recommend using a loopback interface for sending NTP messages if possible
+	!
+	! NTP access control
+	ntp access-group query-only 1   ! deny all NTP control queries
+	ntp access-group serve 1        ! deny all NTP time and control queries by default
+	ntp access-group peer 10        ! permit time sync to configured peer(s)/server(s) only
+	ntp access-group serve-only 20  ! permit NTP time sync requests from a select set of clients
+	!
+	! access control lists (ACLs)
+	access-list 1 remark utility ACL to block everything
+	access-list 1 deny any
+	!
+	access-list 10 remark NTP peers/servers we sync to/with
+	access-list 10 permit 192.0.2.1
+	access-list 10 permit 192.0.2.2
+	access-list 10 deny any
+	!
+	access-list 20 remark Hosts/Networks we allow to get time from us
+	access-list 20 permit 192.0.2.0 0.0.0.255
+	access-list 20 deny any
+\end{cisco}
+
+\textbf{Beware} when running a cisco node as \gls{ntp} master and are using access-list to restrict possible clients/peers. You need to allow 127.127.[0-255].1 in the access-list\footnote{The 3rd octet will vary depending on the node.}. This because the master NTP node in the network uses this \gls{ipv4} address as internal master.
+
 \section{Secure NTP}
 
+\subsection{Characteristics}
+
+\begin{itemize}
+	\item \gls{ntp} is insecure be default, whích prompted for \gls{sntp} to come along,
+	\item Cisco \gls{ios} devices typically only support MD5 encryption\footnote{\url{https://en.wikipedia.org/wiki/MD5}}
+\end{itemize}
+
+\subsubsection{Configure SNTP}
+
+\textbf{Team Cymru} has a nice template for how to enable \gls{sntp} on \gls{ios} and \gls{junos}\footnote{\url{https://www.team-cymru.org/secure-ntp-template.html}}. Shown below is a copy of the \gls{ios} example from Cymrus website.
+
+\begin{cisco}
+ntp authenticate                            ! enable NTP authentication
+ntp authentication-key [key-id] md5 [hash]  ! define a NTP authentication key
+ntp trusted-key [key-id]                    ! mark a NTP authentication key as trusted
+ntp peer [peer_address] key [key-id]        ! form a authenticated session with a peer
+ntp server [server_address] key [key-id]    ! form a authenticated session with a server
+\end{cisco}
+
+\subsection{Versions}
+
+Generally today \gls{ntp}v3 or v4 is found. The difference to v4 \textit{(amongst other)} is
+\begin{itemize}
+	\item support for \gls{ipv6}.
+	\item The security in the protocol is upped to with support for X509 certs.
+	\item Automatic calculation of time-distribution\footnote{to archive high time accuracy against lowest bandwidth cost} in  a network based upon specific multicast groups leveraging v6 site-local multicast addresses.
+	\item \cliline{network-node(config)# ntp-server \textit{\gls{ipv6}-addr} version 4}
+\end{itemize}

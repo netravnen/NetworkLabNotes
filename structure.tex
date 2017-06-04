@@ -21,8 +21,6 @@
 \usepackage[nottoc]{tocbibind}
 \usepackage{url}
 \usepackage[showisoZ]{datetime2}
-%\usepackage{lipsum}
-%\usepackage{titling}
 \usepackage{transparent}
 \usepackage{soul}
 \usepackage{caption}
@@ -40,6 +38,7 @@
 \usepackage{epigraph} % used to style quotes
 \usepackage{titling} % makes available \thetitle \theauthor \thedate
 \usepackage[toc,acronym,footnote,nomain]{glossaries} % Load the package with the acronym option
+\usepackage{chngcntr}
 
 
 \bibliographystyle{unsrtnat} %styles list https://www.sharelatex.com/learn/Natbib_bibliography_styles
@@ -126,18 +125,21 @@
 
 \lstdefinelanguage{cisco}{
     keywords={
+        access-list,
+        cdp,
+        dhcp,
         end,
         hostname,
-        Interface int,
+        interface,
         ip,
         line,
+        lldp,
         login,
         network,
         no,
+        ntp,
         router,
-        sh,
         show,
-        shut,
         shutdown,
         version,
         vlan,
@@ -145,21 +147,25 @@
     },
     keywordstyle=\color{blue}\bfseries,
     ndkeywords={
+        access-group,
         addr,
         address,
         aux,
         bgp,
-        con,
         console,
         dhcp,
         eigrp,
-        g,
+        enable,
+        fa,
+        FastEthernet,
+        gi,
         GigabitEthernet,
         isis,
         ospf,
         ospfv3,
         pool,
         rip,
+        run,
         vty,
     },
     ndkeywordstyle=\color{darkgray}\bfseries,
@@ -171,7 +177,7 @@
 }
 
 
-\geometry{a4paper,margin=2cm}
+\geometry{a4paper,margin=1.5cm}
 \setlength{\columnsep}{1.5cm} %space between columns
 \setlength{\headheight}{15pt}
 \setlength{\footnotesep}{0.5cm} %space between footnotes:
@@ -220,3 +226,17 @@
 
 
 \renewcommand*{\acronymname}{Abbreviations}
+
+
+% Do not reset counter for footnotes at all
+% through the document from start to finish.
+% https://tex.stackexchange.com/questions/10448/continuous-footnote-numbering
+\counterwithout{footnote}{chapter}
+
+
+% Set footnote numeration
+% https://www.sharelatex.com/learn/Footnotes
+% This command need to be run AFTER
+% "\counterwithout{footnote}{chapter}" for the
+% changes to be able to take effect.
+\renewcommand{\thefootnote}{\arabic{footnote}}
