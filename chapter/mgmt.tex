@@ -1,3 +1,126 @@
+\chapter{Campus Network}
+
+\section{Discover Nodes}
+
+Protocols to do link discovery on the network between nodes is commonly used
+\begin{itemize}
+    \item incorporated in many \gls{nms} tools to support it's underling functionally like alerts triggering and monitoring,
+    \item when the ops people do debugging on the \gls{cli},
+    \item doing network discovery to find "what am I connected to ?"
+\end{itemize}
+
+Information by the protocols is only sent and processed locally. Information transmitted is not send beyond the local \gls{l2} link.
+
+\newpage
+
+\subsection{LLDP}
+
+\myquote{\citealt{wiki:Link_Layer_Discovery_Protocol}}{The Link Layer Discovery Protocol (LLDP) is a vendor-neutral link layer protocol in the Internet Protocol Suite used by network devices for advertising their identity, capabilities, and neighbours on an IEEE 802 local area network, principally wired Ethernet.[1] The protocol is formally referred to by the IEEE as Station and Media Access Control Connectivity Discovery specified in IEEE 802.1AB[2] and IEEE 802.3-2012 section 6 clause 79.}
+
+\gls{lldp} carries information about
+\begin{enumerate}
+    \item System name,
+    \item System description,
+    \item Port name,
+    \item Port description,
+    \item \gls{vlan} name,
+    \item \gls{ip} mgmt addr,
+    \item System capabilities\footnote{Support for fx. switching, routing etc.},
+    \item \gls{mac}/PHY info,
+    \item MDI\footnote{MDI refers to modes in PoE} power,
+    \item Link aggregation.
+\end{enumerate}
+
+\gls{lldp} has the advantage over \gls{cdp} of being more customizable in regards to the use of \gls{tlv}s. \textbf{However} it has the drawback of not being as lightweight as \gls{cdp}.
+
+\begin{itemize}
+    \item \itemtitle{Worth to remember}{about \gls{lldp} is the following}
+    \begin{itemize}
+        \item is unidirectional,
+        \item operates in advertising mode only,
+        \item does not try to obtain information from other nodes,
+        \item does not monitor link state changes between nodes,
+        \item uses \gls{l2} multicast to notify others of neighbouring nodes of its presence and properties,
+        \item will record \textit{all} obtained information from received \gls{lldp} frames.
+    \end{itemize}
+    \item \itemtitle{Frames}{Multicast addresses --- One of the following is used.\\Note the \textit{01} signifies a \gls{l2} multicast \gls{dst} address.}
+    \begin{enumerate}
+        \item 01:80:c2:00:00:0e,
+        \item 01:80:c2:00:00:03,
+        \item 01:80:c2:00:00:00.
+    \end{enumerate}
+    \item \itemtitle{Commonly exchanged information}{List includes both mandatory and optional fields.}
+    \begin{enumerate}
+        \item System name,
+        \item System description,
+        \item Port name,
+        \item Port description,
+        \item \gls{vlan} name,
+        \item \gls{ip} mgmt addr,
+        \item System capabilities\footnote{Support for fx. switching, routing etc.},
+        \item MDI\footnote{MDI refers to modes in PoE} power,
+        \item Link aggregation.
+    \end{enumerate}
+    \item \itemtitle{Timers}{Default timers for \gls{lldp} on Cisco equipment}
+    \begin{enumerate}
+        \item hello packet sent once per ½ minute.
+        \item hold timer is 2 minutes.
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection{Configuration Example}
+
+\begin{cisco}
+! Enable lldp
+! Beware lldp is enabled by default on select cisco platforms.
+lldp run
+!
+! Ensure lldp is enables on select ports
+interface range gi0/1-2
+ lldp transmit
+ lldp recieve
+!
+! Disable sending lldp packets on ports facing downstream
+! to clients/workstations. But keep recieving lldp packets enabled
+! so we can allways use the information for troubleshooting purpose.
+interface range fa0/1-24
+ no lldp transmit
+ lldp recieve
+\end{cisco}
+
+\newpage
+
+\subsection{CDP}
+
+\myquote{\citealt{wiki:Cisco_Discovery_Protocol}}{Cisco Discovery Protocol (CDP) is a proprietary Data Link Layer protocol developed by Cisco Systems. It is used to share information about other directly connected Cisco equipment, such as the operating system version and IP address. CDP can also be used for On-Demand Routing, which is a method of including routing information in CDP announcements so that dynamic routing protocols do not need to be used in simple networks.}
+
+\gls{cdp} functions my sending frame out the wire of all connected interfaces by default
+\begin{itemize}
+    \item Sends frames to multicast addr 01-00-0c-cc-cc-cc\footnote{This multicast address is also used by cisco for \gls{vtp} messages},
+    \item by default a frame is shot out every 1 minute\footnote{The timer is adjusted in per x second},
+    \item no security is built-in by default so spoofing \gls{cdp} packets is not hard if the net ops people have forgotten to basic hardening
+    \begin{enumerate}
+        \item Taking up resources by filling up tables with invalid \gls{cdp} entries\cite{wiki:CDP_Spoofing} is possible,
+        \item can be prevented by fx. disabling \gls{cdp} on ports where is it unnecessary to have it enabled. Say client access ports,
+        \item precaution can be taken by only allowing \gls{cdp} packets on trusted network ports.
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection{Configuration Example}
+
+\begin{cisco}
+! Enable CDP globally
+cdp run
+!
+! Ensure cdp is enables on select ports
+interface range gi0/1-2
+ cdp enable
+!
+! Disable CDP on ports facing downstream to clients/workstations
+interface range fa0/1-24
+ no cdp enable
+\end{cisco}
+
 \chapter{Management}
 
 \section{Network Mgmt}

@@ -49,8 +49,14 @@
     \DTMfetchTZminute{now}
 }
 
-\newcommand{\itemtitle}[2]{\textbf{#1:}\\%
-    {\footnotesize #2}}
+\newcommand{\itemtitle}[2]{%
+    \sbox0{#1}%
+    \ifdim\wd0=0pt
+        {\textbf{#1:}} %if #1 is empty
+    \else
+        {\textbf{#1:}\\{\footnotesize #2}}
+    \fi
+}
 
 
 \newcommand{\myquote}[2]{%
@@ -69,4 +75,4 @@
 
 
 % Enviroment @var cisco
-\lstnewenvironment{cisco}{\lstset{style=cisco}}{}
+\lstnewenvironment{cisco}{\lstset{language=cisco}}{}
