@@ -123,9 +123,21 @@ interface range fa0/1-24
 
 \section{Failure Detection}
 
-\chapter{Management}
+\subsection[UDLD]{Unidirectional Link Detection}
 
-\section{Network Mgmt}
+\gls{udld} at work does the detection of the link is forwarding traffic in both directions. This is important when operating with Fiberoptic links\footnote{Normal Ethernet links is not as susceptible running traffic in only one direction}. Fiberoptic links has the potential for
+\begun{enumerate}
+    \item bent and damages cables,
+    \item damaged connectors,
+    \item damaged ports,
+    \item impurities between connector and port.
+\end{enumerate}
+
+\fig{udld/malfunction}{udldmalfunction}{UDLD not working ?}
+
+\chapter[Mgmt]{Management}
+
+\section[Network Mgmt]{Network Management}
 
 \subsection{Routers}
 
@@ -133,7 +145,7 @@ interface range fa0/1-24
 
 \subsection{Firewall}
 
-\section{OOB Mgmt}
+\section[OOB Mgmt]{Out-of-Band Management}
 
 \subsection{Console Server}
 
