@@ -32,14 +32,65 @@ A select number of Cisco switches support synchronization with the hardware cloc
 
 \fig{ntp/ntpstratum}{ntpstratum}{Stratum levels}
 
-
-
 \section{The old NTP from \tsq{85}}
+
+\textbf{Team Cymru} has a nice template for how to enable \gls{ntp} \textbf{with} \textit{access control} on \gls{ios} and \gls{junos}\footnote{\url{https://www.team-cymru.org/secure-ntp-template.html}}. Shown below is a copy of the \gls{ios} example from Cymrus website.
+
+\begin{cisco}
+	! Core NTP configuration
+	ntp update-calendar             ! update hardware clock (certain hardware only, i.e. 6509s)
+	ntp server 192.0.2.1            ! a time server you sync with
+	ntp peer   192.0.2.2            ! a time server you sync with and allow to sync to you
+	ntp source Loopback0            ! we recommend using a loopback interface for sending NTP messages if possible
+	!
+	! NTP access control
+	ntp access-group query-only 1   ! deny all NTP control queries
+	ntp access-group serve 1        ! deny all NTP time and control queries by default
+	ntp access-group peer 10        ! permit time sync to configured peer(s)/server(s) only
+	ntp access-group serve-only 20  ! permit NTP time sync requests from a select set of clients
+	!
+	! access control lists (ACLs)
+	access-list 1 remark utility ACL to block everything
+	access-list 1 deny any
+	!
+	access-list 10 remark NTP peers/servers we sync to/with
+	access-list 10 permit 192.0.2.1
+	access-list 10 permit 192.0.2.2
+	access-list 10 deny any
+	!
+	access-list 20 remark Hosts/Networks we allow to get time from us
+	access-list 20 permit 192.0.2.0 0.0.0.255
+	access-list 20 deny any
+	
+\end{cisco}
 
 \section{Secure NTP}
 
 \subsection{Characteristics}
 
 \begin{itemize}
-	\item 
+	\item \gls{ntp} is insecure be default, whích prompted for \gls{sntp} to come along,
+	\item Cisco \gls{ios} devices typically only support MD5 encryption\footnote{\url{https://en.wikipedia.org/wiki/MD5}}
 \end{itemize}
+
+\subsubsection{Configure SNTP}
+
+\textbf{Team Cymru} has a nice template for how to enable \gls{sntp} on \gls{ios} and \gls{junos}\footnote{\url{https://www.team-cymru.org/secure-ntp-template.html}}. Shown below is a copy of the \gls{ios} example from Cymrus website.
+
+\begin{cisco}
+ntp authenticate                            ! enable NTP authentication
+ntp authentication-key [key-id] md5 [hash]  ! define a NTP authentication key
+ntp trusted-key [key-id]                    ! mark a NTP authentication key as trusted
+ntp peer [peer_address] key [key-id]        ! form a authenticated session with a peer
+ntp server [server_address] key [key-id]    ! form a authenticated session with a server
+\end{cisco}
+
+\subsection{Versions}
+
+Generally today \gls{ntp}v3 or v4 is found. The difference to v4 \textit{(amongst other)} is
+\begin{itemize}
+	\item support for \gls{ipv6}.
+	\item The security in the protocol is upped to with support for X509 certs.
+	\item Automatic calculation of time-distribution\footnote{to archive high time accuracy against lowest bandwidth cost} in  a network based upon specific multicast groups leveraging v6 site-local multicast addresses.
+\end{itemize}
+
