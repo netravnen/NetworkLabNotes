@@ -1,10 +1,10 @@
-\chapter{DHCP}
+\chapter[DHCP]{Dynamic Host Control Protocol}
 
-\section{DHCP Process}
+\section[DHCP Process]{Dynamic Host Control Protocol Process}
 
 \fig{dhcp/dhcpdiscoverprocess}{dhcpdiscoverprocess}{DHCP Discover Process}
 
-\subsection{DHCP Messages}
+\subsection[DHCP Messages]{Dynamic Host Control Protocol Messages}
 
 \begin{itemize}
     \item \textbf{DHCPDECLINE:} Message sent from the client to the server that the address is already in use.
@@ -13,7 +13,7 @@
     \item \textbf{DHCPINFORM:} A client already has an \gls{ip} address but is requesting other configuration parameters that the \gls{dhcp} server is configured to deliver such as \gls{dns} address.
 \end{itemize}
 
-\section{DHCP Options}
+\section[DHCP Options]{Dynamic Host Control Protocol Options}
 
 \begin{itemize}
     \item \textbf{43} Vendor-encapsulated option that enables vendors to have their own list of options on the server.
@@ -22,7 +22,7 @@
     \item \textbf{150} \gls{tftp} server that enables your phones to access a list of \gls{tftp} servers.
 \end{itemize}
 
-\section{DHCP Example Configuration}
+\section[DHCP Example Configuration]{Dynamic Host Control Protocol Example Configuration}
 
 \subsection{Cisco}
 
