@@ -71,8 +71,8 @@ Information by the protocols is only sent and processed locally. Information tra
 \subsubsection{Configuration Example}
 
 \begin{cisco}
-! Enable lldp
-! Beware lldp is enabled by default on select cisco platforms.
+! Enable lldp. Beware lldp is enabled by default
+! on select cisco platforms.
 lldp run
 !
 ! Ensure lldp is enables on select ports
@@ -120,6 +120,8 @@ interface range gi0/1-2
 interface range fa0/1-24
  no cdp enable
 \end{cisco}
+
+\section{Failure Detection}
 
 \chapter{Management}
 
