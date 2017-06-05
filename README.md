@@ -17,6 +17,12 @@
   - [ ] GLBP
   - [ ] HSRP
   - [ ] VRRP
+- [ ] IP SLA
+- [ ] VSS
+- [ ] Storm Control
+- [ ] SDM Templates
+- [ ] PoE
+- [ ] SNMP
 
 ## Writing about
 - [X] NTP, SNTP
