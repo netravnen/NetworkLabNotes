@@ -6,9 +6,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
-- Senction: Initial 802.1x content (very little so far)
+- Section: 802.1x
+- Section: SPAN, RSPAN, ERSPAN
+- Section: HSRP, GLBP, VRRP
 
 ### Changed
+
+## [0.2.2-lw] - 2017-06-05
+### Added
+- Section: NTP, SNTP
+- Section: CDP
+- Section: LLDP
+- Section: UDLD
 
 ## [0.2.1-lw] - 2017-06-01
 ### Added
@@ -25,7 +34,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Initial version
 - Section: Spanning Tree
 
-[Unreleased]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.2.1-lw...HEAD
-[0.2.1-lw]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.2.1-lw...v0.2.0-lw
+[Unreleased]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.2.2-lw...HEAD
+[0.2.2-lw]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.2.1-lw...v0.2.2-lw
+[0.2.1-lw]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.2.0-lw...v0.2.1-lw
 [0.2.0-lw]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.1.0-lw...v0.2.0-lw
 [0.1.0-lw]: https://gitlab.com/netravnen/CiscoLabNotes/compare/2ca23bdd5a942ca1af0bb4e568bb97b1be12ab88...v0.1.0-lw
