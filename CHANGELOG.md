@@ -38,4 +38,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 [0.2.2-lw]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.2.1-lw...v0.2.2-lw
 [0.2.1-lw]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.2.0-lw...v0.2.1-lw
 [0.2.0-lw]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.1.0-lw...v0.2.0-lw
-[0.1.0-lw]: https://gitlab.com/netravnen/CiscoLabNotes/compare/2ca23bdd5a942ca1af0bb4e568bb97b1be12ab88...v0.1.0-lw
+[0.1.0-lw]: https://gitlab.com/netravnen/CiscoLabNotes/compare/2ca23b...v0.1.0-lw
