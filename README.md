@@ -1,10 +1,6 @@
 # TODO
 
 ## Write about
-- [ ] NTP
-- [ ] SNTP
-- [ ] TACACS+
-- [ ] RADIUS
 - [ ] INTER VLAN ROUTING
 - [ ] BGP
 - [ ] ISIS
@@ -14,9 +10,21 @@
 - [ ] PREFIX FILTERS
   - [X] Example code
 - [ ] ASN's
+- [ ] SPAN
+  - [ ] RSPAN
+  - [ ] ERSPAN
+- [ ] FHRP
+  - [ ] GLBP
+  - [ ] HSRP
+  - [ ] VRRP
+
+## Writing about
+- [X] NTP, SNTP
 
 ## _Mostly_ done
 - [X] Spanning tree
+- [X] AAA
 
 ## Considered done
-- [ ] ...
+- [X] TACACS+
+- [X] RADIUS
