@@ -7,12 +7,19 @@
 }
 
 % Usage: \fig{<path-to-file>}{<label>}{<caption>}
-\newcommand{\fig}[3]{
+\newcommand{\fig}[4][]{
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.95\columnwidth]{#1}
-    \caption{#3}
-    \label{fig:#2}
+    \includegraphics[width=0.95\columnwidth]{#2}
+	%
+    \sbox0{#1}%
+	\ifdim\wd0=0pt
+		{\caption{#4}} %if #1 is empty
+	\else
+		{\caption{#4\\\texttt{{\scriptsize #1}}}}
+	\fi
+    %
+    \label{fig:#3}
 \end{figure}
 }
 
