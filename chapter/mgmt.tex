@@ -325,25 +325,54 @@ Cisco switches allow by default only the following 3 protos until the client is 
 
 \fig{snmp/snmphandshake}{snmphandshake}{\gls{snmp} handshake}
 
+\begin{itemize}
+	\item \itemhead{v1}
+	\begin{itemize}
+		\item \itemhead[]{Message Types}
+		\begin{enumerate}
+			\item Get Request,
+			\item Get Next Request,
+			\item Set Request,
+			\item Get Response, and
+			\item Trap.
+		\end{enumerate}
+		\item \textit{Rarely} used these days!
+	\end{itemize}
+	\newpage %do column break
+	\item \itemhead{v2}
+	\begin{itemize}
+		\item \itemhead[]{Message Types}
+		\begin{enumerate}
+			\item Get Request,
+			\item Get Next Request,
+			\item Set Request,
+			\item Get Response,
+			\item Trap,
+			\item \textit{Get Bulk Request}\footnote{To pull data from a network node in bulk}, and
+			\item \textit{Inform Request}\footnote{\gls{snmp} trap message added with a requirement for an acknowledgement returned back to the network node}.
+		\end{enumerate}
+	\end{itemize}
+	\item \itemhead{v2c}
+	\begin{itemize}
+		\item 
+	\end{itemize}
+	\item \itemhead{v3}
+	\begin{itemize}
+		\item 
+	\end{itemize}
+\end{itemize}
+
 \fig[http://ccieordie.com/tag/6-1b/]{snmp/snmpcomparison2}{snmpcomparison2}{\gls{snmp} comparison}
 
+\subsection{Implementation Problems with SNMP}
+
+\gls{snmp} on any platform is only as good as the software implementation was done by the equipment vendor. Some vendors of network equipment may not implement the same level of functionality in their \gls{snmp} agent as was done in the often proprietary \gls{cli} environment.\cite{wiki:Simple_Network_Management_Protocol}
+
 \begin{itemize}
-	\item \itemtitle{v1}{}
-	\begin{itemize}
-		\item 
-	\end{itemize}
-	\item \itemtitle{v2}{}
-	\begin{itemize}
-		\item 
-	\end{itemize}
-	\item \itemtitle{v2c}{}
-	\begin{itemize}
-		\item 
-	\end{itemize}
-	\item \itemtitle{v3}{}
-	\begin{itemize}
-		\item 
-	\end{itemize}
+	\item Under implemented  features in \gls{snmp} compared to proprietary \gls{cli} environment,
+	\item badly done \gls{snmp} implementations can sometimes result in unnecessarily high resource utilization,
+	\item values of \textit{tabular} data formats\footnote{Fx \gls{ip} Routing Table} may not be returned in a consistent format when requesting data from equipment from different vendors,
+	\item metrics for fx resource utilization\footnote{Fx hdd usage} locally on a device is not always comparable\footnote{Different vendors may have chosen different methods for measuring resource utilization} across equipment from different vendors.
 \end{itemize}
 
 \section{Routers}

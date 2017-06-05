@@ -56,13 +56,22 @@
     \DTMfetchTZminute{now}
 }
 
+
+\newcommand{\itemhead}[2][]{%
+	\sbox0{#1}%
+	\ifdim\wd0=0pt
+		{\textbf{#2:}} %if #1 is empty
+	\else
+		{\textbf{#2:}\\{\footnotesize #1}}
+	\fi
+}
 \newcommand{\itemtitle}[2]{%
-    \sbox0{#1}%
-    \ifdim\wd0=0pt
-        {\textbf{#1:}} %if #1 is empty
-    \else
-        {\textbf{#1:}\\{\footnotesize #2}}
-    \fi
+	\sbox0{#1}%
+	\ifdim\wd0=0pt
+		{\itemhead{#1}} %if #2 is empty
+	\else
+		{\itemhead[#2]{#1}}
+	\fi
 }
 
 
