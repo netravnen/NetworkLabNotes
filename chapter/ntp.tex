@@ -95,3 +95,5 @@ Generally today \gls{ntp}v3 or v4 is found. The difference to v4 \textit{(amongs
 	\item Automatic calculation of time-distribution\footnote{to archive high time accuracy against lowest bandwidth cost} in  a network based upon specific multicast groups leveraging v6 site-local multicast addresses.
 	\item \cliline{ntp-server ipv6-addr version 4}
 \end{itemize}
+
+\textbf{Beware} when using \gls{sntp} that \gls{ntp} cannot be used. The same \gls{udp} port is used.
