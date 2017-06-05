@@ -351,10 +351,12 @@ Cisco switches allow by default only the following 3 protos until the client is 
 			\item \textit{Get Bulk Request}\footnote{To pull data from a network node in bulk}, and
 			\item \textit{Inform Request}\footnote{\gls{snmp} trap message added with a requirement for an acknowledgement returned back to the network node}.
 		\end{enumerate}
+		\item \gls{snmp}v2 added \textit{in addition} to 2 extra message types also a complex new security model. This was never widely accepted which is why we have \gls{snmp}v2c existing and considered the \textit{de-facto} \gls{snmp}v2 standard.
 	\end{itemize}
 	\item \itemhead{v2c}
 	\begin{itemize}
-		\item 
+		\item \gls{snmp}v2c switched from the complex security model \gls{snmp}v2 used to using \texttt{community strings}. This posses a lot of inherent security risks because (amongst other) of the low level Authentication used when polling data from \gls{snmp} agents. Because of this Cisco recommends when using \gls{snmp}v2c to only enable the protocol for data polling from \gls{snmp} agents.
+		\item \textbf{Never} use v2c to push configuration changes to \gls{snmp} agents because the security level is just not up to standard to provide the necessary security level at all.
 	\end{itemize}
 	\item \itemhead{v3}
 	\begin{itemize}
