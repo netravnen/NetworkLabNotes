@@ -68,7 +68,7 @@ Information by the protocols is only sent and processed locally. Information tra
     \end{enumerate}
 \end{itemize}
 
-\subsubsection{Configuration Example}
+\subsubsection*{Configuration Example}
 
 \begin{cisco}
 ! Enable lldp. Beware lldp is enabled by default
@@ -106,7 +106,7 @@ interface range fa0/1-24
     \end{enumerate}
 \end{itemize}
 
-\subsubsection{Configuration Example}
+\subsubsection*{Configuration Example}
 
 \begin{cisco}
 ! Enable CDP globally
@@ -152,9 +152,9 @@ Other things can go wrong, too. Such as
 
 \subsection[ERSPAN]{Encapsulated Remote Switch Port Analyzer}
 
-\chapter[Mgmt]{Network Management}
+\chapter[Network Mgmt]{Network Management}
 
-\section{Triple A\tsq{s}}
+\section[AAA]{Triple A\tsq{s}}
 
 \myquote{}{Remember to log the details, too.}
 
@@ -319,19 +319,45 @@ Cisco switches allow by default only the following 3 protos until the client is 
 	dot1x port-control auto        ! to enable dot1x on the port
 \end{txt}
 
-\section[Network Mgmt]{Network Management}
+\section[SNMP]{Simple Network Management Protocol}
 
-\subsection{Routers}
+\fig{snmp/snmphandshake}{snmphandshake}{\gls{snmp} handshake}
 
-\subsection{Switches}
+\begin{itemize}
+	\item \itemtitle{v1}{}
+	\begin{itemize}
+		\item 
+	\end{itemize}
+	\item \itemtitle{v2}{}
+	\begin{itemize}
+		\item 
+	\end{itemize}
+	\item \itemtitle{v2c}{}
+	\begin{itemize}
+		\item 
+	\end{itemize}
+	\item \itemtitle{v3}{}
+	\begin{itemize}
+		\item 
+	\end{itemize}
+\end{itemize}
 
-\subsection{Firewall}
+\section{Routers}
+
+\section{Switches}
+
+\section{Firewall}
 
 \section[OOB Mgmt]{Out-of-Band Management}
 
 \subsection{Console Server}
 
 \begin{itemize}
-    \item OpenGEAR
+	\item OpenGEAR
 \end{itemize}
 
+\subsection[Remote Mgmt]{Remote Management}
+
+\subsubsection{3G/4G}
+
+\subsubsection{ADSL}
