@@ -425,7 +425,7 @@ Cisco did on their part early on enhance the original spanning tree standard wit
     \item Root Guard
     \begin{itemize}
         \item \st{Prevents external switches from becoming roots}
-        \item If enabled, prevents any ports from becoming a root-port. Ports will remain as designated ports \textit{effectivily} preventing the switch becoming the root bridge.
+        \item If enabled, prevents any ports from becoming a root-port. Ports will remain as designated ports \textit{effectivily} preventing the switch becoming the root bridge.\footnote{You will enable Root Guard on all downstream trunk ports starting from the distribution layer. This prevents the next layer of switches downstream of becoming the root bridge.}
         \item This, too, behaves in s similiar manner as \gls{bpdu} guard, putting the port in \texttt{err-disable} mode when a \gls{bpdu} packet is recieved on the port.
         \item Enabled per-port with\\\cliline{cisco-switch(config-if)# spanning-tree guard root}
     \end{itemize}
