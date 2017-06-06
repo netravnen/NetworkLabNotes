@@ -10,7 +10,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Section: SPAN, RSPAN, ERSPAN
 - Section: HSRP, GLBP, VRRP
 
+## [0.3.0] - 2017-06-06
+### Added
+- DORA sentence to DCHP section
+- More xkcd images to library, many yet to be used
+
 ### Changed
+- Frontpage layout
+- Removed all section.tex files and moved content into chapter segmented .tex files
+- lst language=cisco: More keywords
+
+### Fixed
+- Removed -lw from all tags after git history rewrite was done to remove a pdf file
+- Updated changelog with new tagnames
 
 ## [0.2.2] - 2017-06-05
 ### Added
