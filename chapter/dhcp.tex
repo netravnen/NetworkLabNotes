@@ -2,6 +2,14 @@
 
 \section[DHCP Process]{Dynamic Host Control Protocol Process}
 
+You can always remember the \gls{dhcp} handshake process by DORA\footnote{Discover, Offer, Request, Acknowledgement}:
+\begin{enumerate}
+    \item DHCP\textbf{D}ISCOVER: Client request to get a lease.
+    \item DHCP\textbf{O}FFER: Server sends an offer to the client containing a \gls{ip}, domain name, and lease period.
+    \item DHCP\textbf{R}EQUEST: Client formally request to get the assignment from the server.
+    \item DHCP\textbf{A}CK: Server acknowledges the assignment to the client.
+\end{enumerate}
+
 \fig{dhcp/dhcpdiscoverprocess}{dhcpdiscoverprocess}{DHCP Discover Process}
 
 \subsection[DHCP Messages]{Dynamic Host Control Protocol Messages}
@@ -26,19 +34,19 @@
 
 \subsection{Cisco}
 
-\begin{txt}
-    ip dhcp excluded-address 192.168.0.254
-    !
-    ip dhcp pool LAN-1-POOL-DHCP
-    network 192.168.0.0 255.255.255.0
-    default-router 192.168.0.254
-    lease 2 ! set in days
-\end{txt}
+\begin{cisco}
+ip dhcp excluded-address 192.168.0.254
+!
+ip dhcp pool LAN-1-POOL-DHCP
+ network 192.168.0.0 255.255.255.0
+ default-router 192.168.0.254
+ lease 2 ! set in days
+\end{cisco}
 
 When configuring a Layer 3 interface as a relay port for DHCP request for a subnet. Set the ip helper command on the interface with one \textit{or} more ip addresses.
 
-\begin{txt}
-    interface GigabitEthernet 0/3
-    ip helper-address 192.168.220.220
-    ip helper-address 192.168.222.222
-\end{txt}
+\begin{cisco}
+interface GigabitEthernet 0/3
+ ip helper-address 192.168.220.220
+ ip helper-address 192.168.222.222
+\end{cisco}
