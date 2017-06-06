@@ -253,3 +253,13 @@
 % "\counterwithout{footnote}{chapter}" for the
 % changes to be able to take effect.
 \renewcommand{\thefootnote}{\arabic{footnote}}
+
+
+\addtolength{\skip\footins}{2pt}    % vertical space between rule and main text
+
+
+% https://tex.stackexchange.com/a/141975
+\let\origfootnote\footnote % font size of footnotes; changes \footnotesize command only inside footnotes!
+\renewcommand{\footnote}[1]{%
+    \renewcommand\footnotesize\scriptsize % here there is scriptsize in footnotes (example)       
+    \origfootnote{#1}}
