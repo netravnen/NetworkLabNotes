@@ -360,11 +360,43 @@ Cisco switches allow by default only the following 3 protos until the client is 
 	\end{itemize}
 	\item \itemhead{v3}
 	\begin{itemize}
-		\item 
+		\item Is the recommended version to run if your aren\tsq{t} forced use fx v2c for some weird legacy reason,
+		\item \texttt{best in class} regarding modern security principals
 	\end{itemize}
 \end{itemize}
 
 \fig[http://ccieordie.com/tag/6-1b/]{snmp/snmpcomparison2}{snmpcomparison2}{\gls{snmp} comparison}
+
+\begin{cisco}
+! Block SNMP access to all but the loghost
+access-list 20 remark SNMP ACL
+access-list 20 permit 10.0.10.211
+access-list 20 permit 192.0.2.0 0.0.0.127
+access-list 20 deny any log
+!
+! SNMP is VERY important, particularly with MRTG.
+! For SNMP version 3
+snmp-server view OPS sysUpTime included
+snmp-server view OPS ifDescr included
+snmp-server view OPS ifAdminStatus included
+snmp-server view OPS ifOperStatus included
+!
+snmp-server view V3Read iso included
+snmp-server view V3Write iso included
+!
+snmp-server enable traps
+!
+snmp-server group OpGroup v3 auth read OPS
+snmp-server group V3Group v3 auth read V3Read write V3Write
+!
+snmp-server user OpersU OpGroup v3 auth sha Scrtpwd2200 priv aes256 Scrtpwd2220
+snmp-server user V3User V3Group v3 auth sha MyPassword1 priv aes256 MyPassword2
+!
+snmp-server host 192.0.2.10 traps version 3 priv OpersU cpu port-security
+snmp-server host 10.0.10.211 traps version 3 priv V3User cpu port-security
+!
+snmp-server ifindex persist
+\end{cisco}
 
 \subsection{Implementation Problems with SNMP}
 
