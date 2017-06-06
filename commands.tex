@@ -103,3 +103,7 @@
 %\else
 %\lstinline[columns=fixed]{network-device(config-#1)\# #2}
 %\fi\}
+
+
+\newcommand{\txtreflect}[1]{\reflectbox{#1}}
+\newcommand{\txtupdown}[1]{\raisebox{\depth}{\rotatebox{270}{\reflectbox{\rotatebox{90}{#1}}}}}
