@@ -50,7 +50,9 @@
 \catcode`\_=12
 
 
-\bibliographystyle{unsrtnat} %styles list https://www.sharelatex.com/learn/Natbib_bibliography_styles
+% styles list is available at
+% https://www.sharelatex.com/learn/Natbib_bibliography_styles
+\bibliographystyle{unsrtnat}
 
 
 % Path where images are located relative
@@ -243,8 +245,14 @@
 
 % Do not reset counter for footnotes at all
 % through the document from start to finish.
-% https://tex.stackexchange.com/questions/10448/continuous-footnote-numbering
+% https://tex.stackexchange.com/a/10449
 \counterwithout{footnote}{chapter}
+
+
+% Do not reset counter for figures at all
+% through the document from start to finish.
+% https://tex.stackexchange.com/a/28334
+\counterwithout{figure}{chapter}
 
 
 % Set footnote numeration
