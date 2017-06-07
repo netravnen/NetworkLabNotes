@@ -152,6 +152,10 @@ Other things can go wrong, too. Such as
 
 \subsection[ERSPAN]{Encapsulated Remote Switch Port Analyzer}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% NETWORK MANAGEMENT AND SOME TECHNOLOGIES THAT OVIESLY DESERVES MENT. %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \chapter[Network Mgmt]{Network Management}
 
 \section[AAA]{Triple A\tsq{s}}
@@ -429,16 +433,48 @@ snmp-server ifindex persist
 
 \subsubsection[ADSL]{Asymmetric Digital Subscriber Line}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% HIGH AVAILABILTIY TEXTING AND OPERATIONAL FUNCTIONALITY              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \chapter[HA]{High Availability}
 
-\section{StackWise}
+\fig{ha/hawordcloud}{hawordcloud}{High Availability in the word cloud}
 
-\section[VSS]{Virtual Switch Stacking}
+There are different methods and protocols to do \gls{ha} with in the world of networking, routers, and switches.
+
+Buzzwords float around the cloud.
+
+The topic of availability is and \textbf{old} one. Been around since the start of electronics with \textit{\bsq{so-called}} mission-critical functions. Something along the following type if infrastructure servicing the public: Power Plants, Hospitals, Water Stations, \glspl{chp}. IT/Network infrastructure has become close to if not more important in some cases.
+
+The server park churning out numbers, reports, handling image processing, journals, billing, employer salary payments, company payments etcetera. You get the picture by now. If the IT/Network infrastructure is somehow not available or under-performing. It can have a large impact on the day-to-day operations of few/several/many things/people/money. Happen you do not get your salary on time, the company is down with no production possible, there isn't running water in the tap in households, no electricity, no gas to cook or heat with. No hospital operations possible because of a non-functioning network rendering desktop computers/PDAs/mobile hospital units unusable for a lengthy period of time.
+
+\begin{center}
+\smallskip
+>>\hskip2mm\textbf{All hells lose somewhere!}\hskip2mm<<
+\end{center}
+
+\section{Network Nodes}
+
+\fig{vss/vss}{vss}{2 common ways of doing cabling in switch stacking}
+
+\subsection{StackWise}
+
+\textit{Per the usual} a Cisco proprietary technology doing the following stuff \footnotesize{not necessarily} in the order specified:
+\begin{itemize}
+    \item Stacking the switches as one logical unit
+    \item A switch can be added/removed from an operational stack without affecting performance
+    \item Configuration is shared by every stack member
+    \item Routing information is shared by every stack member
+\end{itemize}
+
+\subsection[VSS]{Virtual Switch Stacking}
+
+\fig{vss/vss2}{vss2}{How the access layer sees a \gls{vss}}
+
+\newpage
 
 \section[FHRP]{First Hop Redundancy Protocol}
-
 \subsection[VRRP]{Virtual Router Redundancy Protocol}
-
 \subsection[HSRP]{Hot-Standby Routing Protocol}
-
 \subsection[GLBP]{Gateway Load Balancing Protocol}
