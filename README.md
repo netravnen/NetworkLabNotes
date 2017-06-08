@@ -6,30 +6,35 @@
 
 ## Write about
 - [ ] INTER VLAN ROUTING
-- [ ] BGP
-- [ ] ISIS
-- [ ] EIGRP
-- [ ] OSPF
-- [ ] RIP
-- [ ] PREFIX FILTERS
-  - [X] Example code
-- [ ] ASN's
+- Routing
+  - [ ] BGP
+  - [ ] ISIS
+  - [ ] EIGRP
+  - [ ] OSPF
+  - [ ] RIP
+- PREFIX FILTERS
+  - [ ] Example code
+- Internet
+  - [ ] ASN's
 - [ ] SPAN
   - [ ] RSPAN
   - [ ] ERSPAN
-- [ ] FHRP
+- FHRP
   - [ ] GLBP
   - [ ] HSRP
   - [ ] VRRP
 - [ ] IP SLA
-- [ ] VSS
+- Stacking
+  - [ ] VSS
+  - [X] StackWise
 - [ ] Storm Control
 - [ ] SDM Templates
 - [ ] PoE
 - [ ] SNMP
 
 ## Writing about
-- [X] NTP, SNTP
+- [X] NTP
+- [X] SNTP
 
 ## _Mostly_ done
 - [X] Spanning tree
