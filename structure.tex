@@ -97,8 +97,9 @@
 \input{layout/color} %user-defined colors
 
 
+% https://tex.stackexchange.com/a/174553
 \lstdefinestyle{mystyle}{
-    language=TeX,
+    language=cisco,
     backgroundcolor=\color{backcolour},
     commentstyle=\color{codegreen}\ttfamily,
     keywordstyle=\color{magenta},
@@ -114,9 +115,9 @@
     showstringspaces=false,
     showtabs=false,
     tabsize=4,
-    abovecaptionskip=3em,
+    abovecaptionskip=1em,
     aboveskip=1em,
-    belowcaptionskip=5em,
+    belowcaptionskip=1em,
     belowskip=3em,
     upquote=true,
     numbersep=8pt,
@@ -189,6 +190,12 @@
     comment=[l]{!},
     commentstyle=\color{purple}\ttfamily,
     stringstyle=\color{red}\ttfamily,
+    caption=\lstname,
+    tabsize=1,
+    captionpos=t,
+    showstringspaces=false,
+    breaklines=true,
+    breakatwhitespace=true,    
 }
 
 
