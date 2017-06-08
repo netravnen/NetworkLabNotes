@@ -6,9 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
-- Section: 802.1x
-- Section: SPAN, RSPAN, ERSPAN
-- Section: HSRP, GLBP, VRRP
+- 802.1x
+- StackWise
 
 ## [0.3.0] - 2017-06-06
 ### Added
