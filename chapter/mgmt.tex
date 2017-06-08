@@ -222,22 +222,22 @@ Other things can go wrong, too. Such as
 
 \fig{radius/radiuscommunication}{radiuscommunication}{Radius handshake and communication}
 
-\begin{txt}
-	radius server DK-RADIUS-SERVER
-	address ipv4 radiusserver.example.com auth-port 1812 acct-port 1813
-	key unkn0wn!unic@st.|.
-	!
-	aaa new-model
-	aaa group server RADIUS
-	server name DK-RADIUS-SERVER
-	!
-	aaa authentication login radius_list group RADIUS local
-	!
-	line vty 0-4
-	login authentication radius_list
-	line vty 5-15
-	login authentication radius_list
-\end{txt}
+\begin{cisco}
+radius server DK-RADIUS-SERVER
+ address ipv4 radiusserver.example.com auth-port 1812 acct-port 1813
+ key unkn0wn!unic@st.|.
+!
+aaa new-model
+aaa group server RADIUS
+ server name DK-RADIUS-SERVER
+!
+aaa authentication login radius_list group RADIUS local
+!
+line vty 0 4
+ login authentication radius_list
+line vty 5 15
+ login authentication radius_list
+\end{cisco}
 
 \newpage
 
@@ -245,39 +245,39 @@ Other things can go wrong, too. Such as
 
 \fig{tacacsplus/tacacspluscommunication}{tacacspluscommunication}{Tacacs plus handshake and communication}
 
-\begin{txt}
-	aaa group server tacacs+ TACACS
-	server-private 1.1.1.1 unkn0wn!unicAst
-	ip tacacs source-interface Loopback0
-	!
-	aaa authentication attempts login 1
-	aaa authentication login default group TACACS local-case
-	aaa authentication login console local-case
-	aaa authentication enable default group TACACS enable
-	aaa authorization exec default group TACACS local 
-	aaa authorization commands 0 default group TACACS local 
-	aaa authorization commands 15 default group TACACS local 
-	aaa accounting exec default
-	action-type start-stop
-	group tacacs+
-	!
-	aaa accounting commands 1 default
-	action-type start-stop
-	group tacacs+
-	!
-	aaa accounting commands 2 default
-	action-type start-stop
-	group tacacs+
-	!
-	aaa accounting commands 15 default
-	action-type start-stop
-	group tacacs+
-	!
-	aaa session-id common
-	!
-	tacacs-server host 10.21.0.45
-	tacacs-server unkn0wn!unicAst
-\end{txt}
+\begin{cisco}
+aaa group server tacacs+ TACACS
+ server-private 1.1.1.1 unkn0wn!unicAst
+ ip tacacs source-interface Loopback0
+!
+aaa authentication attempts login 1
+aaa authentication login default group TACACS local-case
+aaa authentication login console local-case
+aaa authentication enable default group TACACS enable
+aaa authorization exec default group TACACS local 
+aaa authorization commands 0 default group TACACS local 
+aaa authorization commands 15 default group TACACS local 
+aaa accounting exec default
+ action-type start-stop
+ group tacacs+
+!
+aaa accounting commands 1 default
+ action-type start-stop
+ group tacacs+
+!
+aaa accounting commands 2 default
+ action-type start-stop
+ group tacacs+
+!
+aaa accounting commands 15 default
+ action-type start-stop
+ group tacacs+
+!
+aaa session-id common
+!
+tacacs-server host 10.21.0.45
+tacacs-server unkn0wn!unicAst
+\end{cisco}
 
 \section{802.1X}
 
@@ -309,17 +309,19 @@ Cisco switches allow by default only the following 3 protos until the client is 
 
 \subsection*{Enable with Cisco config}
 
-\begin{txt}
-	aaa new-model
-	radius server host radiusserver.example.com key .unkown!unicAst.
-	aaa group server radius RADIUS-SERVER-DK
-	server radiusserver.example.com
-	aaa authetication dot1x default group RADIUS-SERVER-DK
-	dot1x system-auth-control
-	interface GigabitEthernet 0/4
-	switchport mode access         ! Port must be an access port prior
-	dot1x port-control auto        ! to enable dot1x on the port
-\end{txt}
+\begin{cisco}
+aaa new-model
+radius server host radiusserver.example.com key .unkown!unicAst.
+ aaa group server radius RADIUS-SERVER-DK
+ server radiusserver.example.com
+!
+aaa authetication dot1x default group RADIUS-SERVER-DK
+ dot1x system-auth-control
+!
+interface GigabitEthernet 0/4
+ switchport mode access         ! Port must be an access port prior
+ dot1x port-control auto        ! to enable dot1x on the port
+\end{cisco}
 
 \section[SNMP]{Simple Network Management Protocol}
 
