@@ -450,11 +450,17 @@ The topic of availability is and \textbf{old} one. Been around since the start o
 The server park churning out numbers, reports, handling image processing, journals, billing, employer salary payments, company payments etcetera. You get the picture by now. If the IT/Network infrastructure is somehow not available or under-performing. It can have a large impact on the day-to-day operations of few/several/many things/people/money. Happen you do not get your salary on time, the company is down with no production possible, there isn't running water in the tap in households, no electricity, no gas to cook or heat with. No hospital operations possible because of a non-functioning network rendering desktop computers/PDAs/mobile hospital units unusable for a lengthy period of time.
 
 \begin{center}
-\smallskip
->>\hskip2mm\textbf{All hells lose somewhere!}\hskip2mm<<
+    \smallskip
+    >>\hskip2mm\textbf{All hells lose somewhere!}\hskip2mm<<
 \end{center}
 
 \section{Network Nodes}
+
+\begin{center}
+    Cisco proposes \textbf{StackWise for Access} and \textbf{\gls{vss} for Aggregation} Layer modules.
+\end{center}
+
+Go all the way and do consider if Supervisor Redundancy is a necessary requirement, too.
 
 \fig{vss/vss}{vss}{2 common ways of doing cabling in switch stacking}
 
@@ -462,10 +468,22 @@ The server park churning out numbers, reports, handling image processing, journa
 
 \textit{Per the usual} a Cisco proprietary technology doing the following stuff \footnotesize{not necessarily} in the order specified:
 \begin{itemize}
-    \item Stacking the switches as one logical unit
+    \item Stacking the switches as one logical unit\footnote{Up to 9 switches can be stacked together}
     \item A switch can be added/removed from an operational stack without affecting performance
     \item Configuration is shared by every stack member
     \item Routing information is shared by every stack member
+    \item The stack is always managed as one single logical unit. All the normal day-to-day operations on the CLI/SNMP Agents/Integrated web server is made to the management \gls{ip}.
+    \item The switches run a modified protocol to communicate all things from the master switch to the slaves and vice-versa.
+    \item New switches are automatically brought up to speed with the operating software from the master node in the stack and will be ready to operate after plug-and-play operation is finished.
+    \item Channel bundling can be performed with member ports across the whole stack. Say 4 ports each in port TenGigE x/1 in member switch 0-3. Now its a 4x10G Channel.
+    \item We can avoid \glspl{stp} internally on the stack as a whole. \textit{Yes}. Fever Layer 2 loops and/or errors.
+\end{itemize}
+
+\textbf{\gls{cli}}
+
+\begin{itemize}
+    \item View members of stack: \cliline{show switch}
+    \item View members status of stack ports: \cliline{show switch stack-ports}
 \end{itemize}
 
 \subsection[VSS]{Virtual Switch Stacking}
