@@ -43,3 +43,10 @@
 ## Considered done
 - [X] TACACS+
 - [X] RADIUS
+
+# URLs
+- [Gitlab][1]
+- [Github mirror][2]
+
+[1] https://gitlab.com/netravnen/CiscoLabNotes
+[2] https://github.com/netravnen/CiscoLabNotes
