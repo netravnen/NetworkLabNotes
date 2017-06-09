@@ -1,4 +1,4 @@
-\chapter{NTP}
+\chapter[NTP]{Network Time Protocol}
 
 \gls{ntp} is the source of all evil and \gls{sla}. A network wide source of time configuration for all network nodes, servers, clients etc. is necessary.
 
@@ -65,35 +65,37 @@ A select number of Cisco switches support synchronization with the hardware cloc
 
 \textbf{Beware} when running a cisco node as \gls{ntp} master and are using access-list to restrict possible clients/peers. You need to allow 127.127.[0-255].1 in the access-list\footnote{The 3rd octet will vary depending on the node.}. This because the master NTP node in the network uses this \gls{ipv4} address as internal master.
 
-\section{Secure NTP}
+\section[SNTP]{Simple Network Time Protocol}
 
-\subsection{Characteristics}
-
-\begin{itemize}
-	\item \gls{ntp} is insecure be default, whích prompted for \gls{sntp} to come along,
-	\item Cisco \gls{ios} devices typically only support MD5 encryption\footnote{\url{https://en.wikipedia.org/wiki/MD5}}
-\end{itemize}
-
-\subsubsection{Configure SNTP}
-
-\textbf{Team Cymru} has a nice template for how to enable \gls{sntp} on \gls{ios} and \gls{junos}\footnote{\url{https://www.team-cymru.org/secure-ntp-template.html}}. Shown below is a copy of the \gls{ios} example from Cymrus website.
-
-\begin{cisco}
-ntp authenticate                            ! enable NTP authentication
-ntp authentication-key [key-id] md5 [hash]  ! define a NTP authentication key
-ntp trusted-key [key-id]                    ! mark a NTP authentication key as trusted
-ntp peer [peer_address] key [key-id]        ! form a authenticated session with a peer
-ntp server [server_address] key [key-id]    ! form a authenticated session with a server
-\end{cisco}
-
-\subsection{Versions}
-
-Generally today \gls{ntp}v3 or v4 is found. The difference to v4 \textit{(amongst other)} is
-\begin{itemize}
-	\item support for \gls{ipv6}.
-	\item The security in the protocol is upped to with support for X509 certs.
-	\item Automatic calculation of time-distribution\footnote{to archive high time accuracy against lowest bandwidth cost} in  a network based upon specific multicast groups leveraging v6 site-local multicast addresses.
-	\item \cliline{ntp-server ipv6-addr version 4}
-\end{itemize}
-
-\textbf{Beware} when using \gls{sntp} that \gls{ntp} cannot be used. The same \gls{udp} port is used.
+%\section{Secure NTP}
+%
+%\subsection{Characteristics}
+%
+%\begin{itemize}
+%	\item \gls{ntp} is insecure be default, whích prompted for \gls{sntp} to come along,
+%	\item Cisco \gls{ios} devices typically only support MD5 encryption\footnote{\url{https://en.wikipedia.org/wiki/MD5}}
+%\end{itemize}
+%
+%\subsubsection{Configure SNTP}
+%
+%\textbf{Team Cymru} has a nice template for how to enable \gls{sntp} on \gls{ios} and \gls{junos}\footnote{\url{https://www.team-cymru.org/secure-ntp-template.html}}. Shown below is a copy of the \gls{ios} example from Cymrus website.
+%
+%\begin{cisco}
+%ntp authenticate                            ! enable NTP authentication
+%ntp authentication-key [key-id] md5 [hash]  ! define a NTP authentication key
+%ntp trusted-key [key-id]                    ! mark a NTP authentication key as trusted
+%ntp peer [peer_address] key [key-id]        ! form a authenticated session with a peer
+%ntp server [server_address] key [key-id]    ! form a authenticated session with a server
+%\end{cisco}
+%
+%\subsection{Versions}
+%
+%Generally today \gls{ntp}v3 or v4 is found. The difference to v4 \textit{(amongst other)} is
+%\begin{itemize}
+%	\item support for \gls{ipv6}.
+%	\item The security in the protocol is upped to with support for X509 certs.
+%	\item Automatic calculation of time-distribution\footnote{to archive high time accuracy against lowest bandwidth cost} in  a network based upon specific multicast groups leveraging v6 site-local multicast addresses.
+%	\item \cliline{ntp-server ipv6-addr version 4}
+%\end{itemize}
+%
+%\textbf{Beware} when using \gls{sntp} that \gls{ntp} cannot be used. The same \gls{udp} port is used.
