@@ -16,25 +16,29 @@
   - [ ] Example code
 - Internet
   - [ ] ASN's
-- [ ] SPAN
+- Monitoring on switch ports
+  - [ ] SPAN
   - [ ] RSPAN
   - [ ] ERSPAN
 - FHRP
   - [ ] GLBP
-  - [ ] HSRP
   - [ ] VRRP
 - [ ] IP SLA
-- Stacking
-  - [ ] VSS
-  - [X] StackWise
 - [ ] Storm Control
 - [ ] SDM Templates
 - [ ] PoE
 - [ ] SNMP
 
 ## Writing about
-- [X] NTP
-- [X] SNTP
+- [ ] NTP
+- [ ] Simple NTP
+- FHRP
+  - [ ] HSRP
+- Stacking
+  - [ ] VSS
+  - [ ] StackWise
+- Example configuration snippets
+  - [ ] SSH
 
 ## _Mostly_ done
 - [X] Spanning tree
@@ -43,6 +47,15 @@
 ## Considered done
 - [X] TACACS+
 - [X] RADIUS
+- Example configuration snippets
+  - [X] Hardware clock
+  - [X] NTP
+  - [X] HSRP
+  - [X] CDP
+  - [X] DHCP
+  - [X] LLDP
+  - [X] OSPFv2
+  - [X] VTY
 
 # URLs
 - [Gitlab][1]
