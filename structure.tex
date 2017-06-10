@@ -83,7 +83,9 @@
 	\fancyhfoffset[RO]{6mm}%
 	% Put some space and a vertical bar between the folio and the rest of the header
 	\fancyhead[LE]{\color{Black}\thepage\color{Gray}\hskip3mm\vrule\hskip3mm\leftmark}%
+    \fancyhead[RE]{\color{Gray}{\tiny Generated \utccurrenttime}}%
 	\fancyhead[RO]{\color{Gray}\rightmark\hskip3mm\vrule\hskip3mm\color{Black}\thepage}%
+    \fancyhead[LO]{\color{Gray}{\tiny \theauthor}}%
 }
 \pagestyle{fancybook}
 
