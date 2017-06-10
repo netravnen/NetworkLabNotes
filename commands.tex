@@ -109,3 +109,21 @@ License: \texttt{\href{https://creativecommons.org/licenses/by-nc/2.5/}{CC BY-NC
 
 \newcommand{\txtreflect}[1]{\reflectbox{#1}}
 \newcommand{\txtupdown}[1]{\raisebox{\depth}{\rotatebox{270}{\reflectbox{\rotatebox{90}{#1}}}}}
+
+
+% http://www.troubleshooters.com/linux/lyx/ownlists.htm
+\newenvironment{rules}{
+\begin{list}
+{\bfseries{}§\hskip1mm\arabic{qcounter}:~}
+{
+\usecounter{qcounter}
+\bfseries
+\setlength\labelwidth{1in}
+\setlength\labelsep{0.27in}
+\setlength\leftmargin{0.56in}
+\setlength\listparindent{1in}
+\setlength\itemindent{0.1in}
+}
+}{
+\end{list}
+}
