@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - 802.1x
 - StackWise
+- VSS
+- HSRP
+- GLBP
+- VRRP
 
 ## [0.3.0] - 2017-06-06
 ### Added
