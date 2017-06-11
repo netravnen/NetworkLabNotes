@@ -7,10 +7,12 @@
 - [Github mirror][repo-mirror]
 
 # Subjects tryied covered
+
 ## Switching
 - [X] Spanning Tree
 - [ ] SDM Templates
 - [ ] PoE
+
 ## Routing
 - [ ] BGP
 - [ ] ISIS
@@ -18,31 +20,40 @@
 - [ ] OSPF
 - [ ] RIP
 - [ ] INTER VLAN ROUTING
+
 ## Prefix Filters + Route Maps
 - [ ] Example code
+
 ## Internet
 - [ ] ASN's
+
 ## Monitoring
 - [ ] SPAN
 - [ ] RSPAN
 - [ ] ERSPAN
 - [ ] SNMP
 - [ ] IP SLA
+
 ## Security
 - [ ] Storm Control
+
 ## NTP
 - [ ] NTP
 - [ ] Simple NTP
+
 ## FHRP
 - [ ] GLBP
 - [ ] HSRP
 - [ ] VRRP
+
 ## Stacking
 - [ ] VSS
 - [ ] StackWise
+
 ## AAA
 - [X] TACACS+
 - [X] RADIUS
+
 ## Example configuration snippets
 - [ ] SSH
 - [X] CDP
