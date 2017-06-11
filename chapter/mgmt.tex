@@ -528,7 +528,7 @@ Go all the way and do consider if Supervisor Redundancy is a necessary requireme
     \begin{itemize}
         \item Priority 100\footnote{Higher is better. Range is 0x00--0xFF}
         \item Hello time 3s
-        \item Dead time 10s
+        \item Hold time 10s
         \item Multicast grp 224.0.0.2 port udp 1985 \textit{(all routers)} {\scriptsize \textbf{v1}}
         \item Multicast grp 224.0.0.102 port udp 1985 {\scriptsize \textbf{v2}}
         \item \gls{hsrp} group mac 00-00-0c-07-ac-xx\footnote{The last 2 octets is the group ID in hex. E.g. 11 is 0x0b, 30 is 0x1e.}
@@ -579,5 +579,19 @@ When configuring
 \subsection[GLBP]{Gateway Load Balancing Protocol}
 
 \begin{itemize}
-    \item 
+    \item \itemhead[]{Defaults}
+    \begin{itemize}
+        \item Hello time 3s
+        \item Hold time 10s
+        \item Uses Multicast 224.0.0.102 udp/3222
+        \item Cisco Proprietary, first seen 2005
+    \end{itemize}
+    \item \itemhead[]{Properties}
+    \begin{enumerate}
+        \item Support auth,
+        \item can do object tracking,
+        \item only 1 active \gls{avg},
+        \item only 1 standby \gls{avg},
+        \item up to 4 \glspl{avf} can be active at any given time.
+    \end{enumerate}
 \end{itemize}
