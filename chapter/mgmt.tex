@@ -498,7 +498,13 @@ Go all the way and do consider if Supervisor Redundancy is a necessary requireme
 
 \myquote{\citealt{wiki:Category:First-hop_redundancy_protocols}}{is a computer networking protocol which is designed to protect the default gateway used on a subnetwork by allowing two or more routers to provide backup for that address}
 
+\newpage
+
 \subsection[VRRP]{Virtual Router Redundancy Protocol}
+
+
+\newpage
+
 \subsection[HSRP]{Hot-Standby Routing Protocol}
 
 \begin{itemize}
@@ -537,6 +543,12 @@ Go all the way and do consider if Supervisor Redundancy is a necessary requireme
             \item still sending hellos.
         \end{itemize}
     \end{enumerate}
+    \item \itemhead[]{Properties}
+    \begin{enumerate}
+        \item Support auth,
+        \item can do interface tracking,
+        \item can do object tracking.
+    \end{enumerate}
 \end{itemize}
 
 Remember use of \textbf{pre-emption} when configuring the \gls{hsrp} routers with all \textit{but} the lowest priority.
@@ -544,5 +556,7 @@ Remember use of \textbf{pre-emption} when configuring the \gls{hsrp} routers wit
 \subsubsection[Blncd]{Load Sharing}
 
 When configuring 
+
+\newpage
 
 \subsection[GLBP]{Gateway Load Balancing Protocol}
