@@ -529,8 +529,8 @@ Go all the way and do consider if Supervisor Redundancy is a necessary requireme
         \item Priority 100\footnote{Higher is better. Range is 0x00--0xFF}
         \item Hello time 3s
         \item Hold time 10s
-        \item Multicast grp 224.0.0.2 port udp 1985 \textit{(all routers)} {\scriptsize \textbf{v1}}
-        \item Multicast grp 224.0.0.102 port udp 1985 {\scriptsize \textbf{v2}}
+        \item Multicast group 224.0.0.2 udp/1985 \textit{(all routers)} {\scriptsize \textbf{v1}}
+        \item Multicast group 224.0.0.102 udp/1985 {\scriptsize \textbf{v2}}
         \item \gls{hsrp} group mac 00-00-0c-07-ac-xx\footnote{The last 2 octets is the group ID in hex. E.g. 11 is 0x0b, 30 is 0x1e.}
     \end{itemize}
     \item \itemhead[]{States}
@@ -564,7 +564,8 @@ Go all the way and do consider if Supervisor Redundancy is a necessary requireme
     \begin{enumerate}
         \item Support auth,
         \item can do interface tracking,
-        \item can do object tracking.
+        \item can do object tracking,
+        \item cisco proprietary, first seen 1994.
     \end{enumerate}
 \end{itemize}
 
@@ -583,8 +584,7 @@ When configuring
     \begin{itemize}
         \item Hello time 3s
         \item Hold time 10s
-        \item Uses Multicast 224.0.0.102 udp/3222
-        \item Cisco Proprietary, first seen 2005
+        \item Uses Multicast 224.0.0.102 udp/3222\footnote{udp/3222 is both source and destination when communicating}
     \end{itemize}
     \item \itemhead[]{Properties}
     \begin{enumerate}
@@ -592,6 +592,7 @@ When configuring
         \item can do object tracking,
         \item only 1 active \gls{avg},
         \item only 1 standby \gls{avg},
-        \item up to 4 \glspl{avf} can be active at any given time.
+        \item up to 4 \glspl{avf} can be active at any given time,
+        \item cisco Proprietary, first seen 2005.
     \end{enumerate}
 \end{itemize}
