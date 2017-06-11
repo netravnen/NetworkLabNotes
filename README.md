@@ -51,6 +51,7 @@
 - [ ] GLBP
 - [ ] HSRP
 - [ ] VRRP
+- [ ] CARP
 
 ## Stacking
 - [ ] VSS
