@@ -502,6 +502,22 @@ Go all the way and do consider if Supervisor Redundancy is a necessary requireme
 
 \subsection[VRRP]{Virtual Router Redundancy Protocol}
 
+\begin{itemize}
+    \item \itemhead[]{Defaults}
+    \begin{itemize}
+        \item Priority 100\footnote{Higher is better. Range is 0x00--0xFF}
+        \item Priority 0 is special. Forces master role whenever possible
+        \item Hello time 1s\footnote{Per \gls{rfc} 3768 gls{vrrp} do \textbf{not} support milliseconds timer. Cisco has chosen to implement this. Work only with cisco devices!}
+        \item Hold time 3s
+        \item Multicast grp 224.0.0.18 protocol no. 112
+        \item 1 master router and the rest is just backup routers
+    \end{itemize}
+    \item \itemhead[]{Properties}
+    \begin{enumerate}
+        \item Can only do object tracking {\footnotesize (Think objects combined with ip sla objects),}
+        \item virtual ip can match interface ip of master router.
+    \end{enumerate}
+\end{itemize}
 
 \newpage
 
@@ -535,7 +551,8 @@ Go all the way and do consider if Supervisor Redundancy is a necessary requireme
         \item \textbf{Standby}
         \begin{itemize}
             \item Candidate for active router role,
-            \item still sending hello from time-to-time.
+            \item still sending hello from time-to-time,
+            \item only 1 standby router.\footnote{The nodes not being active/standby router is given the candidate role.}
         \end{itemize}
         \item \textbf{Active}
         \begin{itemize}
@@ -560,3 +577,7 @@ When configuring
 \newpage
 
 \subsection[GLBP]{Gateway Load Balancing Protocol}
+
+\begin{itemize}
+    \item 
+\end{itemize}
