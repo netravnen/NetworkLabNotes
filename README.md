@@ -12,14 +12,18 @@
 - [X] Spanning Tree
 - [ ] SDM Templates
 - [ ] PoE
+- [ ] LACP
+- [ ] PAgP  (cisco proprietary)
+- [ ] MC-LAG
+- [ ] vPC (cisco proprietary)
 
 ## Routing
 - [ ] BGP
 - [ ] ISIS
-- [ ] EIGRP
+- [ ] EIGRP (cisco proprietary)
 - [ ] OSPF
 - [ ] RIP
-- [ ] INTER VLAN ROUTING
+- [ ] InterVLAN Routing
 
 ## Maps & Filters
 - [ ] Example code
@@ -36,6 +40,8 @@
 - [ ] ERSPAN
 - [ ] SNMP
 - [ ] IP SLA
+- [ ] LACP
+- [ ] CDP (cisco proprietary)
 
 ## Security
 - [ ] Storm Control
@@ -45,27 +51,30 @@
 
 ## NTP
 - [ ] NTP
-- [ ] Simple NTP
+- [ ] Simple NTP (SNTP)
 
 ## FHRP
-- [ ] GLBP
-- [ ] HSRP
+- [ ] GLBP (cisco proprietary)
+- [ ] HSRP (cisco proprietary)
 - [ ] VRRP
 - [ ] CARP
+- [ ] ESRP (extreme networks proprietary)
+- [ ] NSRP (juniper proprietary)
+- [ ] R-SMLT (avaya proprietary)
 
 ## Stacking
 - [ ] VSS
 - [ ] StackWise
 
 ## AAA
-- [X] TACACS+
+- [X] TACACS+ (cisco proprietary)
 - [X] RADIUS
 
 ## Example configuration snippets
 - [ ] SSH
-- [X] CDP
+- [X] CDP (cisco proprietary)
 - [X] DHCP
-- [X] HSRP
+- [X] HSRP (cisco proprietary)
 - [X] Hardware clock
 - [X] LLDP
 - [X] NTP
