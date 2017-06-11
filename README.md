@@ -21,8 +21,10 @@
 - [ ] RIP
 - [ ] INTER VLAN ROUTING
 
-## Prefix Filters + Route Maps
+## Maps & Filters
 - [ ] Example code
+- [ ] Prefix Filters
+- [ ] Route Maps
 
 ## Internet
 - [ ] ASN's
@@ -36,6 +38,9 @@
 
 ## Security
 - [ ] Storm Control
+- [ ] Spoofing
+- [ ] Private VLANs
+- [ ] Port Security
 
 ## NTP
 - [ ] NTP
