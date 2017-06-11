@@ -27,7 +27,8 @@
 - [ ] Route Maps
 
 ## Internet
-- [ ] ASN's
+- [ ] ASNs
+- [ ] IXPs
 
 ## Monitoring
 - [ ] SPAN
