@@ -81,5 +81,19 @@
 - [X] OSPFv2
 - [X] VTY
 
+## VoIP
+- [ ] QoS
+- [ ] 2nd vlan tag
+
+## Wireless
+- [ ] AES
+- [ ] TKIP
+- [ ] WEP
+- [ ] WPA-PSK
+- [ ] WPA2-PSK
+- [ ] WPA
+- [ ] WPA2
+- [ ] Roaming
+
 [repo-origin]: https://gitlab.com/netravnen/CiscoLabNotes
 [repo-mirror]: https://github.com/netravnen/CiscoLabNotes
