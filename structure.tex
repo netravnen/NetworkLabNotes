@@ -1,4 +1,4 @@
-	% Latex Packages
+% Latex Packages
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
@@ -39,13 +39,19 @@
 \usepackage{titling} % makes available \thetitle \theauthor \thedate
 \usepackage[toc,acronym,footnote,nomain]{glossaries} % Load the package with the acronym option
 \usepackage{chngcntr}
-\newcounter{qcounter}
+\usepackage[toc]{multitoc}
 \usepackage[unicode=false,
     colorlinks=true,
     linkcolor=darkgray,
     citecolor=darkgray,
     filecolor=darkgray,
     urlcolor=darkgray]{hyperref} % https://en.wikibooks.org/wiki/LaTeX/Hyperlinks
+
+
+\renewcommand*{\multicolumntoc}{3} % https://tex.stackexchange.com/a/6455
+
+
+\newcounter{qcounter}
 
 
 \catcode`\_=12

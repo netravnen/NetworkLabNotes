@@ -1,11 +1,3 @@
-% Usage: \pic[<pct-of-columnwidth>]{<path-to-file>}
-\newcommand{\pic}[2][50]{
-\begin{center}
-    \transparent{0.4}
-    \includegraphics[width=0.#1\columnwidth]{#2}
-\end{center}
-}
-
 % Usage: \fig{<path-to-file>}{<label>}{<caption>}
 \newcommand{\fig}[4][]{
 \begin{figure}[h!]
@@ -23,21 +15,15 @@
 \end{figure}
 }
 
+
+% Usage:
 \newcommand{\xkcd}[2]{\fig{xkcd/#1}{#1}{#2\\%
 {\tiny\MakeUppercase{https://imgs.xkcd.com/comics/#1.png}\hskip3mm%
 License: \texttt{\href{https://creativecommons.org/licenses/by-nc/2.5/}{CC BY-NC 2.5}}%
 }}}
 
-% Usage: \svg{<path-to-file>}{<label>}{<caption>}
-\newcommand{\svg}[3]{
-    \begin{figure}[h]
-        \centering
-        \includesvg{#1}
-        \caption{#3}
-        \label{fig:#2}
-    \end{figure}
-}
 
+% Usage:
 \newcommand{\notice}[2]{%
     \shadowbox{%
         \begin{varwidth}{0.85\linewidth}
@@ -47,8 +33,12 @@ License: \texttt{\href{https://creativecommons.org/licenses/by-nc/2.5/}{CC BY-NC
     }
 }
 
+
+% Usage:
 \newcommand{\cliline}[2][]{\lstinline[columns=fixed,#1]{#2}}
 
+
+% Usage:
 \newcommand{\utccurrenttime}[0]{%
     \today%
     T%
@@ -59,6 +49,7 @@ License: \texttt{\href{https://creativecommons.org/licenses/by-nc/2.5/}{CC BY-NC
 }
 
 
+% Usage:
 \newcommand{\itemhead}[2][]{%
 	\sbox0{#1}%
 	\ifdim\wd0=0pt
@@ -67,6 +58,9 @@ License: \texttt{\href{https://creativecommons.org/licenses/by-nc/2.5/}{CC BY-NC
 		{\textbf{#2:}\\{\footnotesize #1}}
 	\fi
 }
+
+
+% Usage:
 \newcommand{\itemtitle}[2]{%
 	\sbox0{#1}%
 	\ifdim\wd0=0pt
@@ -77,6 +71,7 @@ License: \texttt{\href{https://creativecommons.org/licenses/by-nc/2.5/}{CC BY-NC
 }
 
 
+% Usage:
 \newcommand{\myquote}[2]{%
     \sbox0{#1}%
     \ifdim\wd0=0pt
@@ -87,43 +82,39 @@ License: \texttt{\href{https://creativecommons.org/licenses/by-nc/2.5/}{CC BY-NC
 }
 
 
+% Usage:
 % Enviroment @var txt
 % changes code styling to: in frame, white bg.
 \lstnewenvironment{txt}{\lstset{style=plaintxt}}{}
 
 
+% Usage:
 % Enviroment @var cisco
 \lstnewenvironment{cisco}{\lstset{language=cisco}}{}
 
 
-%\newcommand{cisline}[1]{\lstinline[columns=fixed]{network-device\# #1}}
-
-
-%\newcommand{cisconf}[2][]{%
-%\def\temp{#1}\ifx\temp\empty
-%\lstinline[columns=fixed]{network-device(config)\# #2}
-%\else
-%\lstinline[columns=fixed]{network-device(config-#1)\# #2}
-%\fi\}
-
-
+% Usage:
 \newcommand{\txtreflect}[1]{\reflectbox{#1}}
+
+
+% Usage:
 \newcommand{\txtupdown}[1]{\raisebox{\depth}{\rotatebox{270}{\reflectbox{\rotatebox{90}{#1}}}}}
 
 
+% Usage: used in similair manner as itemize --> \begin{rules} then \end{rules}
 % http://www.troubleshooters.com/linux/lyx/ownlists.htm
 \newenvironment{rules}{
-\begin{list}
-{\bfseries{}§\hskip1mm\arabic{qcounter}:~}
-{
-\usecounter{qcounter}
-\bfseries
-\setlength\labelwidth{1in}
-\setlength\labelsep{0.27in}
-\setlength\leftmargin{0.56in}
-\setlength\listparindent{1in}
-\setlength\itemindent{0.1in}
-}
+    \begin{list}%
+    {\bfseries{}§\hskip1mm\arabic{qcounter}:~}%
+    {
+        \usecounter{qcounter}
+        \bfseries
+        \setlength\labelwidth{1in}
+        \setlength\labelsep{0.27in}
+        \setlength\leftmargin{0.56in}
+        \setlength\listparindent{1in}
+        \setlength\itemindent{0.1in}
+    }
 }{
-\end{list}
+    \end{list}
 }
