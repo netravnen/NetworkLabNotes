@@ -1,11 +1,36 @@
-\chapter{The Internet {\footnotesize "Post cold-war modern times"}}
+\chapter[Internet]{The Internet {\footnotesize "Post cold-war modern times"}}
 
-\section{Service Providers}
+The internet is a fundamental communication technology for today's modern society. The thing that started as the \Gls{arpanet}\cite{wiki:ARPANET} back in the late nineteen sixties has evolved to become the core of today's globalization on Earth.
 
-\section{IXP}
+Many things, people and creations has come to be part of the internet we know today.
 
-\section{MPLS}
+\section[SP]{Service Providers}
 
-\section{BGP}
+They provide the basic connection to the \tsq{internet} we know.
 
-\section{EVPN}
+\begin{itemize}
+    \item \itemhead{Provider Classes}
+    \begin{itemize}
+        \item \textbf{Tier 1:} The granddaddies which does not pay for \Gls{ip} transit traffic from any other providers. They typically operate on the grand scale of the world and will often maintain peerings with most other tier 1 providers.
+        \item \textbf{Tier 2:} Pays for \Gls{ip} transit traffic from the tier 1 providers and will maintain a select number of peerings between each other to reach certain prefixes by a shorter path. The granddaddies are paid to be able to reach the parts of the internet the tier 2 providers cannot reach through peerings with other tier 2 providers and \Glspl{cdn}.
+        \item \textbf{Tier 3:} These networks can be large fx. large corporations, smaller local providers who do \textit{not} have downstream \Gls{ip} transit customers of their own and no peering relation ships.\footnote{Conditions comparable to \Gls{ospf} stub networks}
+    \end{itemize}
+    \item \itemhead{Provider Types}
+    \begin{itemize}
+        \item
+    \end{itemize}
+    \item \itemhead{Point to remember}
+    \begin{enumerate}
+        \item
+    \end{enumerate}
+\end{itemize}
+
+\section[IXP]{Internet Exchange}
+
+\section[MPLS]{Multiprotocol Label Switching}
+
+\section[BGP]{Border Gateway Protocol}
+
+\subsection[MP-BGP]{Multipoint Border Gateway Protocol}
+
+\section[EVPN]{Ethernet Virtual Private Network}
