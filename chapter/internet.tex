@@ -13,23 +13,47 @@ They provide the basic connection to the \tsq{internet} we know.
     \begin{itemize}
         \item \textbf{Tier 1:} The granddaddies which does not pay for \Gls{ip} transit traffic from any other providers. They typically operate on the grand scale of the world and will often maintain peerings with most other tier 1 providers.
         \item \textbf{Tier 2:} Pays for \Gls{ip} transit traffic from the tier 1 providers and will maintain a select number of peerings between each other to reach certain prefixes by a shorter path. The granddaddies are paid to be able to reach the parts of the internet the tier 2 providers cannot reach through peerings with other tier 2 providers and \Glspl{cdn}.
-        \item \textbf{Tier 3:} These networks can be large fx. large corporations, smaller local providers who do \textit{not} have downstream \Gls{ip} transit customers of their own and no peering relation ships.\footnote{Conditions comparable to \Gls{ospf} stub networks}
+        \item \textbf{Tier 3:} These networks can be fx larger corporations\footnote{Some larger corporations do own the rights for a public \Gls{asn}, v4, and v6 prefix(es)}, smaller local providers who do \textit{not} have downstream \Gls{ip} transit customers of their own and no peering relation ships.\footnote{Conditions comparable to \Gls{ospf} stub networks}
     \end{itemize}
     \item \itemhead{Provider Types}
     \begin{itemize}
-        \item
+        \item \textbf{Tier 1:} Amongst granddaddies. Many will want to peer with the T1 network. Free to select only the networks they want to peer with and tell the rest T2 and T3 to pay for traffic.
+        \item \textbf{Tier 2:} Some will peer with the T2 network. Large T1 providers ones most likely only if the T2 provider pay the T1.
+        \item \textbf{Tier 3:} You are so small a T3 network no one will peer with you.
     \end{itemize}
     \item \itemhead{Point to remember}
     \begin{enumerate}
-        \item
+        \item A provider would always rather have a paying customer compared to a peering relationship.
+        \item Customers pays for \Gls{ip} traffic.
+        \item Peerings exchange \Gls{ip} traffic for an insignificant cost between networks.
+        \item Many things rely on a power relations ship between providers when deciding who to peer with and not. Aka. normal business negotiations.
     \end{enumerate}
 \end{itemize}
 
 \section[IXP]{Internet Exchange}
 
+Here the T1,T2,T3,\Glspl{cdn} providers exchange traffic either publicly of privately. \Glspl{ixp} basic service they offer are \Gls{l2} lan services where the providers run \Gls{bgp} between them on the public peering lan or on a private peering lan exclusively for 2 providers.
+
+\fig{providers/internetconnectivity}{internetconnectivity}{Internet Connectivity between providers\\%
+    {\tiny License: \texttt{\href{https://creativecommons.org/licenses/by-sa/3.0/}{CC BY-SA 3.0}}}}
+
 \section[MPLS]{Multiprotocol Label Switching}
 
 \section[BGP]{Border Gateway Protocol}
+
+Run the internet today.
+Relatively stable with longer convergence times than the other routing protocols.
+
+\begin{itemize}
+    \item \itemhead{Characteristics}
+    \begin{itemize}
+        \item Converges slowly. This in turn \textit{increases} stability between \Glspl{asn}
+        \item Large flexibility
+        \item Great filtering capabilities
+        \item Very adjustable
+        \item Scalable
+    \end{itemize}
+\end{itemize}
 
 \subsection[MP-BGP]{Multipoint Border Gateway Protocol}
 
