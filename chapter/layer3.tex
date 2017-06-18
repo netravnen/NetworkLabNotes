@@ -22,16 +22,25 @@ The protocol of the internet used since 1994.\cite{wiki:Border_Gateway_Protocol}
     \end{itemize}
     \item \itemhead{Route exchange}
     \begin{itemize}
-        \item Routes can be aggregated between \Glspl{as} by use of route-maps mechanism.
+        \item \itemhead{Route-maps mechanism}
+        \begin{itemize}
+            \item Routes can be aggregated between \Glspl{as}.
+            \item Properties can be changed on the fly by mathing
+            \begin{enumerate*}[label={\alph*)}]
+                \item \Gls{bgp} communities,
+                \item \Gls{ip} prefix,
+                \item \Gls{bgp} as-path, 
+            \end{enumerate*}
+        \end{itemize}
         \item 
     \end{itemize}
     \item \itemhead{States}
     \begin{enumerate}
         \item Idle: \Gls{bgp} while initializing refuses all incoming connections. Will initiate \Gls{tcp} connection to peer.
         \item Connect: Waits for \Gls{tcp} connection. If \Gls{tcp} is established goes to state OpenSent. If \Gls{tcp} is \textit{un}successful ConnectRetry timer is started and then goes to Active state.
-        \item Active
-        \item OpenSent
-        \item OpenConfirm
-        \item Established
+        \item Active: When ConnectRetry counter reaches 0 goes to state Connect.
+        \item OpenSent: Sends \gls{msg} to remote node. Waits for reply \gls{msg} before going to OpenConfirm.
+        \item OpenConfirm: Nodes exchange keepalive \glspl{msg} and goes to Established state if successful.
+        \item Established: Nodes can now exchange KeepAlive, Updates, and Notification \glspl{msg}.
     \end{enumerate}
 \end{itemize}
