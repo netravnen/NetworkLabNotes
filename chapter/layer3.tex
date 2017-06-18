@@ -9,3 +9,29 @@
 \section{Static}
 \section{BGP}
 
+\wikicommons{BGP_FSM}
+
+The protocol of the internet used since 1994.\cite{wiki:Border_Gateway_Protocol}
+
+\begin{itemize}
+    \item \itemhead{Properties}
+    \begin{itemize}
+        \item Uses tcp/179 as \gls{dst} port
+        \item Sends keep-alive message every 1 minute
+        \item Keep-alive message is 19 byte
+    \end{itemize}
+    \item \itemhead{Route exchange}
+    \begin{itemize}
+        \item Routes can be aggregated between \Glspl{as} by use of route-maps mechanism.
+        \item 
+    \end{itemize}
+    \item \itemhead{States}
+    \begin{enumerate}
+        \item Idle: \Gls{bgp} while initializing refuses all incoming connections. Will initiate \Gls{tcp} connection to peer.
+        \item Connect: Waits for \Gls{tcp} connection. If \Gls{tcp} is established goes to state OpenSent. If \Gls{tcp} is \textit{un}successful ConnectRetry timer is started and then goes to Active state.
+        \item Active
+        \item OpenSent
+        \item OpenConfirm
+        \item Established
+    \end{enumerate}
+\end{itemize}
