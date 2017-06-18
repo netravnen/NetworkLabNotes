@@ -19,8 +19,15 @@
 % Usage:
 \newcommand{\xkcd}[2]{\fig{xkcd/#1}{#1}{#2\\%
 {\tiny\MakeUppercase{https://imgs.xkcd.com/comics/#1.png}\hskip3mm%
-License: \texttt{\href{https://creativecommons.org/licenses/by-nc/2.5/}{CC BY-NC 2.5}}%
-}}}
+License: \texttt{\href{https://creativecommons.org/licenses/by-nc/2.5/}{CC BY-NC 2.5}}}%
+}}
+
+
+% Usage:
+\newcommand{\wikicommons}[2][]{\fig{wikimediacommons/#2}{#2}{#1\\%
+{\tiny\href{https://commons.wikimedia.org/wiki/File:#2.svg}{commons.wikimedia.org/wiki/File:#2.svg}\hskip3mm%
+License: \texttt{\href{https://creativecommons.org/licenses/by-sa/3.0/}{CC BY-SA 3.0}}}%
+}}
 
 
 % Usage:
