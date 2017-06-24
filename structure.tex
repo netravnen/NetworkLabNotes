@@ -272,3 +272,8 @@
 \renewcommand{\footnote}[1]{%
     \renewcommand\footnotesize\scriptsize % here there is scriptsize in footnotes (example)       
     \origfootnote{#1}}
+
+
+% https://tex.stackexchange.com/a/146312
+\newlist{mylist}{enumerate*}{1}
+\setlist[mylist]{label={\alph*)},font={\color{red!25!black}\bfseries}}
