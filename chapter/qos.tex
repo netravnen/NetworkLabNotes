@@ -19,11 +19,12 @@ Different mechanisms of handling access to network ressorces is used.
 
 \section{Concepts}
 
+\gls{qos}\tsq{s} goal is a differentiated prioritazion of packets parsing thorugh the network based upon the following concepts:
 \begin{enumerate}
     \item Bandwidth,
     \item latency,
-    \item jitter,
-    \item realiability.
+    \item jitter\footnote{Latency Variation}
+    \item realiability\footnote{Pct. of packets discarded by any a router}.
 \end{enumerate}
 
 \section[Congestion Mgmt]{Congestion Management}
@@ -31,16 +32,20 @@ Different mechanisms of handling access to network ressorces is used.
 There are different ways to do congestion management. Which is in it\tsq{s} essence sorting of packets when a link reaches full capacity usage in the outgoing direction.
 
 \begin{enumerate}
-    \item \gls{fifo}
-    \item \gls{pq}
-    \item \gls{cq}
-    \item \gls{wfq}
+    \item \gls{fifo}: Classic store-and-forward. Oftentimes the default algorithm.
+    \item \gls{pq}: Made to give stict priority to important traffic at each point \gls{pq} in the network where \gls{pq} is used.
+    \item \gls{cq}: 
+    \item \gls{wfq}: Traffic is diveded into flow based upon charactaristics \begin{mylist} \item \gls{dst} address, \item \gls{src} address, \item protocol, \item port number, \item socket. \end{mylist}. Flows is then allocated a part of the bandwidth relative to the number of ongoing conversations/flows.
     \begin{enumerate}
         \item Flow-based \gls{wfq},
-        \item class-based \gls{wfq},
-        \item distributed \gls{wfq}.
+        \item \gls{cbwfq},
+        \item \gls{dwfq}.
     \end{enumerate}
     \item distributed class-based \gls{wfq}
     \item \gls{ip} \gls{rtp} priority
     \item \gls{llq}
+    \begin{enumerate}
+        \item \gls{llq}
+        \item Distributed \gls{llq}: 
+    \end{enumerate}
 \end{enumerate}
