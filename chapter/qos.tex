@@ -1,0 +1,46 @@
+\chapter[QoS]{Quality-of-Service}
+
+\gls{qos} is used to guarantie a minimum of service level to select applications. Often this encompasses \gls{voip} applications and \gls{av} applications being allocated the highest priority. It\tsq{s} not uncommon to allocate \gls{nmt} to the high priority queue, too.
+
+Different mechanisms of handling access to network ressorces is used.
+\begin{itemize}
+    \item \itemhead{\gls{nac}}
+    \begin{enumerate}
+        \item Which applications has access to what level of network ressources.
+    \end{enumerate}
+    \item \itemhead{Traffic Control}
+    \begin{enumerate}
+        \item Scheduling of traffic,
+        \item classifiying traffic,
+        \item marking packets based upon priority,
+        \item marking packets based upon shaping traffic.
+    \end{enumerate}
+\end{itemize}
+
+\section{Concepts}
+
+\begin{enumerate}
+    \item Bandwidth,
+    \item latency,
+    \item jitter,
+    \item realiability.
+\end{enumerate}
+
+\section[Congestion Mgmt]{Congestion Management}
+
+There are different ways to do congestion management. Which is in it\tsq{s} essence sorting of packets when a link reaches full capacity usage in the outgoing direction.
+
+\begin{enumerate}
+    \item \gls{fifo}
+    \item \gls{pq}
+    \item \gls{cq}
+    \item \gls{wfq}
+    \begin{enumerate}
+        \item Flow-based \gls{wfq},
+        \item class-based \gls{wfq},
+        \item distributed \gls{wfq}.
+    \end{enumerate}
+    \item distributed class-based \gls{wfq}
+    \item \gls{ip} \gls{rtp} priority
+    \item \gls{llq}
+\end{enumerate}
