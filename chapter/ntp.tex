@@ -37,30 +37,30 @@ A select number of Cisco switches support synchronization with the hardware cloc
 \textbf{Team Cymru} has a nice template for how to enable \gls{ntp} \textbf{with} \textit{access control} on \gls{ios} and \gls{junos}\footnote{\url{https://www.team-cymru.org/secure-ntp-template.html}}. Shown below is a copy of the \gls{ios} example from Cymrus website.
 
 \begin{cisco}
-	! Core NTP configuration
-	ntp update-calendar             ! update hardware clock (certain hardware only, i.e. 6509s)
-	ntp server 192.0.2.1            ! a time server you sync with
-	ntp peer   192.0.2.2            ! a time server you sync with and allow to sync to you
-	ntp source Loopback0            ! we recommend using a loopback interface for sending NTP messages if possible
-	!
-	! NTP access control
-	ntp access-group query-only 1   ! deny all NTP control queries
-	ntp access-group serve 1        ! deny all NTP time and control queries by default
-	ntp access-group peer 10        ! permit time sync to configured peer(s)/server(s) only
-	ntp access-group serve-only 20  ! permit NTP time sync requests from a select set of clients
-	!
-	! access control lists (ACLs)
-	access-list 1 remark utility ACL to block everything
-	access-list 1 deny any
-	!
-	access-list 10 remark NTP peers/servers we sync to/with
-	access-list 10 permit 192.0.2.1
-	access-list 10 permit 192.0.2.2
-	access-list 10 deny any
-	!
-	access-list 20 remark Hosts/Networks we allow to get time from us
-	access-list 20 permit 192.0.2.0 0.0.0.255
-	access-list 20 deny any
+! Core NTP configuration
+ntp update-calendar             ! update hardware clock (certain hardware only, i.e. 6509s)
+ntp server 192.0.2.1            ! a time server you sync with
+ntp peer   192.0.2.2            ! a time server you sync with and allow to sync to you
+ntp source Loopback0            ! we recommend using a loopback interface for sending NTP messages if possible
+!
+! NTP access control
+ntp access-group query-only 1   ! deny all NTP control queries
+ntp access-group serve 1        ! deny all NTP time and control queries by default
+ntp access-group peer 10        ! permit time sync to configured peer(s)/server(s) only
+ntp access-group serve-only 20  ! permit NTP time sync requests from a select set of clients
+!
+! access control lists (ACLs)
+access-list 1 remark utility ACL to block everything
+access-list 1 deny any
+!
+access-list 10 remark NTP peers/servers we sync to/with
+access-list 10 permit 192.0.2.1
+access-list 10 permit 192.0.2.2
+access-list 10 deny any
+!
+access-list 20 remark Hosts/Networks we allow to get time from us
+access-list 20 permit 192.0.2.0 0.0.0.255
+access-list 20 deny any
 \end{cisco}
 
 \textbf{Beware} when running a cisco node as \gls{ntp} master and are using access-list to restrict possible clients/peers. You need to allow 127.127.[0-255].1 in the access-list\footnote{The 3rd octet will vary depending on the node.}. This because the master NTP node in the network uses this \gls{ipv4} address as internal master.
@@ -99,3 +99,7 @@ A select number of Cisco switches support synchronization with the hardware cloc
 %\end{itemize}
 %
 %\textbf{Beware} when using \gls{sntp} that \gls{ntp} cannot be used. The same \gls{udp} port is used.
+
+\section[PTP]{Precision Time Protocol}
+
+\gls{ieee} 1588v2

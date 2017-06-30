@@ -52,6 +52,7 @@
 ## NTP
 - [ ] NTP
 - [ ] Simple NTP (SNTP)
+- [ ] PTP
 
 ## FHRP
 - [ ] GLBP (cisco proprietary)
