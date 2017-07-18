@@ -22,11 +22,20 @@ Several ways to assign a client an address exists.
     \item Let the \gls{dhcp} server assign \textit{every} info to the client.
 \end{itemize}
 
-\textbf{Privacy} is a large concern regarding \gls{ipv6} because of the globally unique address the client posses. Implementation to do privacy regarding the host bits of an \gls{ip6} has been done to protect the clients (and users) from being tracked. Alas, if the \gls{isp} do static prefix assignments to end users. This privacy protection may be somewhat unusable. As the network prefix will always remain the same. Regardless of the host-bits being changed often.
+\textbf{Privacy} is a large concern regarding \gls{ipv6} because of the globally unique address the client posses.
+
+Implementation to do privacy regarding the host bits of an \gls{ip6} has been done to protect the clients (and users) from being tracked. Alas, if the \gls{isp} do static prefix assignments to end users. This privacy protection may be somewhat unusable. As the network prefix will always remain the same. Regardless of the host-bits being changed often.
+
+Have 3 different forms:
+\begin{enumerate}
+    \item 2001:0db8:0000:0000:0000:ff00:0042:8329,
+    \item 2001:db8:0:0:0:ff00:42:8329, {\footnotesize (i.e. remove leading zeroes per group delimited by colon)}
+    \item 2001:db8::ff00:42:8329. {\footnotesize (i.e. remove groups containing all zeroes in succession after each other) (only done \textit{once!}}
+\end{enumerate}
 
 \subsection{Packet Header}
 
-\wikicommons{Ipv6_header}}
+\wikicommons{Ipv6_header}
 
 \subsection{Multicast}
 
