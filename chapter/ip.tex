@@ -6,8 +6,28 @@
 
 \gls{ipv6} came about in 1998 when the original \rfc{2460} was published. It aims to provide globally route-able addresses (i.e. no need for \gls{nat}) and provides a hierarchical way to allocate address prefixes in a way which makes it simple to do route aggregation\footnote{This helps limits the size of the Internet's global routing table!}.
 
-\fig{ipv6_address_leading_zeros.svg}{ipv6zeroes}{An illustration of an example IPv6 address with leading zeros in the binary rendering}
+\wikicommons[An illustration of an example IPv6 address with leading zeros in the binary rendering]{ipv6_address_leading_zeros}
 
+\subsection{IP to client}
 
+Several ways to assign a client an address exists.
+\begin{itemize}
+    \item Let the client handle it itself (i.e. \gls{dhcp} server present): \gls{slaac}.
+    \begin{itemize}
+        \item \gls{icmp6} router discovery messages is used to detect info 'bout the connected network segment.
+        \item Upon \textit{link up} client sends link-local solicitation multicast req. for network parameters,
+        \item router \textit{responds with}  router adv. packet cont. \gls{ip} cfg parameters.
+    \end{itemize}
+    \item Let the \gls{dhcp} server assign \textit{partial} info to the client.
+    \item Let the \gls{dhcp} server assign \textit{every} info to the client.
+\end{itemize}
+
+\textbf{Privacy} is a large concern regarding \gls{ipv6} because of the globally unique address the client posses. Implementation to do privacy regarding the host bits of an \gls{ip6} has been done to protect the clients (and users) from being tracked. Alas, if the \gls{isp} do static prefix assignments to end users. This privacy protection may be somewhat unusable. As the network prefix will always remain the same. Regardless of the host-bits being changed often.
+
+\subsection{Packet Header}
+
+\wikicommons{Ipv6_header}}
+
+\subsection{Multicast}
 
 \section[IPv4]{Internet Protocol v4}
