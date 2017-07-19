@@ -46,8 +46,22 @@ Have 3 different forms:
         \item Either derived with the EUI-64\footnote{The EUI-64 involves the MAC address and injecting fffe into the middle making it 64 bits and using this as host bits} method or randomly selected. Then assigned after \gls{dad} has been run on the network segment.
     \end{itemize}
     \item \itemhead[]{Global Addressing}
+    \begin{itemize}
+        \item Address types
+        \begin{itemize}
+            \item Unicast: Identifies each \gls{nic}.
+            \item Anycast: Identifies a group of \glspl{nic} belonging to the same group and providing the same services/content/applications. Nearest one to source is used.
+            \item Multicast: Used to deliver content to multiple \glspl{nic} at once. Traffic is a single flow from the source (i.e. not multiple unicast streams).
+            \item Broadcast: \textit{Not} implemented. Replaced by use of multicast groups.
+        \end{itemize}
+    \end{itemize}
+    \begin{itemize}
+        \item W
+    \end{itemize}
 \end{itemize}
 
 \subsection{Multicast}
+
+\subsection{AAAA}
 
 \section[IPv4]{Internet Protocol v4}
