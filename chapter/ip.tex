@@ -28,9 +28,9 @@ Implementation to do privacy regarding the host bits of an \gls{ip6} has been do
 
 Have 3 different forms:
 \begin{enumerate}
-    \item 2001:0db8:0000:0000:0000:ff00:0042:8329,
-    \item 2001:db8:0:0:0:ff00:42:8329, {\footnotesize (i.e. remove leading zeroes per group delimited by colon)}
-    \item 2001:db8::ff00:42:8329. {\footnotesize (i.e. remove groups containing all zeroes in succession after each other) (only done \textit{once!}}
+    \item \texttt{2001:0db8:0000:0000:0000:ff00:0042:8329},
+    \item \texttt{2001:db8:0:0:0:ff00:42:8329}, {\footnotesize (i.e. remove leading zeroes per group delimited by colon)}
+    \item \texttt{2001:db8::ff00:42:8329}. {\footnotesize (i.e. remove groups containing all zeroes in succession after each other) (only done \textit{once!}}
 \end{enumerate}
 
 \subsection{Packet Header}
@@ -42,8 +42,20 @@ Have 3 different forms:
 \begin{itemize}
     \item \itemhead[]{Link-Local}
     \begin{itemize}
-        \item Address assigned from the fe80::/10 prefix.
+        \item Address assigned from the \texttt{fe80::/10} prefix.
         \item Either derived with the EUI-64\footnote{The EUI-64 involves the MAC address and injecting fffe into the middle making it 64 bits and using this as host bits} method or randomly selected. Then assigned after \gls{dad} has been run on the network segment.
+        \item \itemhead[]{Unique Link Local}\cite{wiki:Unique_local_address}
+        \begin{itemize}
+            \item Defined as block \texttt{fc00::/7}. See \rfc{4193}.
+            \item \gls{ula} is \glspl{ip6} counter-part to \glspl{ip4} \rfc{1918} address space.
+            \item Only usable within a private network.
+            \item Divided into 2 /8 \gls{ip6} blocks.
+            \begin{enumerate}
+                \item \texttt{fc00::/8} -- Not \textit{yet} officially allocated/defined by the \gls{ietf}.
+                \item \texttt{fd..::/8} --  
+            \end{enumerate}
+        \end{itemize}
+        \item \itemhead[]{Solicited-node multicast address}
     \end{itemize}
     \item \itemhead[]{Global Addressing}
     \begin{itemize}
