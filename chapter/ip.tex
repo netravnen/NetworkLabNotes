@@ -55,7 +55,13 @@ Have 3 different forms:
                 \item \texttt{fd00::/8} -- Defined as /48 prefixes. The last 40 bits is randomly generated and appended to the first 8 significant bits {\small (i.e. \texttt{0xFD} aka. \texttt{11111101})}.
             \end{enumerate}
         \end{itemize}
-        \item \itemhead[]{Solicited-node multicast address}
+        \item \itemhead[]{Solicited-node multicast address}\cite{wiki:Solicited-node_multicast_address}
+        \begin{itemize}
+            \item Consist of the prefix \texttt{ff02::1:ff00:0/104} for the first 104 bits.
+            \item The last 24 bits represents the target address within the prefix.
+            \item Solicited-node multicast address is segment only traffic. I.e. the traffic does not flow \textit{between \gls{l3} \gls{ip} segments.
+            \item Used in combination with \gls{nd} to replace \glspl{ip4} \gls{arp} functionality.
+        \end{itemize}
     \end{itemize}
     \item \itemhead[]{Global Addressing}
     \begin{itemize}
