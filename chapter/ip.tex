@@ -64,4 +64,10 @@ Have 3 different forms:
 
 \subsection{AAAA}
 
+\gls{dns6} had 2 running proposals when first proposed, \rfc{2874} (1st), \rfc{3364} (later discussion), and \rfc{3363} thou deprecated this proposal to experimental status.
+
+The winning one was \rfc{3596} with the idea of doing \textit{quad}-A records and hierarchically divided by \textit{nibble} {\small (i.e. 4 bits)}.
+
+The idea is fx. \texttt{2001:db8:ef::2} is noted in ip6.arpa as \texttt{2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.f.e.0.0.8.b.d.0.1.0.0.2.ip6.arpa}. {\small Note the used of '.' between \textit{each} \textit{hexadecimal} character used, and that \textit{all zeroes} has been included. ip6.arpa does not allow any characters to be omitted from the original full-length \gls{ip6} address.}\footnote{Found description \href{https://stackoverflow.com/q/6619682}{here} on stackoverflow.com/q/6619682.}
+
 \section[IPv4]{Internet Protocol v4}
