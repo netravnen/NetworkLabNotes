@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - GLBP
 - VRRP
 
+## [0.3.1] - 2017-07-19
+## Removed
+- Removed suporvisor from frontpage
+
 ## [0.3.0] - 2017-06-06
 ### Added
 - DORA sentence to DCHP section
@@ -26,12 +30,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Removed -lw from all tags after git history rewrite was done to remove a pdf file
 - Updated changelog with new tagnames
-
-## [0.3.1]
-## Removed
-- Removed suporvisor from frontpage
-
-## [0.3.0]
 
 ## [0.2.2] - 2017-06-05
 ### Added
