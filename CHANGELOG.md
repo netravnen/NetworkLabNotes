@@ -27,6 +27,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Removed -lw from all tags after git history rewrite was done to remove a pdf file
 - Updated changelog with new tagnames
 
+## [0.3.1]
+## Removed
+- Removed suporvisor from frontpage
+
+## [0.3.0]
+
 ## [0.2.2] - 2017-06-05
 ### Added
 - Section: NTP, SNTP
