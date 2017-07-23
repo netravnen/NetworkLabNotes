@@ -33,19 +33,30 @@ Have 3 different forms:
     \item \texttt{2001:db8::ff00:42:8329}. {\footnotesize (i.e. remove groups containing all zeroes in succession after each other) (only done \textit{once!}}
 \end{enumerate}
 
-\subsection{Packet Header}
+\subsection{Packet Headers}\cite{IPv6Pack77:online}
 
 \wikicommons{Ipv6_header}
 
 \begin{enumerate}
-    \item Version -- 1-byte field containing '6'.
-    \item Traffic Class -- 2-bytes hex notation for traffic class.
-    \item Flow label -- 5-bytes.
-    \item Payload length -- 4-bytes unsigned integer, which is the rest of the packet that follows the IPv6 header, in octets.
-    \item Next header -- 4-bytes selector. Identifies the type of header that immediately follows the IPv6 header. Uses the same values as the IPv4 protocol field.
-    \item Hop limit -- 32-bytes unsigned integer. Decremented by one by each node that forwards the packet. The packet is discarded if the hop limit is decremented to zero.
-    \item Source address -- 32-bytes.
-    \item Destination address -- 32-bytes. The intended recipient is not necessarily the recipient if an optional routing header is present.
+    \item \textbf{Version} -- 1-byte field containing '6'.
+    \item \textbf{Traffic Class} -- 2-bytes hex notation for traffic class.
+    \item \textbf{Flow label} -- 5-bytes.
+    \item \textbf{Payload length} -- 4-bytes unsigned integer, which is the rest of the packet that follows the IPv6 header, in octets.
+    \item \textbf{Next header} -- 4-bytes selector. Identifies the type of header that immediately follows the IPv6 header. Uses the same values as the IPv4 protocol field.
+    \item \textbf{Hop limit} -- 32-bytes unsigned integer. Decremented by one by each node that forwards the packet. The packet is discarded if the hop limit is decremented to zero.
+    \item \textbf{Source address} -- 32-bytes.
+    \item \textbf{Destination address} -- 32-bytes. The intended recipient is not necessarily the recipient if an optional routing header is present.
+\end{enumerate}
+
+\subsection[EH]{Extension Headers}\cite{IPv6Pack77:online}
+
+\begin{enumerate}
+    \item \textbf{Routing} -- Extended routing, such as IPv4 loose source route
+    \item \textbf{Fragmentation} -- Fragmentation and reassembly
+    \item \textbf{Authentication} -- Integrity and authentication, and security
+    \item \textbf{Encapsulating Security Payload} -- Confidentiality
+    \item \textbf{Hop-by-Hop options} -- Special options that require hop-by-hop processing
+    \item \textbf{Destination options} -- Optional information to be examined by the destination node
 \end{enumerate}
 
 \subsection{Address Types}
