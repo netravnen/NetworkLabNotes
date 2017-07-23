@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - GLBP
 - VRRP
 
+## [0.4.0] - 2017-xx-xx
+### Added
+- Section bout IPv6
+
 ## [0.3.1] - 2017-07-19
 ## Removed
 - Removed suporvisor from frontpage
@@ -53,7 +57,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Initial version
 - Section: Spanning Tree
 
-[Unreleased]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.3.1...HEAD
+[Unreleased]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.4.0...HEAD
+[0.4.0]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.3.1...v0.4.0
 [0.3.1]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.3.0...v0.3.1
 [0.3.0]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.2.2...v0.3.0
 [0.2.2]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.2.1...v0.2.2
