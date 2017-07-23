@@ -97,6 +97,31 @@ Have 3 different forms:
     \end{itemize}
 \end{itemize}
 
+\subsubsection{Multicast}
+
+\begin{itemize}
+    \item Address format:\cite{IPv6Addr96:online}
+    \begin{enumerate}
+        \item \texttt{8-bits: 1111 1111} -- Identifies the address as multicast.
+        \item \texttt{4-bits: FLGS} -- Set of 4 flags.
+        \begin{enumerate}
+            \item \texttt{0}: Must be zero.
+            \item \texttt{0}: Must be zero.
+            \item \texttt{P}: Can be either '1' or '0'.
+            \begin{itemize}
+                \item \texttt{0} -- Multicast address that is \textit{not} assigned based on the network prefix.
+                \item \texttt{1} -- Multicast address that is assigned based on the network prefix.
+            \end{itemize}
+            \item \texttt{T}: If the P-flag is '1'. T-flag must be '1', too.
+        \end{enumerate}
+        \item \texttt{4-bits: SCOP}
+        \item \texttt{8-bits: Reserved} -- Reserved value of zero.\footnote{Yet to make sense for me...}
+        \item \texttt{8-bits: Plen} -- Number of bits in the site prefix that identify the subnet, for a multicast address that is assigned based on a site prefix.
+        \item \texttt{64-bits: Network prefix}
+        \item \texttt{32-bits: Group ID} -- Identifier for the multicast group, either permanent or dynamic
+    \end{enumerate}
+\end{itemize}
+
 \subsection{AAAA}
 
 \gls{dns6} had 2 running proposals when first proposed, \rfc{2874} (1st), \rfc{3364} (later discussion), and \rfc{3363} thou deprecated this proposal to experimental status.
