@@ -4,7 +4,7 @@
 
 \gls{ipv6} has recently been defined in an updated \rfc{8200} which obsoletes several of the older \gls{rfc} documents regarding \gls{ipv6}.
 
-\gls{ipv6} came about in 1998 when the original \rfc{2460} was published. It aims to provide globally route-able addresses (i.e. no need for \gls{nat}) and provides a hierarchical way to allocate address prefixes in a way which makes it simple to do route aggregation\footnote{This helps limits the size of the Internet's global routing table!}.\cite{wiki:IPv6}
+\gls{ipv6} came about in 1998 when the original \rfc{2460} was published. It aims to provide globally route-able addresses (i.e. no need for \gls{nat}) and provides a hierarchical way to allocate address prefixes in a way which makes it simple to do route aggregation.\footnote{This helps limits the size of the Internet's global routing table!}\cite{wiki:IPv6}
 
 \wikicommons[An illustration of an example IPv6 address with leading zeros in the binary rendering]{ipv6_address_leading_zeros}
 
@@ -35,7 +35,7 @@ Have 3 different forms:
 
 \subsection{Packet Headers}\cite{IPv6Pack77:online}
 
-\wikicommons{Ipv6_header}
+\wikicommons{ipv6_header}
 
 \begin{enumerate}
     \item \textbf{Version} -- 1-byte field containing '6'.
@@ -81,7 +81,7 @@ Have 3 different forms:
         \begin{itemize}
             \item Consist of the prefix \texttt{ff02::1:ff00:0/104} for the first 104 bits.
             \item The last 24 bits represents the target address within the prefix.
-            \item Solicited-node multicast address is segment only traffic. I.e. the traffic does not flow \textit{between \gls{l3} \gls{ip} segments.
+            \item Solicited-node multicast address is segment only traffic. I.e. the traffic does not flow \textit{between} \gls{l3} \gls{ip} segments.
             \item Used in combination with \gls{nd} to replace \glspl{ip4} \gls{arp} functionality.
         \end{itemize}
     \end{itemize}
