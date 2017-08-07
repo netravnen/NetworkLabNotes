@@ -95,6 +95,7 @@ License: \texttt{\href{https://creativecommons.org/licenses/by-sa/3.0/}{CC BY-SA
 \lstnewenvironment{txt}{\lstset{style=plaintxt}}{}
 
 
+
 % Usage:
 % Enviroment @var cisco
 \lstnewenvironment{cisco}{\lstset{language=cisco}}{}
@@ -129,3 +130,8 @@ License: \texttt{\href{https://creativecommons.org/licenses/by-sa/3.0/}{CC BY-SA
 
 % Usage:
 \newcommand{\rfc}[1]{RFC #1\footnote{\href{https://tools.ietf.org/html/rfc#1}{tools.ietf.org/html/rfc#1}}}
+
+
+% Usage:
+% https://tex.stackexchange.com/a/75349
+\newcommand{\plaintextinput}[1]{\lstinputlisting[language={},style=plaintxt]{code/#1.txt}}
