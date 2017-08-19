@@ -17,36 +17,77 @@
 The protocol of the internet used since 1994.\cite{wiki:Border_Gateway_Protocol}
 Currently based upon \rfc{4271} with updates following in \rfc{6286} \rfc{6608}, \rfc{6793}, \rfc{7606}, \rfc{7607}, \rfc{7705}.
 
+\subsection{Properties}
+
 \begin{itemize}
-    \item \itemhead{Properties}
-    \begin{itemize}
-        \item Uses tcp/179 as \gls{dst} port
-        \item Sends keep-alive message every 1 minute
-        \item Keep-alive message is 19 byte
-    \end{itemize}
-    \item \itemhead{Route exchange}
-    \begin{itemize}
-        \item \itemhead{Route-maps mechanism}
-        \begin{itemize}
-            \item Routes can be aggregated between \glspl{as}.
-            \item Properties can be changed on the fly by mathing
-            \begin{enumerate}[label={\alph*)}]
-                \item \Gls{bgp} communities,
-                \item \Gls{ip} prefix,
-                \item \Gls{bgp} as-path, 
-            \end{enumerate}
-        \end{itemize}
-    \end{itemize}
-    \item \itemhead{States}
-    \begin{enumerate}
-        \item Idle: \gls{bgp} while initializing refuses all incoming connections. Will initiate \gls{tcp} connection to peer.
-        \item Connect: Waits for \gls{tcp} connection. If \gls{tcp} is established goes to state OpenSent. If \gls{tcp} is \textit{un}successful ConnectRetry timer is started and then goes to Active state.
-        \item Active: When ConnectRetry counter reaches 0 goes to state Connect.
-        \item OpenSent: Sends \gls{msg} to remote node. Waits for reply \gls{msg} before going to OpenConfirm.
-        \item OpenConfirm: Nodes exchange keepalive \glspl{msg} and goes to Established state if successful.
-        \item Established: Nodes can now exchange KeepAlive, Updates, and Notification \glspl{msg}.
+    \item Uses tcp/179 as \gls{dst} port
+    \item Sends keep-alive message every 1 minute
+    \item Keep-alive message is 19 byte long
+\end{itemize}
+
+Be ware if sessions are terminated immediately upon trying to establish connection. Try debugging following points.
+
+\begin{itemize}
+    \item tcp/179 is not open,
+    \item random port 1023> is not open,
+    \item incorrect peer-ip,
+    \item incorrect peer-as.
+\end{itemize}
+
+\subsection{Route exchange}
+
+Exchanging routes between routers is a reliant and tolerant manner is \glspl{bgp} 1-advantage over \gls{ospf}/\gls{isis}/\gls{rip}/\gls{eigrp}.
+
+The sheer tuning and control mechanisms \gls{bgp} can offer is simply astounding. Route-maps is the key and access-lists just one option.
+
+\subsubsection[Route-maps]{Route-maps mechanism}
+
+Route-maps is used to target a select set of routes and either modify/add/remove attributes attached to the select route-set.
+
+\begin{itemize}
+    \item Routes can be aggregated between \glspl{as}.
+    \item Properties can be changed on the fly by matching
+    \begin{enumerate}[label={\alph*)}]
+        \item \Gls{bgp} communities,
+        \item \Gls{ip} prefix,
+        \item \Gls{bgp} as-path, 
     \end{enumerate}
 \end{itemize}
+
+An simple example of using route-maps is
+
+\begin{cisco}
+ip prefix-list 1 permit 172.16.0.0/16 
+ip prefix-list 2 permit 192.168.1.0/24 
+!
+route-map RED permit 10 
+ match ip address prefix-list 1 
+ set ip next hop 10.1.1.1
+ continue 20              ! Continues to apply rules normally only
+                          ! applied to prefix-list 2. To apply to
+                          ! prefix-list 1, too.
+                          ! Any attributes set in '20' will
+                          ! override any set during '10'.
+route-map RED permit 20 
+ match ip address prefix-list 2 
+ set ip next hop 10.2.2.2 ! Last rule overrides previous rules from
+                          ! previous '10' rule-set.
+\end{cisco}
+
+When rules from a rule-set is chained together as shown above. The last rule will override all previous set values regarding the attribute being applied. In this case \texttt{next-hop} from 'permit 10' is overridden in 'permit 20'.
+
+\subsection[States]{BGP States}
+
+The states is the way \gls{bgp} handles peer/neighbor connection establishing. The \underline{playbook} so to speak.
+
+\begin{enumerate}
+    \item Idle: \gls{bgp} while initializing refuses all incoming connections. Will initiate \gls{tcp} connection to peer.
+    \item Connect: Waits for \gls{tcp} connection. If \gls{tcp} is established goes to state OpenSent. If \gls{tcp} is \textit{un}successful ConnectRetry timer is started and then goes to Active state.
+    \item Active: When ConnectRetry counter reaches 0 goes to state Connect.
+    \item OpenSent: Sends \gls{msg} to remote node. Waits for reply \gls{msg} before going to OpenConfirm.
+    \item OpenConfirm: Nodes exchange keepalive \glspl{msg} and goes to Established state if successful.
+    \item Established: Nodes can now exchange KeepAlive, Updates, and Notification \glspl{msg}.
+\end{enumerate}
 
 \subsection[iBGP]{Internal Border Gateway Protocol}
 
