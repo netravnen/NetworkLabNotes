@@ -1,0 +1,146 @@
+\chapter[IP]{Internet Protocol}
+
+\section[IPv6]{Internet Protocol v6}
+
+\gls{ipv6} has recently been defined in an updated \rfc{8200} which obsoletes several of the older \gls{rfc} documents regarding \gls{ipv6}.
+
+\gls{ipv6} came about in 1998 when the original \rfc{2460} was published. It aims to provide globally route-able addresses (i.e. no need for \gls{nat}) and provides a hierarchical way to allocate address prefixes in a way which makes it simple to do route aggregation.\footnote{This helps limits the size of the Internet's global routing table!}\cite{wiki:IPv6}
+
+\wikicommons[An illustration of an example IPv6 address with leading zeros in the binary rendering]{ipv6_address_leading_zeros}
+
+\subsection{IP to client}
+
+Several ways to assign a client an address exists.
+\begin{itemize}
+    \item Let the client handle it itself (i.e. \gls{dhcp} server present): \gls{slaac}.
+    \begin{itemize}
+        \item \gls{icmp6} router discovery messages is used to detect info 'bout the connected network segment.
+        \item Upon \textit{link up} client sends link-local solicitation multicast req. for network parameters,
+        \item router \textit{responds with}  router adv. packet cont. \gls{ip} cfg parameters.
+    \end{itemize}
+    \item Let the \gls{dhcp} server assign \textit{partial} info to the client.
+    \item Let the \gls{dhcp} server assign \textit{every} info to the client.
+\end{itemize}
+
+\textbf{Privacy} is a large concern regarding \gls{ipv6} because of the globally unique address the client posses.
+
+Implementation to do privacy regarding the host bits of an \gls{ip6} has been done to protect the clients (and users) from being tracked. Alas, if the \gls{isp} do static prefix assignments to end users. This privacy protection may be somewhat unusable. As the network prefix will always remain the same. Regardless of the host-bits being changed often.
+
+Have 3 different forms:
+\begin{enumerate}
+    \item \texttt{2001:0db8:0000:0000:0000:ff00:0042:8329},
+    \item \texttt{2001:db8:0:0:0:ff00:42:8329}, {\footnotesize (i.e. remove leading zeroes per group delimited by colon)}
+    \item \texttt{2001:db8::ff00:42:8329}. {\footnotesize (i.e. remove groups containing all zeroes in succession after each other) (only done \textit{once!}}
+\end{enumerate}
+
+\subsection{Packet Headers}\cite{IPv6Pack77:online}
+
+\wikicommons{ipv6_header}
+
+\begin{enumerate}
+    \item \textbf{Version} -- 1-byte field containing '6'.
+    \item \textbf{Traffic Class} -- 2-bytes hex notation for traffic class.
+    \item \textbf{Flow label} -- 5-bytes.
+    \item \textbf{Payload length} -- 4-bytes unsigned integer, which is the rest of the packet that follows the IPv6 header, in octets.
+    \item \textbf{Next header} -- 4-bytes selector. Identifies the type of header that immediately follows the IPv6 header. Uses the same values as the IPv4 protocol field.
+    \item \textbf{Hop limit} -- 32-bytes unsigned integer. Decremented by one by each node that forwards the packet. The packet is discarded if the hop limit is decremented to zero.
+    \item \textbf{Source address} -- 32-bytes.
+    \item \textbf{Destination address} -- 32-bytes. The intended recipient is not necessarily the recipient if an optional routing header is present.
+\end{enumerate}
+
+\subsection[EH]{Extension Headers}\cite{IPv6Pack77:online}
+
+\begin{enumerate}
+    \item \textbf{Routing} -- Extended routing, such as IPv4 loose source route
+    \item \textbf{Fragmentation} -- Fragmentation and reassembly
+    \item \textbf{Authentication} -- Integrity and authentication, and security
+    \item \textbf{Encapsulating Security Payload} -- Confidentiality
+    \item \textbf{Hop-by-Hop options} -- Special options that require hop-by-hop processing
+    \item \textbf{Destination options} -- Optional information to be examined by the destination node
+\end{enumerate}
+
+\subsection{Address Types}
+
+\subsubsection{Link-Local}
+
+\begin{itemize}
+    \item Address assigned from the \texttt{fe80::/10} prefix.
+    \item Either derived with the EUI-64\footnote{The EUI-64 involves the MAC address and injecting fffe into the middle making it 64 bits and using this as host bits} method or randomly selected. Then assigned after \gls{dad} has been run on the network segment.
+    \item \itemhead[]{Unique Link Local}\cite{wiki:Unique_local_address}
+    \begin{itemize}
+        \item Defined as block \texttt{fc00::/7}. See \rfc{4193}.
+        \item \gls{ula} is \glspl{ip6} counter-part to \glspl{ip4} \rfc{1918} address space.
+        \item Only usable within a private network.
+        \item Divided into 2 /8 \gls{ip6} blocks.
+        \begin{enumerate}
+            \item \texttt{fc00::/8} -- Not \textit{yet} officially allocated/defined by the \gls{ietf}.
+            \item \texttt{fd00::/8} -- Defined as /48 prefixes. The last 40 bits is randomly generated and appended to the first 8 significant bits {\small (i.e. \texttt{0xFD} aka. \texttt{11111101})}.
+        \end{enumerate}
+    \end{itemize}
+    \item \itemhead[]{Solicited-node multicast address}\cite{wiki:Solicited-node_multicast_address}
+    \begin{itemize}
+        \item Consist of the prefix \texttt{ff02::1:ff00:0/104} for the first 104 bits.
+        \item The last 24 bits represents the target address within the prefix.
+        \item Solicited-node multicast address is segment only traffic. I.e. the traffic does not flow \textit{between} \gls{l3} \gls{ip} segments.
+        \item Used in combination with \gls{nd} to replace \glspl{ip4} \gls{arp} functionality.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Global Addressing}
+
+\begin{itemize}
+    \item Address types
+    \begin{itemize}
+        \item Unicast: Identifies each \gls{nic}.
+        \item Anycast: Identifies a group of \glspl{nic} belonging to the same group and providing the same services/content/applications. Nearest one to source is used.
+        \item Multicast: Used to deliver content to multiple \glspl{nic} at once. Traffic is a single flow from the source (i.e. not multiple unicast streams).
+        \item Broadcast: \textit{Not} implemented. Replaced by use of multicast groups.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Multicast}
+
+\begin{itemize}
+    \item Address format:\cite{IPv6Addr96:online}
+    \begin{enumerate}
+        \item \texttt{8-bits: 1111 1111} -- Identifies the address as multicast.
+        \item \texttt{4-bits: FLGS} -- Set of 4 flags.
+        \begin{enumerate}
+            \item \texttt{0}: Must be zero.
+            \item \texttt{0}: Must be zero.
+            \item \texttt{P}: Can be either '1' or '0'.
+            \begin{itemize}
+                \item \texttt{0} -- Multicast address that is \textit{not} assigned based on the network prefix.
+                \item \texttt{1} -- Multicast address that \textit{is} assigned based on the network prefix.
+            \end{itemize}
+            \item \texttt{T}: If the P-flag is '1'. T-flag must be '1', too.
+        \end{enumerate}
+        \item \texttt{4-bits: SCOP}
+        \item \texttt{8-bits: Reserved} -- Reserved value of zero.\footnote{Yet to make sense for me...}
+        \item \texttt{8-bits: Plen} -- Number of bits in the site prefix that identify the subnet, for a multicast address that is assigned based on a site prefix.
+        \item \texttt{64-bits: Network prefix}
+        \item \texttt{32-bits: Group ID} -- Identifier for the multicast group, either permanent or dynamic
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection[Teredo]{Teredo addressing \& tunneling}
+
+ip6 has a feature of being able to route by use of teredo tunnels over ip4 addresses. So that clients supporting ip6 on either end, but not the fabric in the middle. Can append the ip4 ip to a special ip6 prefix also called teredo tunneling run ip traffic across ip4.
+
+\subsection{AAAA}
+
+\gls{dns6} had 2 running proposals when first proposed, \rfc{2874} (1st), \rfc{3364} (later discussion), and \rfc{3363} thou deprecated this proposal to experimental status.
+
+The winning one was \rfc{3596} with the idea of doing \textit{quad}-A records and hierarchically divided by \textit{nibble} {\small (i.e. 4 bits)}.
+
+The idea is fx. \texttt{2001:db8:ef::2} is noted in ip6.arpa as \texttt{2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.f.e.0.0.8.b.d.0.1.0.0.2.ip6.arpa}. {\small Note the used of '.' between \textit{each} \textit{hexadecimal} character used, and that \textit{all zeroes} has been included. ip6.arpa does not allow any characters to be omitted from the original full-length \gls{ip6} address.}\footnote{Found description \href{https://stackoverflow.com/q/6619682}{here} on stackoverflow.com/q/6619682.}
+
+\subsection{Addresses}
+
+\plaintextinput{ipaddressblocks6}
+
+\section[IPv4]{Internet Protocol v4}
+
+\subsection{Addresses}
+
+\plaintextinput{ipaddressblocks}

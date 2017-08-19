@@ -1,0 +1,15 @@
+Address Block       Present Use                  Reference
+--------------------------------------------------------------------
+::1/128             Loopback Address             RFC 4291
+::/128              Unspecified Address          RFC 4291
+64:ff9b::/96        IPv4-IPv6 Translat.          RFC 6052
+::ffff:0:0/96       IPv4-mapped Address          RFC 4291
+100::/64            Discard-Only Address Block   RFC 6666
+2001::/23           IETF Protocol Assignments    RFC 2928
+2001::/32           TEREDO                       RFC 4380
+2001:2::/48         Benchmarking                 RFC 5180
+2001:db8::/32       Documentation                RFC 3849
+2001:10::/28        ORCHID                       RFC 4843
+2002::/16 [2]       6to4                         RFC 3056
+fc00::/7            Unique-Local                 RFC 4193
+fe80::/10           Linked-Scoped Unicast        RFC 4291
