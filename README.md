@@ -1,10 +1,10 @@
 [![GitHub tag](https://img.shields.io/github/tag/netravnen/CiscoLabNotes.svg)](https://gitlab.com/netravnen/CiscoLabNotes)
 [![license](https://img.shields.io/github/license/netravnen/CiscoLabNotes.svg)](https://gitlab.com/netravnen/CiscoLabNotes/blob/master/LICENSE.md)
-[![GitHub commits](https://img.shields.io/github/commits-since/netravnen/CiscoLabNotes/v0.4.0.svg)](https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.4.0...HEAD)
+[![GitHub commits](https://img.shields.io/github/commits-since/netravnen/CiscoLabNotes/v0.3.1.svg)](https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.3.1...HEAD)
 
 # URLs
-- [Gitlab][repo-origin]
-- [Github mirror][repo-mirror]
+- [Gitlab][repo-origin] **working** dir
+- [Github][repo-mirror] _mirror_ dir
 
 # Subjects tryied covered
 
