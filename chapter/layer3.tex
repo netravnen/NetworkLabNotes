@@ -103,7 +103,7 @@ Problems by running \textit{Full Mesh} is the formula of \[ iBGPsessions = n*(n-
 
 \gls{ebgp} connections is inherently different from \gls{ibgp} connections. Some assumptions are made such as
 \begin{enumerate}
-    \item a \gls{ttl} of 1 is the default\footnote{Multi-hop \gls{ebgp} can thou be configured},
+    \item a \gls{ttl} of 1 is the default\footnote{Multi-hop \gls{ebgp} can thou be configured and therefore increase the max-\gls{ttl} value},
     \item distance is set to 20 compared to 200 for \gls{ibgp} routes,
-    \item Next hop does \textit{not} change for \gls{ebgp} routes advertised to \gls{ibgp} neighbours.
+    \item Next hop does \textit{not} change for \gls{ebgp} routes advertised to \gls{ibgp} neighbours \textit{by-default}\footnote{Often times it is necessary to tell a router to set itself as the next-hop before advertising to \gls{ibgp} neighbours}.
 \end{enumerate}
