@@ -132,6 +132,11 @@ License: \texttt{\href{https://creativecommons.org/licenses/by-sa/3.0/}{CC BY-SA
 \newcommand{\rfc}[1]{RFC #1\footnote{\href{https://tools.ietf.org/html/rfc#1}{tools.ietf.org/html/rfc#1}}}
 
 
+% Usage: \note{<text>} or \nb{<text>}
+\newcommand{\note}[1]{{\color{Mahogany!20!black}{\small(#1)}}}
+\newcommand{\nb}[1]{\note{#1}}
+
+
 % Usage:
 % https://tex.stackexchange.com/a/75349
 \newcommand{\plaintextinput}[1]{\lstinputlisting[language={},style=plaintxt]{code/#1.txt}}
