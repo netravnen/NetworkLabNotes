@@ -6,4 +6,11 @@
 
 \section[KSK]{Key Signing Key}
 
+The \gls{ksk} is a used to sign other keys. Thus creating a chain-of-trust.
+
+A prime example of this the current \gns{dnssec} infrastructure on the internet. Where \gls{icann} is controlling and managing the Root zone \gls{ksk} used today. And for the first time in history will do a \gls{ksk} rollover in the fall of 2017.\footnote{The 1st key was issued in 2010.}
+
+The \gls{ksk} is used to sign the DNS root-zone. All the TLD zones then have their own key called a \gls{zsk} used to sign all the domains requesting a key to sign their domain. The \gls{zsk} is signed by the root-zone \gls{ksk}.
+
 \subsection[Rollover]{Key Signing Key Rollover}
+
