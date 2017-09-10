@@ -5,21 +5,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-### Added
-- 802.1x
-- StackWise
-- VSS
-- HSRP
-- GLBP
-- VRRP
+- See commit changelog
 
-## [0.4.0] - 2017-xx-xx
-### Added
-- Section bout IPv6
+## [0.3.2] - 2017-09-10
+## Added
+- Initial BGP content considered done.
 
 ## [0.3.1] - 2017-07-19
 ## Removed
-- Removed suporvisor from frontpage
+- Removed supervisor from front-page
 
 ## [0.3.0] - 2017-06-06
 ### Added
@@ -57,8 +51,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Initial version
 - Section: Spanning Tree
 
-[Unreleased]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.4.0...HEAD
-[0.4.0]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.3.1...v0.4.0
+[Unreleased]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.3.2...HEAD
+[0.4.0]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.3.1...v0.3.2
 [0.3.1]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.3.0...v0.3.1
 [0.3.0]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.2.2...v0.3.0
 [0.2.2]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.2.1...v0.2.2
