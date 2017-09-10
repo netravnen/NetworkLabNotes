@@ -29,18 +29,25 @@ Is hierarchical by design going from:
 \section{Record Types}
 
 \begin{itemize}
-    \item \itemhead{A} Stores info on \gls{ip4} address.
-    \item \itemhead{AAAA} Store info on \gls{ip6} address.
-    \item \itemhead{CNAME} Store URL pointing to another URL (a.k.a. \gls{a}/\gls{aaaa} records).
-    \item \itemhead{HINFO}
-    \item \itemhead{ISDN}
-    \item \itemhead{MX}
-    \item \itemhead{NS}
-    \item \itemhead{PTR}
-    \item \itemhead{SOA}
-    \item \itemhead{TXT}
-    \item \itemhead{DNSKEY}   
+    \item \itemhead{\gls{a}}     Stores info on \gls{ip4} address.
+    \item \itemhead{\gls{aaaa}}  Store info on \gls{ip6} address.
+    \item \itemhead{\gls{cname}} Store URL pointing to another URL (a.k.a. \gls{a}/\gls{aaaa} records).
+    \item \itemhead{\gls{hinfo}} Used to acquire general information about a host. For security reasons the HINFO records are not typically used on public servers.\cite{DNSRecor50:online}
+    \item \itemhead{\gls{isdn}}  The ISDN resource record specifies ISDN address for a host. An ISDN address is a telephone number that consists of a country code, a national destination code, a ISDN Subscriber number and, optionally, a ISDN subaddress. The function of the record is only variation of the A resource record function.\cite{DNSRecor50:online}
+    \item \itemhead{\gls{mx}}    Store info pointing to responsible e-mail server for the domain.
+    \item \itemhead{\gls{ns}}    Info on Authoritative Name Server for domain.
+    \item \itemhead{\gls{ptr}}   Reverse-lookup pointers. Returning a domain name when asked about an \gls{ip} address.
+    \item \itemhead{\gls{soa}}   Contains core info on on \gls{dns} zone. Primary \gls{ns} server, e-mail of domain administrator, domain serial number, and several timers related to refreshing of the zone.
+    \item \itemhead{\gls{txt}}   Can hold arbitrary non-formatted text string(s). Often used for \gls{spf} records, and domain owner verification. Note the following examples:
+    \begin{itemize}
+        \item \texttt{\gls{spf}} records,
+        \item \texttt{keybase-site-verification} for site owner verification,
+        \item \texttt{dnslink} for site owner verification,
+        \item \texttt{google-site-verification=} for site owner verification.
+    \end{itemize}
 \end{itemize}
+
+\pagebreak
 
 \section{DNSSEC}
 
