@@ -1,16 +1,56 @@
 \chapter{DNS}
 
-\section{Standard DNS}
+\begin{quote}
+    Domain Name Servers (DNS) are the Internet's equivalent of a phone book. They maintain a directory of domain names and translate them to Internet Protocol (IP) addresses.
+    
+    This is necessary because, although domain names are easy for people to remember, computers or machines, access websites based on IP addresses. 
+\end{quote}\footnote{\href{http://www.networksolutions.com/support/what-is-a-domain-name-server-dns-and-how-does-it-work/}{networksolutions.com/support/what-is-a-domain-name-server-dns-and-how-does-it-work/}}
 
-\section[DNSSEC]{Encrypted DNS (a.k.a. DNSSEC)}
+\pagebreak
 
-\section[KSK]{Key Signing Key}
+\section{Hierarchy}
+
+\wikicommonspublicdomain{Domain_name_space}
+
+\pagebreak
+
+Is hierarchical by design going from:
+
+\begin{enumerate}
+    \item the root zone at the top of the pyramid,
+    \item to the \gls{tld} zones\footnote{Fx. \gls{cctld}/\gls{gtld} zones: .org, .net, .uk, .au, .mil, .aero},
+    \item to the sub-zones\footnote{Fx. .co.uk, .org.uk, .net.au, .co.cc} a level below.
+\end{enumerate}
+
+\wikicommonspublicdomain{Example_of_an_iterative_DNS_resolver}
+
+\pagebreak
+
+\section{Record Types}
+
+\begin{itemize}
+    \item \itemhead{A} Stores info on \gls{ip4} address.
+    \item \itemhead{AAAA} Store info on \gls{ip6} address.
+    \item \itemhead{CNAME} Store URL pointing to another URL (a.k.a. \gls{a}/\gls{aaaa} records).
+    \item \itemhead{HINFO}
+    \item \itemhead{ISDN}
+    \item \itemhead{MX}
+    \item \itemhead{NS}
+    \item \itemhead{PTR}
+    \item \itemhead{SOA}
+    \item \itemhead{TXT}
+    \item \itemhead{DNSKEY}   
+\end{itemize}
+
+\section{DNSSEC}
+
+\subsection[KSK]{Key Signing Key}
 
 The \gls{ksk} is a used to sign other keys. Thus creating a chain-of-trust.
 
-A prime example of this the current \gns{dnssec} infrastructure on the internet. Where \gls{icann} is controlling and managing the Root zone \gls{ksk} used today. And for the first time in history will do a \gls{ksk} rollover in the fall of 2017.\footnote{The 1st key was issued in 2010.}
+A prime example of this the current \gls{dnssec} infrastructure on the internet. Where \gls{icann} is controlling and managing the Root zone \gls{ksk} used today. And for the first time in history will do a \gls{ksk} rollover in the fall of 2017.\footnote{The 1st key was issued in 2010.}
 
 The \gls{ksk} is used to sign the DNS root-zone. All the TLD zones then have their own key called a \gls{zsk} used to sign all the domains requesting a key to sign their domain. The \gls{zsk} is signed by the root-zone \gls{ksk}.
 
-\subsection[Rollover]{Key Signing Key Rollover}
+\subsection[Rollover]{KSK-Rollover}
 
