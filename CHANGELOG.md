@@ -7,12 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 - See commit changelog
 
+## [0.3.3] - 2017-09-15
+### Fix
+- Table 2: Spanning Tree standards
+
 ## [0.3.2] - 2017-09-10
-## Added
+### Added
 - Initial BGP content considered done.
 
 ## [0.3.1] - 2017-07-19
-## Removed
+### Removed
 - Removed supervisor from front-page
 
 ## [0.3.0] - 2017-06-06
