@@ -51,6 +51,20 @@ Is hierarchical by design going from:
 
 \section{DNSSEC}
 
+
+
+\subsection{New Record Types}
+
+A couple of new record types were introduced with \gls{dnssec}.\cite{HowDNSSE22:online}
+
+\begin{itemize}
+    \item \itemhead{RRSIG}       Contains a cryptographic signature.
+    \item \itemhead{DNSKEY}      Contains a public signing key.
+    \item \itemhead{DS}          Contains the hash of a DNSKEY record.
+    \item \itemhead{NSEC+NSEC3}  For explicit denial-of-existence of a DNS record.
+    \item \itemhead{CDNSKEY+CDS} For a child zone requesting updates to DS record(s) in the parent zone.
+\end{itemize}
+    
 \subsection[KSK]{Key Signing Key}
 
 The \gls{ksk} is a used to sign other keys. Thus creating a chain-of-trust.
