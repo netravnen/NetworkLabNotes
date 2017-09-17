@@ -55,7 +55,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Initial version
 - Section: Spanning Tree
 
-[Unreleased]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.3.2...HEAD
+[Unreleased]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.3.3...HEAD
+[0.3.3]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.3.2...v0.3.3
 [0.3.2]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.3.1...v0.3.2
 [0.3.1]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.3.0...v0.3.1
 [0.3.0]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.2.2...v0.3.0
