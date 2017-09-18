@@ -62,6 +62,16 @@ Cisco converted \gls{eigrp} to an open standard back in 2013 with \rfc{7868}.\ci
 
 \gls{eigrp} adds support for \gls{vlsm} and the \gls{dual} with improved routing capabilities in comparison to \gls{igrp}. Overall \gls{eigrp} provides better capabilities compared to it's predecessor.
 
+\subsection[Math]{The Math behind}
+
+\fig{math/eigrp-dual-long}{eigrp-dual-long}{\glspl{eigrp} \gls{dual} full formula}
+
+By default $K_2$, and $K_4$ is set to zero. (The are user customizable!) And $K_5$ is set to 0.
+
+In effect the resulting shorter formula is this:
+
+\fig{math/eigrp-dual-short}{eigrp-dual-short}{\glspl{eigrp} \gls{dual} short formula}
+
 \newpage
 
 \section{RIP}
