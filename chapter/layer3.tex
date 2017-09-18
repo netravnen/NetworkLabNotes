@@ -2,6 +2,38 @@
 
 \section{Routed Network}
 
+\subsection{Administrative Distance}
+
+\begin{table}[]
+    \centering
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|l|}
+            \hline
+            \textbf{Routing Protocol} & \textbf{Administrative distance} \\ \hline
+            Directly connected interface & 0 \\ \hline
+            Static route out an interface & 1 \\ \hline
+            Static route to next-hop address & 1 \\ \hline
+            DMNR - Dynamic Mobile Network Routing & 3 \\ \hline
+            EIGRP summary route & 5 \\ \hline
+            External BGP & 20 \\ \hline
+            Internal EIGRP & 90 \\ \hline
+            IGRP & 100 \\ \hline
+            OSPF & 110 \\ \hline
+            IS-IS & 115 \\ \hline
+            Routing Information Protocol (RIP) & 120 \\ \hline
+            Exterior Gateway Protocol (EGP) & 140 \\ \hline
+            On Demand Routing (ODR) & 160 \\ \hline
+            External EIGRP & 170 \\ \hline
+            Internal BGP & 200 \\ \hline
+            Next Hop Resolution Protocol (NHRP) & 250 \\ \hline
+            Floating Static Route (ex. DHCP-learned) & 254 \\ \hline
+            Unknown (Others) & 255 \\ \hline
+        \end{tabular}%
+    }
+    \caption{Cisco default administrative distances}
+    \label{cisco-default-administrative-distances}
+\end{table}
+
 \newpage
 
 \section{OSPF}
