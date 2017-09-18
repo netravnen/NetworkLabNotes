@@ -6,7 +6,7 @@
 
 \begin{table}[]
     \centering
-    \resizebox{\textwidth}{!}{%
+    \resizebox{\columnwidth}{!}{%
         \begin{tabular}{|l|l|}
             \hline
             \textbf{Routing Protocol} & \textbf{Administrative distance} \\ \hline
@@ -34,7 +34,7 @@
     \label{cisco-default-administrative-distances}
 \end{table}
 
-Always remember the following points for Cisco devices:\cite{Administ9:online}
+Always remember the following points for Cisco devices:\cite{wiki:Administrative_distance}
 \begin{itemize}
     \item An administrative distance of 255 will cause the router to remove the route from the routing table and not use it.
     \item Since IOS 12.2, the administrative distance of a static route with an exit interface is 1. Prior to the release of 12.2 it was in fact 0.
