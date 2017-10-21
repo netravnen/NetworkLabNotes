@@ -1,0 +1,62 @@
+# Default
+* text=auto
+
+#
+# The above will handle all files NOT found below
+#
+# These files are text and should be normalized (Convert crlf => lf)
+.gitattributes text
+.gitignore text
+
+# https://github.com/alexkaratarakis/gitattributes/blob/master/Common.gitattributes
+
+# Common settings that generally should always be used with your language specific settings
+
+# Documents
+*.doc	 diff=astextplain
+*.DOC	 diff=astextplain
+*.docx diff=astextplain
+*.DOCX diff=astextplain
+*.dot  diff=astextplain
+*.DOT  diff=astextplain
+*.pdf  diff=astextplain
+*.PDF	 diff=astextplain
+*.rtf	 diff=astextplain
+*.RTF	 diff=astextplain
+*.md text
+*.adoc text
+*.textile text
+*.mustache text
+*.csv text
+*.tab text
+*.tsv text
+*.sql text
+
+# Graphics
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.tif binary
+*.tiff binary
+*.ico binary
+# SVG treated as an asset (binary) by default. If you want to treat it as text,
+# comment-out the following line and uncomment the line after.
+#*.svg binary
+*.svg text
+*.eps binary
+
+# https://sourceforge.net/p/songs/git/ci/master/tree/.gitattributes
+
+*.tex text
+*.sbd text
+*.dtx text
+*.ins text
+*.lua text
+*.can text
+*.bat text eol=crlf
+*.vim text
+*.txt text
+*.ico binary
+*.png binary
+*.bmp binary
