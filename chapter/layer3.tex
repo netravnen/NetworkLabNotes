@@ -107,6 +107,15 @@ Stub routing effectively prevents the given stub site/router to be used for tran
 
 If a router is configured as a \texttt{Stud Router}. It only carries information about \tsq{it}s locally connected routes and a default route back to the transit routers. \tsq{It}s also omitted from being queried about networks is does not advertise. {\small (I.e. The Routes Query Process)}s
 
+\section{Updates Exchange}
+
+<!-- Some text -->
+
+\subsection[SIA]{Stuck-in-Active}
+\gls{eigrp} is known and feared for it being \texttt{Stuck-in-Active} mode when exchanging route updates between routers. The Stuck-in-Active state could cause problems on low end network gear with a low amount of resources available for the routing process. Which in cases could cause the network device to use all available resources when querying neighbor devices for updates.
+
+\fig{eigrp/stuck-in-active}{stuck-in-active}{EIGRP Stuck in Active}
+
 \newpage
 
 \section{RIP}
