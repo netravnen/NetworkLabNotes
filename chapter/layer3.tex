@@ -76,6 +76,38 @@ In effect the resulting shorter formula is this:
 
 \gls{eigrp} does it routing on a \texttt{next-hop} basis. Meaning it only stores information about a given routes next turn. And \textbf{not} about the destination itself. (Like \gls{ospf} does)
 
+\subsubsection{Defaults}
+
+\gls{eigrp} runs on Cisco equipment with values of:
+\begin{itemize}
+    \item \itemhead[]{Administrative Distance (Defaults)}
+    \begin{itemize}
+        \item Internal: 90
+        \item External: 180
+        \item Summary: 5
+    \end{itemize}
+    \item \itemhead[]{Timers}
+    \begin{itemize}
+        \item Hello: 5s / 60s \footnote{The larger timer value applies at speeds <= T1 circuit bandwidth (a.k.a. lower-than-equal-to 1.544 Mbps)}
+        \item Hold: 15s / 180s
+    \end{itemize}
+    \item \itemhead[]{Supported Protocols}
+    \begin{itemize}
+        \item IP
+        \item IPX
+        \item AppleTalk
+    \end{itemize}
+    \item \itemhead[]{Other}
+    \begin{itemize}
+        \item Type: Distance Vector
+        \item Algorithm: \gls{dual}
+        \item Transport: IP/88
+        \item Authentication: MD5
+        \item Multicast IPv4: 224.0.0.10
+        \item Multicast IPv6: <!-- some number -->
+    \end{itemize}
+\end{itemize}
+
 \subsubsection{Tables}
 
 \gls{eigrp} contains three tables for storing route information.
