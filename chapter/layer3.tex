@@ -72,6 +72,33 @@ In effect the resulting shorter formula is this:
 
 \fig{math/eigrp-dual-short}{eigrp-dual-short}{\glspl{eigrp} \gls{dual} short formula}
 
+\subsection{How it actually works}
+
+\gls{eigrp} does it routing on a \texttt{next-hop} basis. Meaning it only stores information about a given routes next turn. And \textbf{not} about the destination itself. (Like \gls{ospf} does)
+
+\subsubsection{Tables}
+
+\gls{eigrp} contains three tables for storing route information.
+
+\begin{enumerate}
+    \item \itemhead[]{Neighbor Table}
+    \begin{itemize}
+        \item \textit{Lists \textbf{all} directly connected neighbors}
+        \item Next-Hop Router(s)
+        \item Interface(s)
+    \end{itemize}
+    \item \itemhead[]{Topology Table}
+    \begin{itemize}
+        \item \textit{Lists \textbf{all} learned from \textbf{all} \gls{eigrp} neighbors}
+        \item Destination
+        \item Metric
+    \end{itemize}
+    \item \itemhead[]{Global Routing Table}
+    \begin{itemize}
+        \item \textit{Best routes from \gls{eigrp} topology tabel will be copied to the routing table}
+    \end{itemize}
+\end{enumerate}
+
 \newpage
 
 \section{RIP}
