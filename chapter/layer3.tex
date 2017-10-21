@@ -99,6 +99,14 @@ In effect the resulting shorter formula is this:
     \end{itemize}
 \end{enumerate}
 
+\subsection{Stub Routing}
+
+\gls{eigrp} features some different ways to configure routers for specific routing scenarios. \texttt{Stub} routing is one of them.
+
+Stub routing effectively prevents the given stub site/router to be used for transit traffic.
+
+If a router is configured as a \texttt{Stud Router}. It only carries information about \tsq{it}s locally connected routes and a default route back to the transit routers. \tsq{It}s also omitted from being queried about networks is does not advertise. {\small (I.e. The Routes Query Process)}s
+
 \newpage
 
 \section{RIP}
