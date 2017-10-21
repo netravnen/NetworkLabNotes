@@ -109,7 +109,21 @@ If a router is configured as a \texttt{Stud Router}. It only carries information
 
 \section{Updates Exchange}
 
-<!-- Some text -->
+\begin{enumerate}
+    \item Routers always exchange full topology table information when neighbor-ship is established.
+    \item Now refresh of data will be done. Unless topology updates occur.
+    \item If the topology changes. A partial update about the specific prefix is sent to neighbors.\footnote{Changes includes metric components, link statuses, change in announced topology information.}
+    \item If a neighbor-ship fail. Then a new adjacency is formed with a full topology exchange is done.
+\end{enumerate}
+
+Always remember \gls{eigrp} does split-horizon by default on all active links when exchanging topology updates.
+
+Split-horizon is the \textit{famous} rule about not sending topology updates back to the router who sent the topology update in the first place.
+
+\gls{eigrp} uses \gls{rtp} to send topology updates and confirmation receipts.
+
+On \gls{p2p} interfaces. \gls{eigrp} simply send and ACK back to the sender.
+On multi-access interface/segments. \gls{eigrp} sends updates to 224.0.0.10 and receivers reply with a unicast ACK message to the sender.
 
 \subsection[SIA]{Stuck-in-Active}
 \gls{eigrp} is known and feared for it being \texttt{Stuck-in-Active} mode when exchanging route updates between routers. The Stuck-in-Active state could cause problems on low end network gear with a low amount of resources available for the routing process. Which in cases could cause the network device to use all available resources when querying neighbor devices for updates.
