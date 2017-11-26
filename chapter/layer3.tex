@@ -6,6 +6,17 @@
 \section{IS-IS}
 \section{EIGRP}
 \section{RIP}
+
+rip is the old routing protocol still existing using nukber-of-hops as the metric to calculate which route to take to the intended destination. This approach can work fine but has a nukber of weaknesses.
+1. Scales like shit.
+2. Does not take into account if 2 different paths with the same amount of hops has different transfer capacity.
+3. Has no concept of load sharing traffic between links if the same amount of hops is present amongst the best paths available.
+4. Limited to a miximum of 16 hops between source and destination.
+
+\subsection{RIPng}
+
+The version of rip supporting ipv6. different to the standard rip in the ng version is using different multicast addresses to communicate on.
+
 \section{Static}
 
 \newpage
