@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 - See commit changelog
 
+## [0.3.4] - 2017-09-17
+### Fix
+- Cannot remember what was fixed
+
 ## [0.3.3] - 2017-09-15
 ### Fix
 - Table 2: Spanning Tree standards
@@ -73,7 +77,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 [0.5.0]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.4.0...v0.5.0
 [0.4.0]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.3.3...v0.4.0
 
-[Unreleased]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.3.3...HEAD
+[Unreleased]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.3.4...HEAD
+[0.3.4]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.3.3...v0.3.4
 [0.3.3]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.3.2...v0.3.3
 [0.3.2]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.3.1...v0.3.2
 [0.3.1]: https://gitlab.com/netravnen/CiscoLabNotes/compare/v0.3.0...v0.3.1
