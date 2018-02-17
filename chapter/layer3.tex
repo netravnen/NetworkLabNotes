@@ -168,6 +168,22 @@ Imagine a large \gls{eigrp} topology (3-digit number of routers) in a single dom
 
 \fig{network/routing}{network-topology}{Medium sized network topology}
 
+\subsection{Non-Cisco Implementations}
+
+This is always a particular point of discussion around \gls{eigrp}. Cisco has released \textit{some} information on how \gls{eigrp} works.
+Not \textit{all} information.
+And only as \textit{informational} RFCs.
+This ensures Cisco \textit{still} has control of the development of the protocol.
+Because they have retained ownership by only publishing informational RFCs.
+
+This has been a hindrance for the adoption of \gls{eigrp} in other vendors than Cisco them-self.
+
+Known adoptions of EIGRP includes:
+\begin{itemize}
+    \item \gls{frr} targeted release 4\cite{https://github.com/FRRouting/frr/wiki/Frr-3.0-\%E2\%86\%92-4.0}
+    \item Quagga has known works for trying to implement \gls{eigrp}. Still not officially implemented, thou.
+\end{itemize}
+
 \newpage
 
 \section{RIP}
