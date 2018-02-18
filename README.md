@@ -1,5 +1,7 @@
 # Subjects tryied covered
 
+[Original repo][gitlab], [mirror][github]
+
 ## Switching
 - [X] Spanning Tree
 - [ ] SDM Templates
@@ -73,5 +75,5 @@
 - [X] OSPFv2
 - [X] VTY
 
-[repo-origin]: https://gitlab.com/netravnen/CiscoLabNotes
-[repo-mirror]: https://github.com/netravnen/CiscoLabNotes
+[gitlab]: https://gitlab.com/NETRAVNEN/NetworkLabNotes
+[github]: https://github.com/NETRAVNEN/NetworkLabNotes
