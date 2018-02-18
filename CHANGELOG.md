@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - See commit changelog
 
 ## [0.4.0] - 2018-02-18
-### Added chapter for EIGRP
+### Added
+- EIGRP chapter
 
 ## [0.3.4] - 2017-09-17
 ### Fix
