@@ -60,7 +60,7 @@ going on at around the same time.
 \subsection{Algorithm}
 
 The protocol uses Dijkstra\tsq{s} algorithm when calculating metrics 
-mathematically.\cite{wiki:Dijkstra's_algorithm}
+mathematically.
 
 The exchange of routing updates is done with \gls{ospf} own method. Directly
 using IP protocol 89 and multicast address 224.0.0.5 for link-local updates and
@@ -72,6 +72,32 @@ designated
 router to handle the exchange of routing information updates. And a backup 
 designated router is elected should the primary fail at some point. So as to 
 avoid instability in the exchange of updates.
+
+Dijkstra\tsq{s} algorithm. First formulated by computer scientist Edsger W. 
+Dijkstra in 1956 and published 1959. Is the formula behind \gls{ospf} path 
+calculation.\cite{wiki:Dijkstra's_algorithm}
+Every node in the network knows about every path to any given destination in 
+the network. And only the best path is then selected for candidate route to be 
+used for forwarding traffic.
+
+\subsubsection{Topology}
+
+OSPF is divided into areas hierarchically. With the backbone area being the 
+authoritative central area.
+
+\fig{ospf/area-hierarchy}{OSPF Area Hierarchy}{OSPF Area Hierarchy}
+
+All traffic is forced to go by the backbone area when in transit from one area 
+to another. This in turn works fine for the most part. But requires strict 
+discipline when expanding and/or upgrading the network.
+This is even more true when networks merge (fx. company merger/acquisition) 
+together. The ugly solution to having areas to far away from the backbone area 
+is Virtual links between ABRs across a non-backbone area.
+
+\fig{ospf/virtual-link}{OSPF Virtual Link}{OSPF Virtual Link between abr 
+routers across non-backbone area}
+
+\subsubsection{Database}
 
 \subsection{Timers}
 
