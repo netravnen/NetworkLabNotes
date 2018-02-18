@@ -221,6 +221,44 @@ The version of rip supporting ipv6. different to the standard rip in the ng vers
 
 \section{Babel}
 
+Babel is built on the principles of 1) \gls{dsdv}, 2) \gls{aodv}, and 3) 
+\gls{eigrp} protocols.
+Made for hybrid networks\footnote{network contains wired and wireless links} 
+and can account for a high level of instability on wireless links.
+
+Babel has been reported to be running stable in unstable wireless networks with 
+a level of reliability and fast convergence.
+
+\begin{itemize}
+    \item Loop-avoidance protocol,
+    \item Uses distributed Bellman-Ford algorithm,
+    \item \rfc{6126} in 45 pages, \textit{(28 are normative)}
+    \begin{enumerate}
+        \item Updates by \rfc{7298}, and
+        \item \rfc{7557}.
+    \end{enumerate}
+    \item Highly extensible protocol,\cite{BabelDoe86:online}
+    \item Supports \gls{ip4} and \gls{ip6}.
+\end{itemize}
+
+Babel on \underline{wired} networks uses by default hop-count. Can be 
+configured to include several values when computing the metrics.
+On \underline{wireless} networks Babel should be configured to take into 
+account factors such as link latency, packet loss, hop-count, and radio 
+diversity.
+
+\subsection{Protocol support}
+
+Currently the following projects include support for 
+Babel:\cite{Babel—al30:online}
+
+\begin{itemize}
+    \item Bird {\footnotesize \url{http://bird.network.cz/}}
+    \item FRR {\footnotesize \url{https://frrouting.org/}}
+    \item Pybabel {\footnotesize \url{https://github.com/fingon/pybabel/}}
+    \item Sbabeld {\footnotesize \url{http://github.com/jech/sbabeld/}}
+\end{itemize}
+
 \newpage
 
 \section{Static}
