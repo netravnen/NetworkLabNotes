@@ -49,9 +49,7 @@ Always remember the following points for Cisco devices:\cite{wiki:Administrative
 Used in IP networks (v4) and a \gls{lsr} protocol. Defined as OSPFv2 on \rfc{2328}
 from 1998. v1 first published as a \gls{rfc} back in 1989. From closely watching
 the development of the \gls{isis} routing protocol. As they were developed in
-%the \gls{ietf} and the \gls{iso} organizations receptively.
-
-\cite{Theendle83:online}
+the \gls{ietf} and the \gls{iso} organizations receptively.\cite{Theendle83:online}
 
 \subsection{Algorithm}
 
@@ -64,6 +62,44 @@ using IP protocol 89 and multicast address 224.0.0.5 for link-local updates and
 \subsection{Timers}
 
 \subsection{Filtering}
+
+\subsection[OSPF vs IS-IS]{OSPF versus IS-IS}
+
+This is a long-standing battle between routing protocols of the 1990s. Compared 
+there were quite a number of differences between \gls{ospf} and 
+\gls{isis}.\cite{JuniperKatz2000:online}
+
+\begin{itemize}
+    \item \gls{ospf} was developed at \gls{ietf}
+    \begin{itemize}
+        \item Very strictly defined
+        \item Optimized hard for \gls{ipv4}
+        \item Areas separated by routers
+        \item Updates done over \gls{ip}
+    \end{itemize}
+    \item \gls{isis} in \gls{iso}
+    \begin{itemize}
+        \item Loosely defined in part because of less interest in development 
+        from the \gls{ietf}.
+        \item Very extensible. So protocol support can be implemented while 
+        only extending the specification.
+        \item L1/L2 areas separated on links instead of routers
+        \item Updates sent directly on the link instead of being encapsulated 
+        in \gls{ip} packets.
+    \end{itemize}
+\end{itemize}
+
+This is all good and all that. Things have changed since the starting point of 
+both protocols being defined in the late 1980s.
+
+\gls{isis} had a stable implementation up through the 1990s and became the 
+standard of the era in \gls{isp} networks. Where as \gls{ospf} remained largely 
+the standard in medium-large enterprise networks.
+
+Today in late 2010s. Many of the things that made the difference is being 
+considered being largely irrelevant. Both because computing hardware has come a 
+long way since and the optimizations implemented in the protocols is defined 
+for yesterdays networks of the 1990s. Not the 2010s.
 
 \newpage
 
