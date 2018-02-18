@@ -12,7 +12,7 @@
 ## Routing
 - [X] BGP
 - [ ] ISIS
-- [ ] EIGRP (cisco proprietary)
+- [X] EIGRP (cisco proprietary)
 - [ ] OSPF
 - [ ] RIP
 - [ ] InterVLAN Routing
