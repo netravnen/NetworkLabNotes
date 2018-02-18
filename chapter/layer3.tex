@@ -66,6 +66,13 @@ The exchange of routing updates is done with \gls{ospf} own method. Directly
 using IP protocol 89 and multicast address 224.0.0.5 for link-local updates and
 224.0.0.6 for updates to all designated routers in an \gls{ospf} domain.
 
+\textit{P2P} links just exchange updates to each other.
+On \textit{broadcast} segments of the network. The routers present elects a 
+designated 
+router to handle the exchange of routing information updates. And a backup 
+designated router is elected should the primary fail at some point. So as to 
+avoid instability in the exchange of updates.
+
 \subsection{Timers}
 
 \subsection{Filtering}
