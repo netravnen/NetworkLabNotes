@@ -46,6 +46,20 @@ Always remember the following points for Cisco devices:\cite{wiki:Administrative
 
 \section{OSPF}
 
+Used in IP networks (v4) and a \gls{lsr} protocol. Defined as OSPFv2 on \rfc{2328} from 1998.
+
+\subsection{Algorithm}
+
+The protocol uses Dijkstra\tsq{s} algorithm when calculating metrics mathematically.
+
+The exchange of routing updates is done with \gls{ospf} own method. Directly
+using IP protocol 89 and multicast address 224.0.0.5 for link-local updates and
+224.0.0.6 for updates to all designated routers in an \gls{ospf} domain.
+
+\subsection{Timers}
+
+\subsection{Filtering}
+
 \newpage
 
 \section{IS-IS}
