@@ -2,9 +2,194 @@
 
 \section{Routed Network}
 
+\subsection{Administrative Distance}
+
+\begin{table}[]
+    \centering
+    \resizebox{\columnwidth}{!}{%
+        \begin{tabular}{|l|l|}
+            \hline
+            \textbf{Routing Protocol} & \textbf{Administrative distance} \\ \hline
+            Directly connected interface & 0 \\ \hline
+            Static route out an interface & 1 \\ \hline
+            Static route to next-hop address & 1 \\ \hline
+            DMNR - Dynamic Mobile Network Routing & 3 \\ \hline
+            EIGRP summary route & 5 \\ \hline
+            External BGP & 20 \\ \hline
+            Internal EIGRP & 90 \\ \hline
+            IGRP & 100 \\ \hline
+            OSPF & 110 \\ \hline
+            IS-IS & 115 \\ \hline
+            Routing Information Protocol (RIP) & 120 \\ \hline
+            Exterior Gateway Protocol (EGP) & 140 \\ \hline
+            On Demand Routing (ODR) & 160 \\ \hline
+            External EIGRP & 170 \\ \hline
+            Internal BGP & 200 \\ \hline
+            Next Hop Resolution Protocol (NHRP) & 250 \\ \hline
+            Floating Static Route (ex. DHCP-learned) & 254 \\ \hline
+            Unknown (Others) & 255 \\ \hline
+        \end{tabular}%
+    }
+    \caption{Cisco default administrative distances}
+    \label{cisco-default-administrative-distances}
+\end{table}
+
+Always remember the following points for Cisco devices:\cite{wiki:Administrative_distance}
+\begin{itemize}
+    \item An administrative distance of 255 will cause the router to remove the route from the routing table and not use it.
+    \item Since IOS 12.2, the administrative distance of a static route with an exit interface is 1. Prior to the release of 12.2 it was in fact 0.
+    \item Only the interface itself has an administrative distance of 0, since a route cannot have a distance of less than 1.
+    \item Directly connected routes have an administrative distance of 0.
+\end{itemize}
+
+\newpage
+
 \section{OSPF}
+
+\newpage
+
 \section{IS-IS}
+
+\newpage
+
 \section{EIGRP}
+
+\gls{eigrp} is Cisco's enhanced edition if \gls{igrp}. Dating back to 1993 and a leg for Cisco over other vendors back in the early days of the Internet. (.. hmm. And remember Cisco's implementation of \gls{ospf} was known to be unstable until the early 2000's.)
+
+The change to \gls{eigrp} from \gls{igrp} was due to the support of classless routing. (\gls{igrp} only supported classful routing of class A (/8), B (/16), and C (/24) networks.)
+
+Cisco converted \gls{eigrp} to an open standard back in 2013 with \rfc{7868}.\cite{wiki:Enhanced_Interior_Gateway_Routing_Protocol}
+
+\gls{eigrp} adds support for \gls{vlsm} and the \gls{dual} with improved routing capabilities in comparison to \gls{igrp}. Overall \gls{eigrp} provides better capabilities compared to it's predecessor.
+
+\subsection[Math]{The Math behind}
+
+\fig{math/eigrp-dual-long}{eigrp-dual-long}{\glspl{eigrp} \gls{dual} full formula}
+
+By default $K_2$, and $K_4$ is set to zero. (The are user customizable!) And $K_5$ is set to 0.
+
+In effect the resulting shorter formula is this:
+
+\fig{math/eigrp-dual-short}{eigrp-dual-short}{\glspl{eigrp} \gls{dual} short formula}
+
+\subsection{How it actually works}
+
+\gls{eigrp} does it routing on a \texttt{next-hop} basis. Meaning it only stores information about a given routes next turn. And \textbf{not} about the destination itself. (Like \gls{ospf} does)
+
+\subsubsection{Defaults}
+
+\gls{eigrp} runs on Cisco equipment with values of:
+\begin{itemize}
+    \item \itemhead[]{Administrative Distance (Defaults)}
+    \begin{itemize}
+        \item Internal: 90
+        \item External: 180
+        \item Summary: 5
+    \end{itemize}
+    \item \itemhead[]{Timers}
+    \begin{itemize}
+        \item Hello: 5s / 60s \footnote{The larger timer value applies at speeds <= T1 circuit bandwidth (a.k.a. lower-than-equal-to 1.544 Mbps)}
+        \item Hold: 15s / 180s
+    \end{itemize}
+    \item \itemhead[]{Supported Protocols}
+    \begin{itemize}
+        \item \gls{ip}
+        \item \gls{ipx}
+        \item AppleTalk
+    \end{itemize}
+    \item \itemhead[]{Other}
+    \begin{itemize}
+        \item Type: Distance Vector
+        \item Algorithm: \gls{dual}
+        \item Transport: \gls{ip}/88
+        \item Authentication: MD5
+        \item Multicast \gls{ipv4}: 224.0.0.10
+        \item Multicast \gls{ipv6}: <!-- some number -->
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Tables}
+
+\gls{eigrp} contains three tables for storing route information.
+
+\begin{enumerate}
+    \item \itemhead[]{Neighbor Table}
+    \begin{itemize}
+        \item \textit{Lists \textbf{all} directly connected neighbors}
+        \item Next-Hop Router(s)
+        \item Interface(s)
+    \end{itemize}
+    \item \itemhead[]{Topology Table}
+    \begin{itemize}
+        \item \textit{Lists \textbf{all} learned from \textbf{all} \gls{eigrp} neighbors}
+        \item Destination
+        \item Metric
+    \end{itemize}
+    \item \itemhead[]{Global Routing Table}
+    \begin{itemize}
+        \item \textit{Best routes from \gls{eigrp} topology tabel will be copied to the routing table}
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Stub Routing}
+
+\gls{eigrp} features some different ways to configure routers for specific routing scenarios. \texttt{Stub} routing is one of them.
+
+Stub routing effectively prevents the given stub site/router to be used for transit traffic.
+
+If a router is configured as a \texttt{Stud Router}. It only carries information about \tsq{it}s locally connected routes and a default route back to the transit routers. \tsq{It}s also omitted from being queried about networks is does not advertise. {\small (I.e. The Routes Query Process)}s
+
+\subsection{Updates Exchange}
+
+\begin{enumerate}
+    \item Routers always exchange full topology table information when neighbor-ship is established.
+    \item Now refresh of data will be done. Unless topology updates occur.
+    \item If the topology changes. A partial update about the specific prefix is sent to neighbors.\footnote{Changes includes metric components, link statuses, change in announced topology information.}
+    \item If a neighbor-ship fail. Then a new adjacency is formed with a full topology exchange is done.
+\end{enumerate}
+
+Always remember \gls{eigrp} does split-horizon by default on all active links when exchanging topology updates.
+
+Split-horizon is the \textit{famous} rule about not sending topology updates back to the router who sent the topology update in the first place.
+
+\gls{eigrp} uses \gls{rtp} to send topology updates and confirmation receipts.
+
+On \gls{p2p} interfaces. \gls{eigrp} simply send and ACK back to the sender.
+On multi-access interface/segments. \gls{eigrp} sends updates to 224.0.0.10 and receivers reply with a unicast ACK message to the sender.
+
+\subsection[SIA]{Stuck-in-Active}
+\gls{eigrp} is known and feared for it being \texttt{Stuck-in-Active} mode when exchanging route updates between routers. The Stuck-in-Active state could cause problems on low end network gear with a low amount of resources available for the routing process. Which in cases could cause the network device to use all available resources when querying neighbor devices for updates.
+
+\fig{eigrp/stuck-in-active}{stuck-in-active}{EIGRP Stuck in Active}
+
+End result is neighbor ships between \gls{eigrp} routers is terminated and re-established again with a fresh set of route updates going out.
+
+Imagine a large \gls{eigrp} topology (3-digit number of routers) in a single domain and beginning with 1 neighbor-ship gets re-established. And then again and again and again. Can result in quickly several routers going Stuck-in-Active because \gls{eigrp} queries are not getting answered within a short time-frame when all routers needs to query \tsq{it}s own neighbors and their neighbors and their neighbors and so forth. Until their are no more neighbors to be queried up and down the hierarchical network topology.
+
+\fig{network/routing}{network-topology}{Medium sized network topology}
+
+\subsection{Non-Cisco Implementations}
+
+This is always a particular point of discussion around \gls{eigrp}. Cisco has released \textit{some} information on how \gls{eigrp} works.
+Not \textit{all} information.
+And only as \textit{informational} RFCs.
+This ensures Cisco \textit{still} has control of the development of the protocol.
+Because they have retained ownership by only publishing informational RFCs.
+
+This has been a hindrance for the adoption of \gls{eigrp} in other vendors than Cisco them-self.
+
+Known adoptions of EIGRP includes:
+\begin{itemize}
+    \item \gls{frr} targeted release 4\cite{Frr30-4047:online}
+    \item Quagga has known works for trying to implement \gls{eigrp}. Still not officially implemented, thou.
+\end{itemize}
+
+\subsection{Filtering}
+
+\gls{eigrp} routing updates can of course be filtered in- and outgoing direction on Cisco boxes by using prefix-lists and applying the prefix lists under the \texttt{router eigrp x} process.
+
+\newpage
+
 \section{RIP}
 
 rip is the old routing protocol still existing using nukber-of-hops as the metric to calculate which route to take to the intended destination. This approach can work fine but has a nukber of weaknesses.
@@ -13,9 +198,13 @@ rip is the old routing protocol still existing using nukber-of-hops as the metri
 3. Has no concept of load sharing traffic between links if the same amount of hops is present amongst the best paths available.
 4. Limited to a miximum of 16 hops between source and destination.
 
+\newpage
+
 \subsection{RIPng}
 
 The version of rip supporting ipv6. different to the standard rip in the ng version is using different multicast addresses to communicate on.
+
+\newpage
 
 \section{Static}
 
