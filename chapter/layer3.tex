@@ -54,27 +54,40 @@ Always remember the following points for Cisco devices:\cite{wiki:Administrative
 
 \section{EIGRP}
 
-\gls{eigrp} is Cisco's enhanced edition if \gls{igrp}. Dating back to 1993 and a leg for Cisco over other vendors back in the early days of the Internet. (.. hmm. And remember Cisco's implementation of \gls{ospf} was known to be unstable until the early 2000's.)
+\gls{eigrp} is Cisco's enhanced edition if \gls{igrp}. Dating back to 1993 and a
+leg for Cisco over other vendors back in the early days of the Internet. (..
+hmm. And remember Cisco's implementation of \gls{ospf} was known to be unstable
+until the early 2000's.)
 
-The change to \gls{eigrp} from \gls{igrp} was due to the support of classless routing. (\gls{igrp} only supported classful routing of class A (/8), B (/16), and C (/24) networks.)
+The change to \gls{eigrp} from \gls{igrp} was due to the support of classless
+routing. (\gls{igrp} only supported classful routing of class A (/8), B (/16),
+and C (/24) networks.)
 
-Cisco converted \gls{eigrp} to an open standard back in 2013 with \rfc{7868}.\cite{wiki:Enhanced_Interior_Gateway_Routing_Protocol}
+Cisco converted \gls{eigrp} to an open standard back in 2013 with
+\rfc{7868}.\cite{wiki:Enhanced_Interior_Gateway_Routing_Protocol}
 
-\gls{eigrp} adds support for \gls{vlsm} and the \gls{dual} with improved routing capabilities in comparison to \gls{igrp}. Overall \gls{eigrp} provides better capabilities compared to it's predecessor.
+\gls{eigrp} adds support for \gls{vlsm} and the \gls{dual} with improved routing
+capabilities in comparison to \gls{igrp}. Overall \gls{eigrp} provides better
+capabilities compared to it's predecessor.
 
 \subsection[Math]{The Math behind}
 
-\fig{math/eigrp-dual-long}{eigrp-dual-long}{\glspl{eigrp} \gls{dual} full formula}
+\fig{math/eigrp-dual-long}{eigrp-dual-long}{\glspl{eigrp} \gls{dual} full
+    formula}
 
-By default $K_2$, and $K_4$ is set to zero. (The are user customizable!) And $K_5$ is set to 0.
+By default $K_2$, and $K_4$ is set to zero. (The are user customizable!) And
+$K_5$ is set to 0.
 
 In effect the resulting shorter formula is this:
 
-\fig{math/eigrp-dual-short}{eigrp-dual-short}{\glspl{eigrp} \gls{dual} short formula}
+\fig{math/eigrp-dual-short}{eigrp-dual-short}{\glspl{eigrp} \gls{dual} short
+    formula}
 
 \subsection{How it actually works}
 
-\gls{eigrp} does it routing on a \texttt{next-hop} basis. Meaning it only stores information about a given routes next turn. And \textbf{not} about the destination itself. (Like \gls{ospf} does)
+\gls{eigrp} does it routing on a \texttt{next-hop} basis. Meaning it only stores
+information about a given routes next turn. And \textbf{not} about the
+destination itself. (Like \gls{ospf} does)
 
 \subsubsection{Defaults}
 
