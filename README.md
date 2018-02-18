@@ -1,9 +1,9 @@
-URLs: [Development repository][gitlab], [mirror][github]
+URLs: [Development repository][gitlab], [mirror][github], [mirror][git.data.coop]
 
 # Subjects tryied covered
 
 ## Switching
-- [X] Spanning Tree
+- [x] Spanning Tree
 - [ ] SDM Templates
 - [ ] PoE
 - [ ] LACP
@@ -12,9 +12,9 @@ URLs: [Development repository][gitlab], [mirror][github]
 - [ ] vPC (cisco proprietary)
 
 ## Routing
-- [X] BGP
+- [x] BGP
 - [ ] ISIS
-- [X] EIGRP (cisco proprietary)
+- [x] EIGRP (cisco proprietary)
 - [ ] OSPF
 - [ ] RIP
 - [ ] InterVLAN Routing
@@ -61,19 +61,20 @@ URLs: [Development repository][gitlab], [mirror][github]
 - [ ] StackWise
 
 ## AAA
-- [X] TACACS+ (cisco proprietary)
-- [X] RADIUS
+- [x] TACACS+ (cisco proprietary)
+- [x] RADIUS
 
 ## Example configuration snippets
 - [ ] SSH
-- [X] CDP (cisco proprietary)
-- [X] DHCP
-- [X] HSRP (cisco proprietary)
-- [X] Hardware clock
-- [X] LLDP
-- [X] NTP
-- [X] OSPFv2
-- [X] VTY
+- [x] CDP (cisco proprietary)
+- [x] DHCP
+- [x] HSRP (cisco proprietary)
+- [x] Hardware clock
+- [x] LLDP
+- [x] NTP
+- [x] OSPFv2
+- [x] VTY
 
 [gitlab]: https://gitlab.com/NETRAVNEN/NetworkLabNotes
 [github]: https://github.com/NETRAVNEN/NetworkLabNotes
+[git.data.coop]: https://git.data.coop/NETRAVNEN/NetworkLabNotes/settings
