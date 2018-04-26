@@ -276,6 +276,13 @@ Downsides to using static routing is
 	\item often (almost!) has the best (default!) administrative distance when configured on a router whereby the static route is chosen over routes recieved via an IGP.
 \end{itemize}
 
+Positive things to using static routing \textit{can} be
+\begin{itemize}
+	\item can be used for fallback route(s) if dynamic routing fails for unknown reasons,
+	\item makes sense in a network with a low amount of routes needed in the routing table,
+	\item network administrator have full control over routing behaviour,
+	\item if needing a catch-all default route out of a network (i.e. exit route to e.g. the internet).
+\end{itemize}
 \newpage
 
 \section{BGP}
