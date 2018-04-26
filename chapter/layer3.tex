@@ -263,7 +263,18 @@ Currently the following projects include support for Babel:
 
 \newpage
 
-\section{Static}
+\section[Static]{Static routing}
+
+Static routing has the advantage of using few CPU cycles when compared to dynamic updated routes that needs to be refresing (reset timer) to avoid timeout and removal from a IGP's topology database.
+
+Downsides to using static routing is
+\begin{itemize}
+	\item constant presence,
+	\item needs manual updating if next-hop changes,
+	\item static routes need be configured on all hops along a multi-hop traffic route,
+	\item cumbersome to manage,
+	\item often (almost!) has the best (default!) administrative distance when configured on a router whereby the static route is chosen over routes recieved via an IGP.
+\end{itemize}
 
 \newpage
 
