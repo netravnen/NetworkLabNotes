@@ -1,0 +1,23 @@
+## Archive formats
+*.gz
+
+## Document formats
+*.pdf
+
+## LaTeX exceptions
+*.aux
+*.ist
+*.acn
+*.bbl
+*.blg
+*.lof
+*.synctex(busy)
+*.toc
+*.lot
+*.out
+latexmkrc
+main.fls
+main.fdb_latexmk
+
+# Editors
+.vscode
