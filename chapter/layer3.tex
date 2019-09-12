@@ -46,7 +46,7 @@ Always remember the following points for Cisco devices:\cite{wiki:Administrative
 
 \section{OSPF}
 
-Used in IP networks (v4) and a \gls{lsr} protocol. Defined as OSPFv2 on \rfc{2328}
+Used in \gls{ip} networks (v4) and a \gls{lsr} protocol. Defined as \gls{ospf2} on \rfc{2328}
 from 1998. v1 first published as a \gls{rfc} back in 1989. From closely watching
 the development of the \gls{isis} routing protocol. As they were developed in
 the \gls{ietf} and the \gls{iso} organizations 
@@ -59,11 +59,11 @@ going on at around the same time.
 
 \subsection{Algorithm}
 
-The protocol uses Dijkstra\tsq{s} algorithm when calculating metrics 
+The protocol uses Dijkstra\tsq{s} algorithm when calculating metrics
 mathematically.
 
 The exchange of routing updates is done with \gls{ospf} own method. Directly
-using IP protocol 89 and multicast address 224.0.0.5 for link-local updates and
+using \gls{ip} protocol 89 and multicast address 224.0.0.5 for link-local updates and
 224.0.0.6 for updates to all designated routers in an \gls{ospf} domain.
 
 \textit{P2P} links just exchange updates to each other.
