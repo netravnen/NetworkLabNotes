@@ -83,7 +83,7 @@
 	% You are not expected to understand this.
 	\renewcommand*{\sectionmark}[1]{ \markright{\thesection\ ##1} }%
 	\renewcommand*{\chaptermark}[1]{ \markboth{\chaptername\ \thechapter: ##1}{} }%
-	% Increase the length of the header such that the folios 
+	% Increase the length of the header such that the folios
 	% (typography jargon for page numbers) move into the margin
 	\fancyhfoffset[LE]{6mm}% slightly less than 0.25in
 	\fancyhfoffset[RO]{6mm}%
@@ -183,7 +183,7 @@
     captionpos=t,
     showstringspaces=false,
     breaklines=true,
-    breakatwhitespace=true,    
+    breakatwhitespace=true,
 }
 
 
@@ -270,7 +270,7 @@
 % https://tex.stackexchange.com/a/141975
 \let\origfootnote\footnote % font size of footnotes; changes \footnotesize command only inside footnotes!
 \renewcommand{\footnote}[1]{%
-    \renewcommand\footnotesize\scriptsize % here there is scriptsize in footnotes (example)       
+    \renewcommand\footnotesize\scriptsize % here there is scriptsize in footnotes (example)
     \origfootnote{#1}}
 
 
