@@ -12,3 +12,4 @@ latexmkrc
 /main.*
 /*.log
 .vscode
+.venv
