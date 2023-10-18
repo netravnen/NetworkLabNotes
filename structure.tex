@@ -1,51 +1,46 @@
 % Latex Packages
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{lmodern}
-\usepackage{geometry}
-\usepackage{listings}
-\usepackage{color} % makes custom color codes available.
-\usepackage[usenames,dvipsnames,svgnames]{xcolor} % makes custom color codes available.
-\usepackage{graphicx}
-\usepackage[numbers,square,sectionbib,comma,nonamebreak,elide]{natbib} % used with layout for bibliography section.
-\usepackage{float}
-\usepackage[english]{babel}
-\usepackage{fancyhdr}
-\usepackage{wrapfig}
-\usepackage{array}
-\usepackage{fancybox} % styling of boxes.
-\usepackage{varwidth}
-\usepackage{enumitem} % makes available changes to lists.
-\usepackage{titlepic}
-\usepackage[nottoc]{tocbibind}
-\usepackage{url} % cmd \url.
-\usepackage[showisoZ]{datetime2} % more options for time formatting.
-\usepackage{transparent}
-\usepackage{soul}
-\usepackage{caption}
-\usepackage{tikzsymbols} % http://ctan.math.utah.edu/ctan/tex-archive/graphics/pgf/contrib/tikzsymbols/tikzsymbols.pdf
-\usepackage{textcomp}
-\usepackage{parskip}
-\usepackage{fourier}
-\usepackage{array}
-\usepackage{makecell}
-\usepackage{inconsolata} 
-\usepackage{blindtext}
-\usepackage{expdlist}
-\usepackage{epigraph} % used to style quotes
-\usepackage{titling} % makes available \thetitle \theauthor \thedate
-\usepackage[toc,acronym,footnote,nomain]{glossaries} % Load the package with the acronym option
-\usepackage{chngcntr}
-\usepackage[toc]{multitoc}
-\usepackage{dblfnote} % https://tex.stackexchange.com/a/8180
-\usepackage[unicode=false,
-    colorlinks=true,
-    linkcolor=darkgray,
-    citecolor=darkgray,
-    filecolor=darkgray,
-    urlcolor=darkgray]{hyperref} % https://en.wikibooks.org/wiki/LaTeX/Hyperlinks
 \usepackage{amsmath,amssymb} % math things.
+\usepackage{array}
+\usepackage{array}
+\usepackage[english]{babel}
+\usepackage{blindtext}
+\usepackage{caption}
+\usepackage{chngcntr}
+\usepackage{color} % makes custom color codes available.
+\usepackage[showisoZ]{datetime2} % more options for time formatting.
+\usepackage{dblfnote} % https://tex.stackexchange.com/a/8180
+\usepackage{enumitem} % makes available changes to lists.
+\usepackage{epigraph} % used to style quotes
+\usepackage{expdlist}
+\usepackage{fancybox} % styling of boxes.
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[T1]{fontenc}
+\usepackage{fourier}
+\usepackage{geometry}
+\usepackage[toc,acronym,footnote,nomain]{glossaries} % Load the package with the acronym option
+\usepackage{graphicx}
+\usepackage[unicode=false,colorlinks=true,linkcolor=darkgray,citecolor=darkgray,filecolor=darkgray,urlcolor=darkgray]{hyperref} % https://en.wikibooks.org/wiki/LaTeX/Hyperlinks
+\usepackage{inconsolata}
+\usepackage[utf8]{inputenc}
 \usepackage{lipsum}
+\usepackage{listings}
+\usepackage{lmodern}
+\usepackage{makecell}
+\usepackage[toc]{multitoc}
+\usepackage[numbers,square,sectionbib,comma,nonamebreak,elide]{natbib} % used with layout for bibliography section.
+\usepackage{parskip}
+\usepackage{soul}
+\usepackage{textcomp}
+\usepackage{tikzsymbols} % http://ctan.math.utah.edu/ctan/tex-archive/graphics/pgf/contrib/tikzsymbols/tikzsymbols.pdf
+\usepackage{titlepic}
+\usepackage{titling} % makes available \thetitle \theauthor \thedate
+\usepackage[nottoc]{tocbibind}
+\usepackage{transparent}
+\usepackage{url} % cmd \url.
+\usepackage{varwidth}
+\usepackage{wrapfig}
+\usepackage[usenames,dvipsnames,svgnames]{xcolor} % makes custom color codes available.
 
 
 \renewcommand*{\multicolumntoc}{3} % https://tex.stackexchange.com/a/6455
@@ -83,7 +78,7 @@
 	% You are not expected to understand this.
 	\renewcommand*{\sectionmark}[1]{ \markright{\thesection\ ##1} }%
 	\renewcommand*{\chaptermark}[1]{ \markboth{\chaptername\ \thechapter: ##1}{} }%
-	% Increase the length of the header such that the folios 
+	% Increase the length of the header such that the folios
 	% (typography jargon for page numbers) move into the margin
 	\fancyhfoffset[LE]{6mm}% slightly less than 0.25in
 	\fancyhfoffset[RO]{6mm}%
@@ -183,7 +178,7 @@
     captionpos=t,
     showstringspaces=false,
     breaklines=true,
-    breakatwhitespace=true,    
+    breakatwhitespace=true,
 }
 
 
@@ -270,7 +265,7 @@
 % https://tex.stackexchange.com/a/141975
 \let\origfootnote\footnote % font size of footnotes; changes \footnotesize command only inside footnotes!
 \renewcommand{\footnote}[1]{%
-    \renewcommand\footnotesize\scriptsize % here there is scriptsize in footnotes (example)       
+    \renewcommand\footnotesize\scriptsize % here there is scriptsize in footnotes (example)
     \origfootnote{#1}}
 
 
