@@ -1,3 +1,8 @@
+% !TeX TS-program =
+% !TeX spellcheck = en_DK
+% !TeX encoding = UTF-8
+% !TeX root = ../main.tex
+
 \chapter{Campus Network}
 
 \section{Discover Nodes}
@@ -254,9 +259,9 @@ aaa authentication attempts login 1
 aaa authentication login default group TACACS local-case
 aaa authentication login console local-case
 aaa authentication enable default group TACACS enable
-aaa authorization exec default group TACACS local 
-aaa authorization commands 0 default group TACACS local 
-aaa authorization commands 15 default group TACACS local 
+aaa authorization exec default group TACACS local
+aaa authorization commands 0 default group TACACS local
+aaa authorization commands 15 default group TACACS local
 aaa accounting exec default
  action-type start-stop
  group tacacs+
@@ -303,7 +308,7 @@ Cisco switches allow by default only the following 3 protos until the client is 
 	\item The \textbf{authentication server}
 \end{itemize}
 
-\fig{8021X/portauth}{portauth}{802.1X Port Auth}
+\fig{8021x/portauth}{portauth}{802.1X Port Auth}
 
 802.1X can be enabled on a Cisco switch globally by \cliline{dot1x system-auth-control} and \textit{then} enabled on the switch port{\footnotesize (s)} by \cliline{aaa authentication dot1x}.
 
@@ -492,10 +497,10 @@ Go all the way and do consider if Supervisor Redundancy is a necessary requireme
 
 \subsection[VSS]{Virtual Switch Stacking}
 
-Activating switch stacking means you get a single control plane for all 
-switches in a \gls{vss} stack. The stack master switch gets to have the active 
-control plane. With help of \gls{sso} \& \gls{nsf} data + switch fabric is kept 
-in sync between stack members. This way no communication is lost when failures 
+Activating switch stacking means you get a single control plane for all
+switches in a \gls{vss} stack. The stack master switch gets to have the active
+control plane. With help of \gls{sso} \& \gls{nsf} data + switch fabric is kept
+in sync between stack members. This way no communication is lost when failures
 \textbf{do} happen at some point.
 
 \fig{vss/vss2}{vss2}{How the access layer sees a \gls{vss}}
@@ -586,7 +591,7 @@ Remember use of \textbf{pre-emption} when configuring the \gls{hsrp} routers wit
 
 \subsubsection[Blncd]{Load Sharing}
 
-When configuring 
+When configuring
 
 \newpage
 
