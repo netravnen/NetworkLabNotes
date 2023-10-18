@@ -259,9 +259,9 @@ aaa authentication attempts login 1
 aaa authentication login default group TACACS local-case
 aaa authentication login console local-case
 aaa authentication enable default group TACACS enable
-aaa authorization exec default group TACACS local 
-aaa authorization commands 0 default group TACACS local 
-aaa authorization commands 15 default group TACACS local 
+aaa authorization exec default group TACACS local
+aaa authorization commands 0 default group TACACS local
+aaa authorization commands 15 default group TACACS local
 aaa accounting exec default
  action-type start-stop
  group tacacs+
@@ -497,10 +497,10 @@ Go all the way and do consider if Supervisor Redundancy is a necessary requireme
 
 \subsection[VSS]{Virtual Switch Stacking}
 
-Activating switch stacking means you get a single control plane for all 
-switches in a \gls{vss} stack. The stack master switch gets to have the active 
-control plane. With help of \gls{sso} \& \gls{nsf} data + switch fabric is kept 
-in sync between stack members. This way no communication is lost when failures 
+Activating switch stacking means you get a single control plane for all
+switches in a \gls{vss} stack. The stack master switch gets to have the active
+control plane. With help of \gls{sso} \& \gls{nsf} data + switch fabric is kept
+in sync between stack members. This way no communication is lost when failures
 \textbf{do} happen at some point.
 
 \fig{vss/vss2}{vss2}{How the access layer sees a \gls{vss}}
@@ -591,7 +591,7 @@ Remember use of \textbf{pre-emption} when configuring the \gls{hsrp} routers wit
 
 \subsubsection[Blncd]{Load Sharing}
 
-When configuring 
+When configuring
 
 \newpage
 
