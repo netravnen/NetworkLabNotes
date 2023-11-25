@@ -1,4 +1,9 @@
+## Archive formats
 *.gz
+
+## Document formats
+
+## LaTeX exceptions
 *.aux
 *.ist
 *.acn
@@ -7,9 +12,15 @@
 *.lof
 *.synctex(busy)
 *.toc
+*.lot
 *.out
 latexmkrc
+!main.tex
 /main.*
 /*.log
+
+# Editors
 .vscode
+
+# Python
 .venv
