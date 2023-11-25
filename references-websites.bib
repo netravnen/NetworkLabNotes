@@ -58,3 +58,55 @@
     year = {},
     note = {(Accessed on 02/18/2018)}
 }
+
+@techreport{ietf-idr-bgp-sendholdtimer-00,
+  number =    {draft-ietf-idr-bgp-sendholdtimer-00},
+  type =      {Internet-Draft},
+  institution =   {Internet Engineering Task Force},
+  publisher = {Internet Engineering Task Force},
+  note =      {Work in Progress},
+  url =       {https://datatracker.ietf.org/doc/draft-ietf-idr-bgp-sendholdtimer/00/},
+  author =    {Job Snijders and Ben Cartwright-Cox},
+  title =     {{Border Gateway Protocol 4 (BGP-4) Send Hold Timer}},
+  pagetotal = 8,
+  year =      2023,
+  month =     may,
+  day =       5,
+  abstract =  {This document defines the SendHoldTimer session attribute for the Border Gateway Protocol (BGP) Finite State Machine (FSM). Implementation of a SendHoldTimer should help overcome situations where BGP sessions are not terminated after it has become detectable for the local system that the remote system is not processing BGP messages. For robustness, this document specifies that the local system should close BGP connections and not solely rely on the remote system for session closure when BGP timers have expired. This document updates RFC4271.},
+}
+
+@misc{bgpdimpl26:online,
+  author = {Lamparter, D.},
+  title = {bgpd: implement SendHoldTimer},
+  howpublished = {\url{https://github.com/FRRouting/frr/pull/11225}},
+  month = {May},
+  year = {2022},
+  note = {(Accessed on 11/25/2023)}
+}
+
+@misc{Whatdoes40:online,
+  author = {Cartwright-Cox, B.},
+  title = {What does bgp.tools support},
+  howpublished = {\url{https://bgp.tools/kb/bgp-support}},
+  month = {August},
+  year = {2022},
+  note = {(Accessed on 11/25/2023)}
+}
+
+@misc{Rebgpdse40:online,
+  author = {Jeker, C.},
+  title = {Re: bgpd send side hold timer},
+  howpublished = {\url{https://marc.info/?l=openbsd-tech&m=160820754925261&w=2}},
+  month = {December},
+  year = {2022},
+  note = {(Accessed on 11/25/2023)}
+}
+
+@misc{Navigati54:online,
+  author = {Daryll Swer},
+  title = {Navigating a BGP Zombie Outbreak on Juniper Routers},
+  howpublished = {\url{https://www.daryllswer.com/navigating-a-bgp-zombie-outbreak-on-juniper-routers/}},
+  month = {},
+  year = {},
+  note = {(Accessed on 11/25/2023)}
+}
