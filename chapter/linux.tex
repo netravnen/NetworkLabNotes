@@ -7,33 +7,69 @@
 
 \section{Kernel Upgrades}
 
+LIST KERNELS ON /boot PARTITION
+
 \begin{txt}
-    # LIST KERNELS ON /boot PARTITION
-    
-    dpkg --list | grep linux-image
-    dpkg --list | grep linux-headers
+dpkg --list | grep linux-image
+dpkg --list | grep linux-headers
 \end{txt}
 
-\begin{txt}    
-    # REMOVE SELECTED KERNEL VERSIONS FROM BOOT PARTITION
-    
-    sudo apt-get purge linux-image-4.4.0-{75,78,79}
-    sudo apt-get purge linux-image-extra-4.4.0-{75,78,79}
-    sudo apt-get purge linux-headers-4.4.0-{75,78,79}
-    
-    or
-    
-    sudo apt autoremove [-f]
-\end{txt}
-    
+REMOVE SELECTED KERNEL VERSIONS FROM BOOT PARTITION
+
 \begin{txt}
-    # My one-liner to remove old kernels (this also frees up disk space)
-    # https://askubuntu.com/a/254585
-    
-    dpkg --list | grep linux-image | awk '{ print \$2 }' | sort -V | sed -n '/'`uname -r`'/q;p' | xargs sudo apt-get -y purge
+sudo apt-get purge linux-image-4.4.0-{75,78,79}
+sudo apt-get purge linux-image-extra-4.4.0-{75,78,79}
+sudo apt-get purge linux-headers-4.4.0-{75,78,79}
 \end{txt}
-    
-\begin{txt}    
-    # Remember to update grub2 configuration
-    sudo update-grub2
+
+or alternatively
+
+\begin{txt}
+sudo apt autoremove [-f]
 \end{txt}
+
+My one-liner to remove old kernels (this also frees up disk space). https://askubuntu.com/a/254585
+
+\begin{txt}
+dpkg --list | grep linux-image | awk '{ print \$2 }' | sort -V | sed -n '/'`uname -r`'/q;p' | xargs sudo apt-get -y purge
+\end{txt}
+
+Remember to update grub2 configuration
+
+\begin{txt}
+sudo update-grub2
+\end{txt}
+
+\newpage
+
+\subsection{Proxmox}
+
+\subsubsection{Proxmox Migrations}
+
+Move a LXC containers storage volumes to a different storage backend, both the boot disk, and additional disks. 1400 is here the example Container ID. And ''tank'' the target storage backend. We need to stop the container before we are allowed to migrate the storage volumes of the container. We start the container back up after finishing migrating the storage volumes.
+
+\begin{txt}
+sudo pct stop 1400 && \
+sudo pct move-volume 1400 rootfs tank --delete && \
+sudo pct move-volume 1400 mp0    tank --delete && \
+sudo pct start 1400
+\end{txt}
+
+Using Remote Migrate to migrate an LXC container to a different Proxmox Node in another Proxmox Cluster. This is an offline migration, where we turn off the Container when migration. And restarting it with the new bridge setting afterwards. If the IPs have changed. This needs to be updated manually.
+
+\begin{txt}
+sudo pct remote-migrate \
+  $(
+    sudo pct list |
+    grep <LOOK FOR A SPECIFIC HOSTNAME> |
+    grep --perl-regex --only-matching '^\d+'
+  ) \
+  <TARGET CONTAINER/VM ID> \
+  'apitoken=PVEAPIToken=<USER>@<METHOD>!<TOKEN NAME>=<TOKEN KEY>,host=<TARGET HOSTNAME OR IP>' \
+  --delete 1 \
+  --online 0 \
+  --restart 1 \
+  --target-bridge <TARGET BRIDGE NAME> \
+  --target-storage <TARGET STORAGE NAME>
+\end{txt}
+
