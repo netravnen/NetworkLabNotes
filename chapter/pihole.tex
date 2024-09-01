@@ -1,0 +1,26 @@
+% !TeX TS-program =
+% !TeX spellcheck = en_DK
+% !TeX encoding = UTF-8
+% !TeX root = ../main.tex
+
+\chapter{PiHole}
+
+\section{Whitelisting}
+
+\subsection{Zoom Video Conferencing}
+
+\begin{txt}
+  COMMENT='Zoom Video Conferencing';
+
+  pihole -w --comment "${COMMENT}" zoom.us --noreload && \
+  pihole -w --comment "${COMMENT}" app.zoom.us --noreload && \
+  pihole -w --comment "${COMMENT}" xmpp.zoom.us --noreload && \
+  pihole --white-regex --comment "${COMMENT}" '^zoom([\d\w]+)\.(cloud|\w{3})\.zoom\.us$' --noreload && \
+  pihole --white-regex --comment "${COMMENT}" '^\w{2}\d{1,4}\w{2}\d{1,4}\.zoom\.us$' --noreload && \
+  pihole --white-regex --comment "${COMMENT}" '^us\d{1,4}web\.zoom\.us$' --noreload && \
+  pihole --white-regex --comment "${COMMENT}" '^\w{1,4}\d{1,4}\.zoom\.us$' --noreload && \
+  pihole --white-regex --comment "${COMMENT}" '^\w{2}\d{1,4}\w{1,4}static\.zoom\.us$' --noreload && \
+  pihole --white-regex --comment "${COMMENT}" '\.cloud\.zoom\.us$' --noreload && \
+  pihole --white-regex --comment "${COMMENT}" '^\w+(\d{1,2})?\.\w{2}\.zoom\.us$' --noreload && \
+  pihole --white-regex --comment "${COMMENT}" '^\w{2}\d{1,3}images\.zoom\.us$'
+\end{txt}
