@@ -1,0 +1,29 @@
+% !TeX TS-program =
+% !TeX spellcheck = en_DK
+% !TeX encoding = UTF-8
+% !TeX root = ../main.tex
+
+\chapter{EVPN}
+
+Ethernet Virtual Private Network (EVPN) is a technology to extend Layer 2 and 3 connectivity between different network segments. MPLS or VXLAN encapsulations can be used to transfer ethernet frames over MPLS or IP-based networks.
+
+BGP EVPN  is used as a control plane for multiple data-planes encapsulations (for both Layer2 and Layer3 VPN services). MP-BGP carries MAC addresses, MAC/IP bindings and IP prefixes. 
+
+RFC7432 is initial EVPN standard thad defines BGP as control plane for MPLS data plane. RFC8365 extends the use of additional data planes, VXLAN, NVGRE and MPLS over GRE and defines the use of EVPN as Network Virtualization Overlay (NVO).
+
+For MP-BGP to carry EVPN, new AFI/SAFI was defined 25(L2 VPN)/70(EVPN). Next-hop address within the NLRI is an IP address of the VTEP advertising the EVPN route.
+
+There are five EVPN route types:
+
+    Type-1: (Ethernet A-D) announces reachability of multi-homed ethernet segment
+    Type-2:( MAC advertisement MACIP) advertises MAC address of MAC/IP binding learned by specific EVI
+    Type-3: (Inclusive multicast IMET) advertises membership of a Layer 2 domain, allowing to auto discover VTEPs 
+    Type-4: (Ethernet segment) is used to discover VTEPs attached to the same shared Ethernet Segment for EVPN multi-homing model (active-active, active-standby forwarding)
+    Type-5: (IP prefix) Advertising IP prefix into the EVPN domain allows to create classic Layer 3 VPN. 
+
+Data plane encapsulation is defined with encapsulation extended community value:
+
+    8 - VXLAN (currently only one supported by ROS)
+    9 - NVGRE
+    10 - MPLS
+    11 - MPLSoGRE
