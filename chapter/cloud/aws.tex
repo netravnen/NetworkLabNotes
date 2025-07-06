@@ -1,0 +1,194 @@
+% !TeX TS-program =
+% !TeX spellcheck = en_DK
+% !TeX encoding = UTF-8
+% !TeX root = ../../main.tex
+
+\chapter{AWS}
+
+\section{Certifications}
+
+\subsection{CLF-C02}
+
+\subsubsection{Cloud Foundations and Compute}
+
+Cloud Adoption Framework:
+
+\begin{itemize}
+    \item business
+    \item people
+    \item governance
+    \item platforms
+    \item security
+    \item operations
+\end{itemize}
+
+Know how each one supports cloud readiness and aligns
+with business goals.
+
+Migration Strategies, 3 R's:
+
+\begin{itemize}
+    \item Rehost
+    \item Replatform
+    \item Refactor
+\end{itemize}
+
+You'll get questions asking which strategy is most
+appropriate based on the business goal, time constraints,
+and available resources.
+
+Data Migration Tools:
+
+\begin{itemize}
+    \item Snowball - Large offline Transfers
+    \item Data Migration Service (DMS) - Real-time Database Replication
+\end{itemize}
+
+Know which tool to use in which situation, for example,
+when bandwidth is limited and downtime must be minimized.
+
+And finally, don't just memorize terms, be ready to analyze scenarios.
+The exam will give you short case studies and asks which AWS service solves
+this problem, or which migration path would meet the business goal? Practicing
+real‑world use cases is the key to your success.
+
+\subsubsection{Storage, Networking, and Databases}
+
+S3 offers a range of storage classes:
+
+\begin{itemize}
+    \item \textbf{S3 Standard} is like your refrigerator's primary shelves suitable for frequently accessed data. It provides high throughput performance and low latency. S3 has high throughput because it can scale automatically to handle your storage needs. Remember, it's designed for durability, storing data across multiple devices in multiple facilities.
+    \item \textbf{S3 Intelligent Tiering} is like the dynamic shelves in your fridge. Perfect for data with \textit{unpredictable access patterns}, it automatically moves data between two access tiers. It's designed for savings in storage costs without performance impact.
+    \item \textbf{S3 Standard‑Infrequent Access}. Akin to your pantry, it's designed for data that's less frequently accessed, but requires rapid access when needed. S3 Standard‑Infrequent Access has a retrieval fee, so it's best for data accessed less frequently, but quickly when needed.
+    \item \textbf{S3 One Zone‑Infrequent Access}. This is a special section of your fridge, storing data in just one availability zone. It's cost‑effective, but slightly less durable than multiple zone options. S3 One Zone‑Infrequent access is suitable for secondary backup or data that's easily reproducible.
+    \item \textbf{S3 Glacier Instant Retrieval} is like the top drawer in your freezer, allowing you to quickly access important ingredients, but ones that aren't used so often. It's designed for immediate access to your archived data. It's an archive storage class that delivers the lowest cost storage for long‑lived data that is rarely accessed and requires retrieval in milliseconds. S3 Glacier Instant Retrieval delivers the fastest access to archive storage.
+    \item \textbf{S3 Glacier Flexible Retrieval}. It's like another compartment in your deep freezer that isn't accessed as much. It's for archived data that is accessed one to two times per year for archived data that does not require immediate access, but needs the flexibility to retrieve large sets of data at no cost.
+    \item \textbf{S3 Glacier Deep Archive}. This is like the very bottom of your deep freezer. The most cost‑effective for long‑term archival, it's designed for customers, particularly those in highly regulated industries like healthcare and public sectors that retain datasets for 7 to 10 years or longer to meet regulatory compliance. This storage class has longer retrieval times. Retrieval can take up to 12 hours.
+\end{itemize}
+
+\subsubsection{FSx and Elastic Disaster Recovery}
+
+Understand retrieval times and how fees differ between classes.
+Know if there's one or more availability zones for data storage.
+Recognize in what case a storage class would be used.
+To excel on your exams, grasp the unique
+roles and benefits of FSx and Elastic Disaster Recovery.
+Understand that FSx is tailored for Windows‑based workloads
+Elastic Disaster Recovery is about swift recovery and minimizing disruptions.
+Know that FSx offers native Windows features and seamless
+integration. For Elastic Disaster Recovery, know the importance of
+quick recovery times and its cost‑effectiveness.
+Thanks for joining me and learning about some additional storage services. See you in the next lesson.
+
+Elastic Disaster Recovery is designed to minimize downtime and
+data loss, offering swift recovery times.
+It ensures everything remains operational. With Elastic Disaster
+Recovery, you pay only for the servers you are actively replicating to
+AWS. In scenarios where operational disruptions can be costly, Elastic
+Disaster Recovery proves invaluable.
+It's not just about backup, but ensuring business continuity. Being adaptable,
+it can be tailored to specific recovery needs.
+And with that,
+we're ready for exam tips. To excel on your exams, grasp the unique
+roles and benefits of FSx and Elastic Disaster Recovery.
+Understand that FSx is tailored for Windows‑based workloads.
+Elastic Disaster Recovery is about swift recovery and minimizing disruptions.
+Know that FSx offers native Windows features and seamless
+integration. For Elastic Disaster Recovery, know the importance of
+quick recovery times and its cost‑effectiveness.
+
+\subsubsection{Elastic Block Storage}
+
+\quotesinglbase EBS provides persistent, block-level storage volumes for use with EC2 instances.
+
+Since snapshots only store block‑level changes,
+they are a cost‑effective backup solution.
+
+Snapshots can be copied across AWS regions, offering flexibility
+and enhancing disaster recovery strategies.
+
+Remember that EBS is persistent block‑level storage for EC2.
+Understand when you might want to use SSD versus HDD‑backed volumes.
+Remember that SSD is for high IOPS, and HDD is for throughput.
+
+Know the importance and utility of EBS snapshots,
+especially in data recovery and its efficiency and only saving
+changes since the last one.
+
+\subsubsection{Storage Gateway}
+
+There are
+
+\begin{itemize}
+    \item S3 File Gateway
+    \begin{itemize}
+        \item Keep your data in cloud-native formats
+        \item used for storing files directly on S3
+    \end{itemize}
+    \item Volume Gateway
+    \begin{itemize}
+        \item Provides block storage volumes
+        \item Offers stored and cached volumes
+        \item It's great for applications needing block storage, and it offers two modes:
+        \begin{itemize}
+            \item stored volumes for entire datasets
+            \item cached volumes for frequently accessed data
+        \end{itemize}
+        \item block storage volumes backed by S3
+    \end{itemize}
+    \item Tape Gateway
+    \begin{itemize}
+        \item For archiving data
+        \item Perfect for data that you don't need every day, but is important to keep for long‑term attention.
+    \end{itemize}
+    \item FSx File Gateway
+    \begin{itemize}
+        \item Extends on-premise file-systems
+        \item FSx for Windows File Server in the AWS cloud
+    \end{itemize}
+\end{itemize}
+
+Know that Storage Gateway is cost‑effective,
+that it encrypts data and that it integrates with
+existing on‑premises environments.
+Know some use cases as well such as data backup,
+disaster recovery, and data processing in AWS.
+
+\subsection{Networking}
+
+\subsubsection{Securing your VPC}
+
+\begin{itemize}
+    \item \Gls{sg} are \textit{state-full}
+    \item \Gls {nacl} are \textit{stateless}
+\end{itemize}
+
+\subsection{Databases}
+
+\begin{itemize}
+    \item \textbf{DynamoDB} is a fully managed \item  database service that offers low-latency data access.
+    \begin{itemize}
+        \item High-traffic web applications
+        \item gaming
+        \item e-commerce systems
+    \end{itemize}
+    \item \textbf{In-Memory for Redis} is a Redis-compatible, durable \textit{in-memory }database providing ultra-fast performance and multi-AZ durability, useful for high-performance microservices applications.
+    \begin{itemize}
+        \item Microservices
+        \item real-time applications
+        \item IoT
+    \end{itemize}
+    \item \textbf{RDS} is a fully managed database service. Includes features for high availability, disaster recovery, and integration with other AWS services.
+    \begin{itemize}
+        \itemBusiness-critical workloads
+        \item analytics
+    \end{itemize}
+    \item \textbf{Neptune} is a fully managed \textit{graph database} optimized for storing and querying highly connected data, supporting both property graphs and RDF models. Use cases include fraud detection, recommendation engines, and drug discovery.
+    \begin{itemize}
+        \item Fraud detection
+        \item social networking
+        \item recommendation engines
+    \end{itemize}
+    \item \textbf{SCT} is used for Schema conversions during database migrations
+    \item \textbf{DMS} is used as a Database Migration Service. To migrate on-prem to cloud-prem databases.
+\end{itemize}
