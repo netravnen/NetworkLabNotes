@@ -176,7 +176,8 @@ On \gls{p2p} interfaces. \gls{eigrp} simply send and ACK back to the sender.
 On multi-access interface/segments. \gls{eigrp} sends updates to 224.0.0.10 and receivers reply with a unicast ACK message to the sender.
 
 \subsection[SIA]{Stuck-in-Active}
-\gls{eigrp} is known and feared for it being \texttt{Stuck-in-Active} mode when exchanging route updates between routers. The Stuck-in-Active state could cause problems on low end network gear with a low amount of resources available for the routing process. Which in cases could cause the network device to use all available resources when querying neighbor devices for updates.
+
+{eigrp} is known and feared for it being \texttt{Stuck-in-Active} mode when exchanging route updates between routers. The Stuck-in-Active state could cause problems on low end network gear with a low amount of resources available for the routing process. Which in cases could cause the network device to use all available resources when querying neighbor devices for updates.
 
 \fig{eigrp/stuck-in-active}{stuck-in-active}{EIGRP Stuck in Active}
 
@@ -226,12 +227,12 @@ The version of rip supporting ipv6. different to the standard rip in the ng vers
 
 \section{Babel}
 
-Babel is built on the principles of 1) \gls{dsdv}, 2) \gls{aodv}, and 3) 
+Babel is built on the principles of 1) \gls{dsdv}, 2) \gls{aodv}, and 3)
 \gls{eigrp} protocols.
-Made for hybrid networks\footnote{network contains wired and wireless links} 
+Made for hybrid networks\footnote{network contains wired and wireless links}
 and can account for a high level of instability on wireless links.
 
-Babel has been reported to be running stable in unstable wireless networks with 
+Babel has been reported to be running stable in unstable wireless networks with
 a level of reliability and fast convergence.
 
 \begin{itemize}
@@ -239,24 +240,24 @@ a level of reliability and fast convergence.
     \item Uses distributed Bellman-Ford algorithm,
     \item \rfc{6126} in 45 pages, \textit{(28 are normative)}
     \begin{enumerate}
-        \item Updates by \rfc{7298} {\scriptsize (The Babel extension 
+        \item Updates by \rfc{7298} {\scriptsize (The Babel extension
         mechanism)}, and
-        \item \rfc{7557} {\scriptsize (Babel \gls{hmac} Cryptographic 
+        \item \rfc{7557} {\scriptsize (Babel \gls{hmac} Cryptographic
         Authentication)}.
     \end{enumerate}
     \item Highly extensible protocol,\cite{BabelDoe86:online}
     \item Supports \gls{ip4} and \gls{ip6}.
 \end{itemize}
 
-Babel on \underline{wired} networks uses by default hop-count. Can be 
+Babel on \underline{wired} networks uses by default hop-count. Can be
 configured to include several values when computing the metrics.
-On \underline{wireless} networks Babel should be configured to take into 
-account factors such as link latency, packet loss, hop-count, and radio 
+On \underline{wireless} networks Babel should be configured to take into
+account factors such as link latency, packet loss, hop-count, and radio
 diversity.
 
 \subsection{Protocol support}
 
-Currently the following projects include support for Babel: 
+Currently the following projects include support for Babel:
 \cite{Babel-al30:online}
 
 \begin{itemize}
@@ -312,26 +313,26 @@ Route-maps is used to target a select set of routes and either modify/add/remove
     \begin{enumerate}[label={\alph*)}]
         \item \Gls{bgp} communities,
         \item \Gls{ip} prefix,
-        \item \Gls{bgp} as-path, 
+        \item \Gls{bgp} as-path,
     \end{enumerate}
 \end{itemize}
 
 An simple example of using route-maps is
 
 \begin{cisco}
-ip prefix-list 1 permit 172.16.0.0/16 
-ip prefix-list 2 permit 192.168.1.0/24 
+ip prefix-list 1 permit 172.16.0.0/16
+ip prefix-list 2 permit 192.168.1.0/24
 !
-route-map RED permit 10 
- match ip address prefix-list 1 
+route-map RED permit 10
+ match ip address prefix-list 1
  set ip next hop 10.1.1.1
  continue 20              ! Continues to apply rules normally only
                           ! applied to prefix-list 2. To apply to
                           ! prefix-list 1, too.
                           ! Any attributes set in '20' will
                           ! override any set during '10'.
-route-map RED permit 20 
- match ip address prefix-list 2 
+route-map RED permit 20
+ match ip address prefix-list 2
  set ip next hop 10.2.2.2 ! Last rule overrides previous rules from
                           ! previous '10' rule-set.
 \end{cisco}
@@ -369,3 +370,6 @@ Problems by running \textit{Full Mesh} is the formula of \[ iBGPsessions = n*(n-
     \item distance is set to 20 compared to 200 for \gls{ibgp} routes,
     \item Next hop does \textit{not} change for \gls{ebgp} routes advertised to \gls{ibgp} neighbours \textit{by-default}\footnote{Often times it is necessary to tell a router to set itself as the next-hop before advertising to \gls{ibgp} neighbours}.
 \end{enumerate}
+
+\subsection[EVPN]{Ethernet Virtual Private Network}
+
