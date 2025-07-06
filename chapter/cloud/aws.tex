@@ -1,5 +1,5 @@
 % !TeX TS-program =
-% !TeX spellcheck = en_DK
+% !TeX spellcheck = en_GB
 % !TeX encoding = UTF-8
 % !TeX root = ../../main.tex
 
@@ -163,7 +163,7 @@ disaster recovery, and data processing in AWS.
     \item \Gls {nacl} are \textit{stateless}
 \end{itemize}
 
-\subsection{Databases}
+\subsubsection{Databases}
 
 \begin{itemize}
     \item \textbf{DynamoDB} is a fully managed \item  database service that offers low-latency data access.
@@ -191,4 +191,63 @@ disaster recovery, and data processing in AWS.
     \end{itemize}
     \item \textbf{SCT} is used for Schema conversions during database migrations
     \item \textbf{DMS} is used as a Database Migration Service. To migrate on-prem to cloud-prem databases.
+\end{itemize}
+
+\subsubsection{AWS "AI" hype}
+
+\begin{itemize}
+    \item RedShift
+    \item Kinesis
+    \item Data Firehose
+    \item Athena
+    \item Glue
+    \item Data Exchange
+    \item Elastic Map Reduce (EMR)
+    \item OpenSearch
+    \item Managed Streaming for Apache Kafka (MSK)
+    \item QuickSight
+    \item SageMaker
+    \item Kendra
+    \item Lex
+    \item Polly
+    \item Comprehend
+    \subitem Uses \gls{nlp} to process text
+    \subitem Discover phrases, topics, languages
+    \subitem Sentiment Analysis
+    \subitem Intelligent Search
+    \item Textract
+    \subitem Read any item of documents. Extracting information and text.
+    \subsubitem Pictures
+    \subsubitem PDF's
+    \subsubitem Tables
+    \subsubitem Forms
+    \subitem Uses \gls{ocr} to process handwritten and printed objects and documents.
+    \subsubitem \gls{id} processing at \gls{kyc} checks
+    \subsubitem Border Crossings
+    \subsubitem Municipality
+    \subsubitem Invoices
+    \subsubitem Contracts
+    \subsubitem etc.
+    \item Transcribe
+    \subitem Speech to Text service
+    \subitem Recognize streamed and uploaded audio recordings
+    \subitem Live texting on Live TV (e.g. Tour de France), Subtitles in recorded media, Live Transcription of a meeting, or summarized meeting notes when the meeting is done.
+    \item Translate
+    \subitem Language translation. "Accurate" and "natural sounding".
+    \subitem "Over 70" supported languages. Customize brand names, product names, terminology.
+    \subitem Translation at scale, supporting large bodies in API calls, quick processing of text content.
+    \subitem Product, and Support documentation, including real-time translation (e.g. Chatbots).
+    \item Rekognition
+    \subitem Recognise a variety of topics in pictures.
+    \subsubitem Generate a list of tags "Labels" that applies to the analysed picture
+    \subsubitem Picture properties
+    \subsubitem Picture moderation
+    \subsubitem Analyse facials
+    \subsubitem Face comparisons
+    \subsubitem Face "liveness"
+    \subsubitem Famous people
+    \subsubitem Overlay text in pictures
+    \subsubitem ppe?
+    \subitem Both video and still pictures can be analysed
+    \subitem Useful for content moderation, \gls{id} analysis and identification, tagging areas in images in regards to what topic the analyses areas are.
 \end{itemize}
